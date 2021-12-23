@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import Header from '../../ed-portfolio/components/header'
-import Footer from '../../ed-portfolio/components/footer'
+import Header from '../components/header'
+import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
 
 const Skills: NextPage = () => {

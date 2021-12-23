@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="284" height="67.5" viewBox="0 0 284 67.5">
+  <defs>
+    <filter id="Rectangle_2" x="1.82" y="5.26" width="58.981" height="58.981" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="edward" x="67" y="2.5" width="217" height="65" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="edward-2" data-name="edward" transform="translate(-819 -587)">
+    <g id="Rectangle_6" data-name="Rectangle 6" transform="translate(819 587)" fill="#fff" stroke="#000" stroke-width="1">
+      <rect width="282" height="64" rx="5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="281" height="63" rx="4.5" fill="none"/>
+    </g>
+    <g id="Group_2" data-name="Group 2" transform="translate(10.57 -92.74)">
+      <g transform="matrix(1, 0, 0, 1, 808.43, 679.74)" filter="url(#Rectangle_2)">
+        <rect id="Rectangle_2-2" data-name="Rectangle 2" width="40.981" height="40.981" rx="5" transform="translate(10.82 11.26)" fill="#eee"/>
+      </g>
+      <rect id="Rectangle_3" data-name="Rectangle 3" width="29.882" height="6.83" rx="3.415" transform="translate(833.764 698.684)" fill="#f87a7a"/>
+      <rect id="Rectangle_4" data-name="Rectangle 4" width="29.882" height="6.83" rx="3.415" transform="translate(833.764 717.467)" fill="#f87a7a"/>
+      <rect id="Rectangle_5" data-name="Rectangle 5" width="15.048" height="6.83" rx="3.415" transform="translate(848.812 708.182)" fill="#f87a7a"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 819, 587)" filter="url(#edward)">
+      <text id="edward-3" data-name="edward" transform="translate(76 46.5)" fill="#f87a7a" font-size="42" font-family="Broadway"><tspan x="0" y="0">EDWARD</tspan></text>
+    </g>
+    <line id="Line_1" data-name="Line 1" y2="62.5" transform="translate(886.5 587.5)" fill="none" stroke="#000" stroke-width="3"/>
+  </g>
+</svg>
