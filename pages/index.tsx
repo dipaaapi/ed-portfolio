@@ -12,7 +12,7 @@ const Home: NextPage = () => {
 
       <main className='px-5 justify-center text-center'>
 
-        <div className='grid align-middle justify-center grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-0 md:gap-10 w-full md:w-2/3'>
+        <div className='grid align-middle justify-center grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-0 md:gap-10 w-full md:w-2/3 md:mx-auto'>
           <Link href={'/skills'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>

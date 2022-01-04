@@ -9,7 +9,8 @@ const Projects: NextPage = () => {
             <Header />
 
             <main>
-                <h1 className="">Projects Page</h1>
+                <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Projects Page</h1>
+
             </main>
 
             <Footer />
