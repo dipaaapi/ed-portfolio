@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
+import Image from 'next/image'
 
 const Skills: NextPage = () => {
     return (
@@ -9,8 +10,115 @@ const Skills: NextPage = () => {
             <Header />
 
             <main>
-                <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Skill Page</h1>
-
+                <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Technical Skill</h1>
+                <ul>
+                    <li className='group'>
+                        <div className="w-full h-96 grid grid-cols-1 grid-rows-2 justify-center items-center transition-all group-hover:bg-red-500 bg-dark border-b-2">
+                            <div className="flex justify-center items-center">
+                                <p className="group-hover:text-dark text-white mx-2">UI Designer Skills</p>
+                                <Image src='/CyberEd2.jpg' width={150} height={50} className='mx-2 rounded mb-5' />
+                            </div>
+                            <div className="w-full text-white group-hover:text-dark">
+                                <ul className='flex space-x-3 justify-center text-center'>
+                                    <li className='hover:animate-ping'>
+                                        <Image src='/adobeXd.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Adobe XD</p>
+                                    </li>
+                                    <li className='hover:animate-ping'>
+                                        <Image src='/adobePs.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Adobe Photoshop</p>
+                                    </li>
+                                    <li className='hover:animate-ping'>
+                                        <Image src='/adobeAi.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Adobe Illustration</p>
+                                    </li>
+                                    <li className='hover:animate-ping'>
+                                        <Image src='/figma.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Figma</p>
+                                    </li>
+                                    <li className='hover:animate-ping'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Balsamiq</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li className='group'>
+                        <div className="w-full h-auto grid grid-cols-1 grid-rows-2 justify-center items-center transition-all group-hover:bg-dark bg-white border-b-2">
+                            <div className="flex justify-center items-center">
+                                <p className="group-hover:text-white text-dark mx-2">Front-End Skills</p>
+                                <Image src='/CyberEd2.jpg' width={150} height={50} className='mx-2 rounded mb-5' />
+                            </div>
+                            <div className="w-2/3 md:w-4/5 mx-auto text-dark group-hover:text-white">
+                                <ul className='grid grid-cols-3 md:grid-cols-5 justify-center text-center mb-10'>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/adobeXd.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">HTML5</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/adobePs.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">CSS</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/adobeAi.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Javascript</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/figma.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Php</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">MySQL</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">ReactJs</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">NextJs</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Bootstrap</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Material Design</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">SCSS / Sass</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Tailwind CSS</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Laravel</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Jetstream</p>
+                                    </li>
+                                    <li className='hover:animate-ping my-3 md:my-5'>
+                                        <Image src='/balsamiq.png' width={50} height={50} className='bg-transparent' />
+                                        <p className="">Alpine Js</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li className='group'>
+                        <div className="w-full h-96 flex justify-center items-center transition-all group-hover:bg-white bg-red-500">
+                            <p className="group-hover:text-red-500 text-white mx-2">Quality Assurance Skills</p>
+                            <Image src='/CyberEd2.jpg' width={150} height={50} className='mx-2 rounded' />
+                        </div>
+                    </li>
+                </ul>
             </main>
 
             <Footer />
