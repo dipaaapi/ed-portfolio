@@ -11,7 +11,7 @@ const Footer = () => (
             >
             Powered by: {'Edward'}
             <span className={styles.logo}>
-                <Image src="/edward.svg" alt="Edward Logo" width={72} height={16} />
+                <Image src="/favicon.ico" alt="vercel Logo" width={30} height={30} />
             </span>
             </a>
         </footer>
