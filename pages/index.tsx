@@ -21,6 +21,14 @@ const Home: NextPage = () => {
               </div>
             </a>
           </Link>
+          <Link href={'/hobbies'}>
+            <a className='group'>
+              <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Hobbies:</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.</p>
+              </div>
+            </a>
+          </Link>
           <Link href={'/projects'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
