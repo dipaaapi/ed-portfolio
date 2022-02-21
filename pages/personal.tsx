@@ -2,12 +2,13 @@ import type { NextPage } from 'next'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
+import Image from 'next/image'
 
 const Personal: NextPage = () => {
     const info = {
         name: 'John Edward M. Cabrera',
         age: 32,
-        position: 'Front-end Developer',
+        position: ['Front-end Developer', 'UI/UX Designer', 'Quality Assurance'],
         gender: 'male',
         address: '23 sta. fe street blk-3 brgy. 103 zone-8 magsaysay village District 1 Tondo, Manila Philippines',
         mobile: '09663679205',
@@ -20,15 +21,28 @@ const Personal: NextPage = () => {
 
             <main>
                 <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Personal Information</h1>
+                <div className="md:flex grid grid-cols-1 w-max mx-auto">
+                    <div className="flex-shrink">
+                        <Image src="/ed.jpg" width={150} height={150} alt="ed picture" className="rounded-full shadow border-red-500 border w-max mx-auto" />
+                    </div>
+                    <div className="flex-grow p-3 my-auto">
+                        <p className="text-red-500 my-auto text-center md:text-left text-4xl font-bold">{info.name}</p>
+                        <div className="grid grid-cols-3 gap-5">
+                            <p className="italic text-sm text-center text-gray-500">{info.position[0]}</p>
+                            <p className="italic text-sm text-center text-gray-500">{info.position[1]}</p>
+                            <p className="italic text-sm text-center text-gray-500">{info.position[2]}</p>
+                        </div>
+                    </div>
+                </div>
                 <ul>
-                    <li className='flex space-x-2 my-2'>
+                    {/* <li className='flex space-x-2 my-2'>
                         <svg className='flex-shrink' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-3.123 0-5.914-1.441-7.749-3.69.259-.588.783-.995 1.867-1.246 2.244-.518 4.459-.981 3.393-2.945-3.155-5.82-.899-9.119 2.489-9.119 3.322 0 5.634 3.177 2.489 9.119-1.035 1.952 1.1 2.416 3.393 2.945 1.082.25 1.61.655 1.871 1.241-1.836 2.253-4.628 3.695-7.753 3.695z"/></svg>
                         <p className="flex-grow">{info.name}</p>
                     </li>
                     <li className='flex space-x-2 my-2'>
                         <svg className='flex-shrink' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.822 18.096c-3.439-.794-6.641-1.49-5.09-4.418 4.719-8.912 1.251-13.678-3.732-13.678-5.081 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-2.979.688-3.178 2.143-3.178 4.663l.005 1.241h10.483l.704-3h1.615l.704 3h10.483l.005-1.241c.001-2.52-.198-3.975-3.177-4.663zm-8.231 1.904h-1.164l-.91-2h2.994l-.92 2z"/></svg>
                         <p className="">{info.position}</p>
-                    </li>
+                    </li> */}
                     <li className='flex space-x-2 my-2'>
                         <svg className='flex-shrink' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 20h-4v-4h4v4zm-6-10h-4v4h4v-4zm6 0h-4v4h4v-4zm-12 6h-4v4h4v-4zm6 0h-4v4h4v-4zm-6-6h-4v4h4v-4zm16-8v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2z"/></svg>
                         <p className="flex-grow">{info.age}</p>
