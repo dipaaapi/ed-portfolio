@@ -55,11 +55,7 @@ const Home: NextPage = () => {
           </Link>
         </div>
 
-        <div className='w-full text-center'>
-          <p className="text-red-500">
-              there must be something!?
-          </p>
-        </div>
+        {/* 0- */}
       </main>
       <Footer />
     </div>

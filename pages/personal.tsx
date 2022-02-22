@@ -3,6 +3,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
+import Navigation from '../components/nav'
 
 const Personal: NextPage = () => {
     const info = {
@@ -17,12 +18,13 @@ const Personal: NextPage = () => {
     }
     return (
         <div className={styles.container}>
-            <Header />
+            {/* <Header /> */}
+            <Navigation />
 
             <main>
-                <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Personal Information</h1>
+                {/* <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Personal Information</h1> */}
                 <div className="md:flex grid grid-cols-1 w-max mx-auto">
-                    <div className="flex-shrink">
+                    <div className="flex-shrink mx-auto w-max">
                         <Image src="/ed.jpg" width={150} height={150} alt="ed picture" className="rounded-full shadow border-red-500 border w-max mx-auto" />
                     </div>
                     <div className="flex-grow p-3 my-auto">
