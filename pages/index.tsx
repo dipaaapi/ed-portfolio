@@ -1,12 +1,16 @@
 import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div className="p-0 relative">
+
+      <div className="absolute z-0 left-0 top-0 w-full h-auto">
+        <Image src="/herobg.png" layout='fill' />
+      </div>
 
       <Header />
 
@@ -37,14 +41,14 @@ const Home: NextPage = () => {
               </div>
             </a>
           </Link>
-          <Link href={'/workxp'}>
+          {/* <Link href={'/workxp'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Work Experience:</h2>
                 <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.</p>
               </div>
             </a>
-          </Link>
+          </Link> */}
           <Link href={'/personal'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
