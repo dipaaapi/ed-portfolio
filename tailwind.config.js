@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         dark: '#04092e',
       },
+      fontFamily: {
+        main: ['Orbitron', 'sans-serif'],
+      },
     },
   },
   plugins: [],

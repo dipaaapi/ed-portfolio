@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-first {
+    @apply text-center text-sm uppercase underline hover:underline-offset-8 transition-all cursor-pointer;
+}

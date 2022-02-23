@@ -8,8 +8,8 @@ const Home: NextPage = () => {
   return (
     <div className="p-0 relative">
 
+        {/* <Image src="/herobg.png" layout='fill' className='w-full h-[40vh] absolute left-0 top-0' /> */}
       <div className="absolute z-0 left-0 top-0 w-full h-auto">
-        <Image src="/herobg.png" layout='fill' />
       </div>
 
       <Header />
