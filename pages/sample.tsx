@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Header from '../components/header'
 import Footer from '../components/footer'
+import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
@@ -12,7 +13,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Project: NextPage = () => {
+const Sample: NextPage = () => {
 
     return (
         <>
@@ -50,4 +51,4 @@ const Project: NextPage = () => {
     )
 }
 
-export default Project;
+export default Sample;
