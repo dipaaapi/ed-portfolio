@@ -26,7 +26,6 @@ const Project: NextPage = () => {
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
                 onSwiper={(swiper) => console.log(swiper)}
-                // onSlideChange={() => console.log('slide change')}
                 >
                 <SwiperSlide>
                     <p className="text-2xl">sample 1</p>

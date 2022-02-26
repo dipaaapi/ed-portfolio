@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Navigation from '../components/nav'
+import Image from 'next/image'
 
 const Header = () => (
     <div className="w-full my-2 px-3">
@@ -33,18 +34,15 @@ const Header = () => (
             </div>
             <p className='text-red-500 text-2xl uppercase md:normal-case font-black md:text-7xl italic'>Ed&lsquo;s Portfolio</p>
 
-            <div className="w-full mx-auto grid grid-cols-3 gap-10">
-                <div className="flex space-x-1">
-                    <svg className='w-24 h-7 animate-pulse delay-75 fill-current text-red-500' xmlns="http://www.w3.org/2000/svg"><path d="M18.496 24h-.001c-.715 0-1.5-.569-1.5-1.5v-8.5s-1.172-.003-2.467 0c.802-6.996 3.103-14 4.66-14 .447 0 .804.357.807.851.01 1.395.003 16.612.001 21.649 0 .828-.672 1.5-1.5 1.5zm-11.505-12.449c0-.691-.433-.917-1.377-1.673-.697-.56-1.177-1.433-1.088-2.322.252-2.537.862-7.575.862-7.575h.6v6h1.003l.223-6h.607l.173 6h1.003l.242-6h.562l.199 6h1.003v-6h.549s.674 5.005.951 7.55c.098.902-.409 1.792-1.122 2.356-.949.751-1.381.967-1.381 1.669v10.925c0 .828-.673 1.5-1.505 1.5-.831 0-1.504-.672-1.504-1.5v-10.93z"/></svg>
-                    <span className="text-sm italic uppercase text-center my-auto">Eat</span>
+            <div className="w-full mx-auto grid grid-cols-3 gap-5 my-3">
+                <div className="py-0">
+                    <Image src="/eat.png" width={210} height={60} alt='eat' className='' />
                 </div>
-                <div className="flex space-x-1">
-                    <svg className='w-24 h-7 animate-pulse delay-100 fill-current text-red-500' xmlns="http://www.w3.org/2000/svg"><path d="M24 19v-7h-23v-7h-1v14h1v-2h22v2h1zm-20-12c1.104 0 2 .896 2 2s-.896 2-2 2-2-.896-2-2 .896-2 2-2zm19 4c0-1.657-1.343-3-3-3h-13v3h16z"/></svg>
-                    <span className="text-sm italic uppercase text-center my-auto">Sleep</span>
+                <div className="py-0">
+                    <Image src="/sleep.png" width={210} height={60} alt='sleep' className='' />
                 </div>
-                <div className="flex space-x-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className='w-24 h-7 animate-pulse delay-150 fill-current text-red-500' viewBox="0 0 24 24"><path d="M24 10.935v2.131l-8 3.947v-2.23l5.64-2.783-5.64-2.79v-2.223l8 3.948zm-16 3.848l-5.64-2.783 5.64-2.79v-2.223l-8 3.948v2.131l8 3.947v-2.23zm7.047-10.783h-2.078l-4.011 16h2.073l4.016-16z"/></svg>
-                    <span className="text-sm italic uppercase text-center my-auto">Code</span>
+                <div className="py-0">
+                    <Image src="/code.png" width={210} height={60} alt='code' className='' />
                 </div>
             </div>
         </div>
