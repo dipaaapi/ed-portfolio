@@ -8,7 +8,6 @@ const Home: NextPage = () => {
   return (
     <div className="p-0 relative">
 
-        {/* <Image src="/herobg.png" layout='fill' className='w-full h-[40vh] absolute left-0 top-0' /> */}
       <div className="absolute z-0 left-0 top-0 w-full h-auto">
       </div>
 
@@ -21,7 +20,12 @@ const Home: NextPage = () => {
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Skills:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.</p>
+                <div className="grid grid-cols-4 my-2 gap-3">
+                  <Image src="/adobeXd.png" width={100} height={100} alt="adobe Xd" className='p-0' />
+                  <Image src="/adobeAi.png" width={100} height={100} alt="adobe Ai" className='p-0' />
+                  <Image src="/adobePs.png" width={100} height={100} alt="adobe Ps" className='p-0' />
+                  <Image src="/balsamiq.png" width={100} height={100} alt="balsamiq" className='p-0' />
+                </div>
               </div>
             </a>
           </Link>
