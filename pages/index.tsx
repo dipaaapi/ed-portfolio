@@ -20,11 +20,25 @@ const Home: NextPage = () => {
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Skills:</h2>
-                <div className="grid grid-cols-4 my-2 gap-3">
-                  <Image src="/adobeXd.png" width={100} height={100} alt="adobe Xd" className='p-0' />
-                  <Image src="/adobeAi.png" width={100} height={100} alt="adobe Ai" className='p-0' />
-                  <Image src="/adobePs.png" width={100} height={100} alt="adobe Ps" className='p-0' />
-                  <Image src="/balsamiq.png" width={100} height={100} alt="balsamiq" className='p-0' />
+                <div className="grid grid-cols-6 my-2 gap-3">
+                  <Image src="/adobeXd.png" width={50} height={50} alt="adobe Xd" className='p-0' />
+                  <Image src="/adobeAi.png" width={50} height={50} alt="adobe Ai" className='p-0' />
+                  <Image src="/adobePs.png" width={50} height={50} alt="adobe Ps" className='p-0' />
+                  <Image src="/balsamiq.png" width={50} height={50} alt="balsamiq" className='p-0' />
+                  <Image src="/html5.png" width={50} height={50} alt="html5" className='p-0' />
+                  <Image src="/css.png" width={50} height={50} alt="css" className='p-0' />
+                  <Image src="/javascript.png" width={50} height={50} alt="javascript" className='p-0' />
+                  <Image src="/php.png" width={50} height={50} alt="php" className='p-0' />
+                  <Image src="/mysql.png" width={50} height={50} alt="mysql" className='p-0' />
+                  <Image src="/react.png" width={50} height={50} alt="react" className='p-0' />
+                  <Image src="/next.png" width={50} height={50} alt="next" className='p-0' />
+                  <Image src="/bootstrap.png" width={50} height={50} alt="bootstrap" className='p-0' />
+                  <Image src="/materialui.png" width={50} height={50} alt="materialui" className='p-0' />
+                  <Image src="/sass.png" width={50} height={50} alt="sass" className='p-0' />
+                  <Image src="/tailwindcss.png" width={50} height={50} alt="tailwindcss" className='p-0' />
+                  <Image src="/laravel.png" width={50} height={50} alt="laravel" className='p-0' />
+                  <Image src="/laraveljetstream.png" width={50} height={50} alt="laraveljetstream" className='p-0' />
+                  <Image src="/laravellivewire.png" width={50} height={50} alt="laravellivewire" className='p-0' />
                 </div>
               </div>
             </a>
