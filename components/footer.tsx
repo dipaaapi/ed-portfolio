@@ -27,22 +27,45 @@ const Footer = () => (
             </div>
             <div className="p-2">
                 <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5">links</p>
-                <p className="text-base text-red-500 text-center md:text-left hover:underline">Home</p>
-                <p className="text-base text-red-500 text-center md:text-left hover:underline">Skills</p>
-                <p className="text-base text-red-500 text-center md:text-left hover:underline">Projects</p>
-                <p className="text-base text-red-500 text-center md:text-left hover:underline">Personal Information</p>
+                <div className="grid grid-cols-2">
+                    <Link href="/home">
+                        <a className="">
+                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Home</p>
+                        </a>
+                    </Link>
+                    <Link href="/skills">
+                        <a className="">
+                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Skills</p>
+                        </a>
+                    </Link>
+                    <Link href="/hobbies">
+                        <a className="">
+                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Hobbies</p>
+                        </a>
+                    </Link>
+                    <Link href="/projects">
+                        <a className="">
+                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Projects</p>
+                        </a>
+                    </Link>
+                    <Link href="/personal">
+                        <a className="">
+                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Personal Info.</p>
+                        </a>
+                    </Link>
+                </div>
             </div>
             <div className="p-2">
                 <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5">Contact</p>
                 <ul>
                     <li className="flex space-x-3 my-2">
-                        <p className="text-sm my-auto text-center md:text-left">09663679205</p>
+                        <p className="text-xs my-auto text-center md:text-left italic">09663679205</p>
                     </li>
                     <li className="flex space-x-3 my-2">
-                        <p className="text-sm my-auto text-center md:text-left">dipaaapi8@gmail.com</p>
+                        <p className="text-xs my-auto text-center md:text-left italic">dipaaapi8@gmail.com</p>
                     </li>
                     <li className="flex space-x-3 my-2">
-                        <p className="text-sm my-auto md:text-justify text-left">23 sta. fe street blk-3 magsaysay village tondo, manila Philippines</p>
+                        <p className="text-xs my-auto md:text-justify text-left italic">23 sta. fe street blk-3 magsaysay village tondo, manila Philippines</p>
                     </li>
                 </ul>
             </div>
