@@ -58,13 +58,13 @@ const Footer = () => (
             <div className="p-2">
                 <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5">Contact</p>
                 <ul>
-                    <li className="flex space-x-3 my-2">
+                    <li className="my-2">
                         <p className="text-xs my-auto text-center md:text-left italic">09663679205</p>
                     </li>
-                    <li className="flex space-x-3 my-2">
+                    <li className="my-2">
                         <p className="text-xs my-auto text-center md:text-left italic">dipaaapi8@gmail.com</p>
                     </li>
-                    <li className="flex space-x-3 my-2">
+                    <li className="my-2">
                         <p className="text-xs my-auto md:text-justify text-left italic">23 sta. fe street blk-3 magsaysay village tondo, manila Philippines</p>
                     </li>
                 </ul>
