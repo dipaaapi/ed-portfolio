@@ -49,15 +49,15 @@ const Home: NextPage = () => {
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Hobbies:</h2>
                 <div className="my-2 gap-3">
                   <div className="flex space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-xl font-main my-auto text-left">Playing Video Games</p>
-                    <Image src="/gaming.png" width={40} height={50} alt="html5" className='p-0' />
+                    <p className="flex-grow text-3xl font-main my-auto text-left">Playing Video Games</p>
+                    <Image src="/gaming.png" width={45} height={50} alt="html5" className='p-0' />
                   </div>
                   <div className="flex space-x-3 w-10/12 mx-auto">
                     <Image src="/anime.png" width={50} height={50} alt="html5" className='p-0' />
                     <p className="flex-grow text-2xl font-main my-auto text-right">Watching Anime</p>
                   </div>
                   <div className="flex space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-xl font-main my-auto text-left">Adopting Pets</p>
+                    <p className="flex-grow text-3xl font-main my-auto text-left">Adopting Pets</p>
                     <Image src="/pets.png" width={50} height={50} alt="html5" className='p-0' />
                   </div>
                 </div>
@@ -72,14 +72,14 @@ const Home: NextPage = () => {
               </div>
             </a>
           </Link>
-          {/* <Link href={'/workxp'}>
+          <Link href={'/workxp'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Work Experience:</h2>
                 <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.</p>
               </div>
             </a>
-          </Link> */}
+          </Link>
           <Link href={'/personal'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>

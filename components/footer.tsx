@@ -30,27 +30,27 @@ const Footer = () => (
                 <div className="grid grid-cols-2">
                     <Link href="/home">
                         <a className="">
-                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Home</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Home</p>
                         </a>
                     </Link>
                     <Link href="/skills">
                         <a className="">
-                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Skills</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Skills</p>
                         </a>
                     </Link>
                     <Link href="/hobbies">
                         <a className="">
-                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Hobbies</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Hobbies</p>
                         </a>
                     </Link>
                     <Link href="/projects">
                         <a className="">
-                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Projects</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Projects</p>
                         </a>
                     </Link>
                     <Link href="/personal">
                         <a className="">
-                            <p className="hover:bg-red-500 hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Personal Info.</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Personal Info.</p>
                         </a>
                     </Link>
                 </div>

@@ -15,7 +15,7 @@ const Skills: NextPage = () => {
                 <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Technical Skill</h1>
                 <ul>
                     <li className='group'>
-                        <div className="w-full h-auto grid grid-cols-1 grid-rows-2 justify-center items-center transition-all group-hover:bg-red-500 bg-dark border-b-2">
+                        <div className="w-full h-auto grid grid-cols-1 grid-rows-2 justify-center items-center transition-all group-hover:bg-redg bg-dark border-b-2">
                             <div className="flex justify-center items-center">
                                 <p className="group-hover:text-dark text-white mx-2">UI Designer Skills</p>
                                 <Image src='/CyberEd2.jpg' width={150} height={50} className='mx-2 rounded mb-5' />
@@ -57,7 +57,7 @@ const Skills: NextPage = () => {
                         </div>
                     </li>
                     <li className='group'>
-                        <div className="bg-white border-b-2 grid grid-cols-1 grid-rows-2 group-hover:bg-red-500 h-auto items-center transition-all">
+                        <div className="bg-white border-b-2 grid grid-cols-1 grid-rows-2 group-hover:bg-redg h-auto items-center transition-all">
                             <div className="h-auto items-center justify-center mx-auto w-max text-center">
                                 <p className="group-hover:text-white text-dark mx-2">Front-End Skills</p>
                                 <Image src='/CyberEd2.jpg' width={150} height={50} className='mx-2 rounded mb-5' />
