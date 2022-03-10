@@ -26,6 +26,36 @@ const Navigation = () => (
                 </div> */}
             </ul>
         </nav>
+        <div className="w-full text-center md:w-2/3 mx-auto font-main">
+            <div className="w-max hidden md:flex mx-auto space-x-10">
+                <p className="text-first">W</p>
+                <p className="text-first">e</p>
+                <p className="text-first">l</p>
+                <p className="text-first">c</p>
+                <p className="text-first">o</p>
+                <p className="text-first">m</p>
+                <p className="text-first">e</p>
+                <p className="text-first"> </p>
+                <p className="text-first">t</p>
+                <p className="text-first">o</p>
+            </div>
+            <div className="block md:hidden text-center">
+                <p className="text-xs">Welcome to</p>
+            </div>
+            <p className='text-red-500 text-2xl uppercase md:normal-case font-black md:text-7xl italic'>Ed&lsquo;s Portfolio</p>
+
+            <div className="w-full mx-auto grid grid-cols-3 gap-2 md:gap-5 my-3">
+                <div className="py-0">
+                    <Image src="/eat.png" width={210} height={60} alt='eat' className='' />
+                </div>
+                <div className="py-0">
+                    <Image src="/sleep.png" width={210} height={60} alt='sleep' className='' />
+                </div>
+                <div className="py-0">
+                    <Image src="/code.png" width={210} height={60} alt='code' className='' />
+                </div>
+            </div>
+        </div>
     </div>
 )
 

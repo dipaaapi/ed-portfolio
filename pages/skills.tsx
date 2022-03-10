@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
-import Header from '../components/header'
+import Head from 'next/head'
+import Navigation from '../components/nav'
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
@@ -9,7 +10,11 @@ import { Carousel } from 'react-responsive-carousel';
 const Skills: NextPage = () => {
     return (
         <div className={styles.container}>
-            <Header />
+            <Head>
+                <title>Ed Portfolio | Skills Page</title>
+                <link rel="icon" href="/CyberEd.gif" />
+            </Head>
+            <Navigation />
 
             <main>
                 <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Technical Skill</h1>

@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
-import Header from '../components/header'
+import Head from 'next/head';
+import Navigation from '../components/nav';
 import Footer from '../components/footer'
 import Image from 'next/image'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -16,7 +17,11 @@ const Project: NextPage = () => {
 
     return (
         <>
-            <Header />
+            <Head>
+                <title>Ed Portfolio | Projects Page</title>
+                <link rel="icon" href="/CyberEd.gif" />
+            </Head>
+            <Navigation />
             <Swiper className='w-full h-screen'
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={50}

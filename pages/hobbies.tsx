@@ -1,13 +1,18 @@
 import type { NextPage } from 'next'
-import Header from '../components/header'
+import Navigation from '../components/nav'
 import Footer from '../components/footer'
 import Link from 'next/link'
 import Image from 'next/image'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
     return (
         <div className="">
-            <Header />
+            <Head>
+                <title>Ed Portfolio | Hobbies Page</title>
+                <link rel="icon" href="/CyberEd.gif" />
+            </Head>
+            <Navigation />
             <div className="w-10/12 mx-auto p-5 bg-orange-100 md:w-2/3">
                 <div className="group text-center">
                     <div className="flex space-x-3 w-max h-max m-auto">
@@ -87,31 +92,52 @@ const Home: NextPage = () => {
                         <svg className='fill-current text-blue-500 my-auto w-10 h-10' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 10.5c0 .827-.673 1.5-1.5 1.5s-1.5-.673-1.5-1.5.673-1.5 1.5-1.5 1.5.673 1.5 1.5zm16 6.216c0 1.587-.56 2.591-1.749 3.179-.143.071-.296.105-.449.105-.242 0-.482-.087-.672-.255l-3.109-2.745c-.558-.494-1.044-1.004-2.404-1.004h-7.233c-1.36 0-1.847.51-2.404 1.004l-3.11 2.745c-.188.168-.429.255-.672.255-.152 0-.307-.034-.449-.105-1.189-.588-1.749-1.592-1.749-3.178 0-2.062.945-5.461 2.681-9.857.822-2.083 2.292-2.86 3.695-2.86.656 0 1.298.17 1.853.456 2.424 1.249 5.17 1.223 7.544 0 .553-.286 1.195-.456 1.851-.456 1.403 0 2.874.777 3.696 2.86 1.735 4.395 2.68 7.794 2.68 9.856zm-15-6.216c0-1.381-1.119-2.5-2.5-2.5s-2.5 1.119-2.5 2.5 1.119 2.5 2.5 2.5 2.5-1.119 2.5-2.5zm4-2.5c0-.552-.447-1-1-1s-1 .448-1 1 .447 1 1 1 1-.448 1-1zm3.5 2.5c0-.415-.336-.75-.75-.75s-.75.335-.75.75.336.75.75.75.75-.335.75-.75zm1.75 1.75c0-.415-.336-.75-.75-.75s-.75.335-.75.75.336.75.75.75.75-.335.75-.75zm0-3.531c0-.415-.336-.75-.75-.75s-.75.335-.75.75.336.75.75.75.75-.336.75-.75zm1.734 1.781c0-.415-.336-.75-.75-.75s-.75.335-.75.75.336.75.75.75.75-.335.75-.75z"/></svg>
                         <p className="text-center font-bold text-4xl uppercase">watching anime</p>
                     </div>
-                    <ul className="grid md:grid-cols-3 grid-cols-1 w-full my-5">
+                    <ul className="grid md:grid-cols-3 grid-cols-1 gap-5 w-full my-5">
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/Dragon_Ball_Super">
                                 <a className=''>
-                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Dragon_Ball_Super_Volume_1.png/220px-Dragon_Ball_Super_Volume_1.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Dragon_Ball_Super_Volume_1.png/220px-Dragon_Ball_Super_Volume_1.png" alt="dragon ball supper" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/One_Piece">
                                 <a className=''>
-                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/90/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg/220px-One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg" alt="" className="w-max h-max m-auto" width={250} height={120} />
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/90/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg/220px-One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg" alt="one piece" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/Naruto">
                                 <a className=''>
-                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/94/NarutoCoverTankobon1.jpg/220px-NarutoCoverTankobon1.jpg" alt="" className="w-max h-max m-auto" width={250} height={120} />
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/94/NarutoCoverTankobon1.jpg/220px-NarutoCoverTankobon1.jpg" alt="naruto" className="w-max h-max m-auto" width={250} height={120} />
+                                </a>
+                            </Link>
+                        </li>
+                        <li className='h-full w-full'>
+                            <Link href="https://en.wikipedia.org/wiki/YuYu_Hakusho">
+                                <a className=''>
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/YuYu_Hakusho_volume_1.jpg/220px-YuYu_Hakusho_volume_1.jpg" alt="yuyu hakusho" className="w-max h-max m-auto" width={250} height={120} />
+                                </a>
+                            </Link>
+                        </li>
+                        <li className='h-full w-full'>
+                            <Link href="https://en.wikipedia.org/wiki/Fullmetal_Alchemist">
+                                <a className=''>
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Fullmetal123.jpg/220px-Fullmetal123.jpg" alt="full metal alchemist" className="w-max h-max m-auto" width={250} height={120} />
+                                </a>
+                            </Link>
+                        </li>
+                        <li className='h-full w-full'>
+                            <Link href="https://en.wikipedia.org/wiki/Dr._Stone">
+                                <a className=''>
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Doctor_stone.jpg/220px-Doctor_stone.jpg" alt="dr. stone" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                     </ul>
                 </div>
-                <p className="text-center font-bold text-4xl uppercase">Fish Parent</p>
+                {/* <p className="text-center font-bold text-4xl uppercase">Fish Parent</p> */}
             </div>
             <Footer />
         </div>
