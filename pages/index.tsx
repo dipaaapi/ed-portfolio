@@ -5,6 +5,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const Home: NextPage = () => {
+
+  const main = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.";
+
   return (
     <div className="p-0 relative">
 
@@ -15,12 +18,12 @@ const Home: NextPage = () => {
 
       <main className='px-5 justify-center text-center'>
 
-        <div className='grid align-middle justify-center grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-0 md:gap-10 w-full md:w-2/3 md:mx-auto'>
+        <div className='md:grid align-middle justify-center grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-0 md:gap-10 w-full md:w-2/3 md:mx-auto'>
           <Link href={'/skills'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Skills:</h2>
-                <div className="grid grid-cols-6 my-2 gap-3">
+                <div className="grid grid-cols-4 md:grid-cols-6 my-2 gap-3">
                   <Image src="/adobeXd.png" width={50} height={50} alt="adobe Xd" className='p-0' />
                   <Image src="/adobeAi.png" width={50} height={50} alt="adobe Ai" className='p-0' />
                   <Image src="/adobePs.png" width={50} height={50} alt="adobe Ps" className='p-0' />
@@ -45,19 +48,19 @@ const Home: NextPage = () => {
           </Link>
           <Link href={'/hobbies'}>
             <a className='group'>
-              <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
+              <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md md:my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Hobbies:</h2>
                 <div className="my-2 gap-3">
-                  <div className="flex space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-3xl font-main my-auto text-left">Playing Video Games</p>
+                  <div className="flex md:space-x-3 w-10/12 mx-auto">
+                    <p className="flex-grow text-[12px] md:text-3xl font-main my-auto text-center md:text-left">Playing Video Games</p>
                     <Image src="/gaming.png" width={45} height={50} alt="html5" className='p-0' />
                   </div>
                   <div className="flex space-x-3 w-10/12 mx-auto">
-                    <Image src="/anime.png" width={50} height={50} alt="html5" className='p-0' />
-                    <p className="flex-grow text-2xl font-main my-auto text-right">Watching Anime</p>
+                    <Image src="/anime.png" width={50} height={50} alt="html5" className='w-max h-auto p-0' />
+                    <p className="flex-grow text-[12px] md:text-3xl font-main my-auto text-center md:text-left">Watching Anime</p>
                   </div>
                   <div className="flex space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-3xl font-main my-auto text-left">Adopting Pets</p>
+                    <p className="flex-grow text-[12px] md:text-3xl font-main my-auto text-center md:text-left">Adopting Pets</p>
                     <Image src="/pets.png" width={50} height={50} alt="html5" className='p-0' />
                   </div>
                 </div>
@@ -68,7 +71,7 @@ const Home: NextPage = () => {
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Projects:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.</p>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{ main }</p>
               </div>
             </a>
           </Link>
@@ -76,7 +79,7 @@ const Home: NextPage = () => {
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Work Experience:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.</p>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
               </div>
             </a>
           </Link>
@@ -84,7 +87,7 @@ const Home: NextPage = () => {
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
                 <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Personal Information:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.</p>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
               </div>
             </a>
           </Link>

@@ -44,7 +44,7 @@ const Navigation = () => (
             </div>
             <p className='text-red-500 text-2xl uppercase md:normal-case font-black md:text-7xl italic'>Ed&lsquo;s Portfolio</p>
 
-            <div className="w-full mx-auto grid grid-cols-3 gap-2 md:gap-5 my-3">
+            <div className="w-1/3 md:w-full mx-auto md:grid grid-cols-3 gap-2 md:gap-5 my-3">
                 <div className="py-0">
                     <Image src="/eat.png" width={210} height={60} alt='eat' className='' />
                 </div>
