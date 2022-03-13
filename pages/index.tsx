@@ -22,7 +22,7 @@ const Home: NextPage = () => {
           <Link href={'/skills'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Skills:</h2>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Skills:</h2>
                 <div className="grid grid-cols-4 md:grid-cols-6 my-2 gap-3">
                   <Image src="/adobeXd.png" width={50} height={50} alt="adobe Xd" className='p-0' />
                   <Image src="/adobeAi.png" width={50} height={50} alt="adobe Ai" className='p-0' />
@@ -49,18 +49,18 @@ const Home: NextPage = () => {
           <Link href={'/hobbies'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md md:my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Hobbies:</h2>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Hobbies:</h2>
                 <div className="my-2 gap-3">
                   <div className="flex md:space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-[12px] md:text-3xl font-main my-auto text-center md:text-left">Playing Video Games</p>
+                    <p className="flex-grow text-[12px] md:text-2xl my-auto text-center md:text-left">Playing Video Games</p>
                     <Image src="/gaming.png" width={45} height={50} alt="html5" className='p-0' />
                   </div>
                   <div className="flex space-x-3 w-10/12 mx-auto">
                     <Image src="/anime.png" width={50} height={50} alt="html5" className='w-max h-auto p-0' />
-                    <p className="flex-grow text-[12px] md:text-3xl font-main my-auto text-center md:text-left">Watching Anime</p>
+                    <p className="flex-grow text-[12px] md:text-3xl my-auto text-center md:text-left">Watching Anime</p>
                   </div>
                   <div className="flex space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-[12px] md:text-3xl font-main my-auto text-center md:text-left">Adopting Pets</p>
+                    <p className="flex-grow text-[12px] md:text-4xl my-auto text-center md:text-left">Adopting Pets</p>
                     <Image src="/pets.png" width={50} height={50} alt="html5" className='p-0' />
                   </div>
                 </div>
@@ -70,7 +70,7 @@ const Home: NextPage = () => {
           <Link href={'/projects'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Projects:</h2>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Projects:</h2>
                 <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{ main }</p>
               </div>
             </a>
@@ -78,7 +78,7 @@ const Home: NextPage = () => {
           <Link href={'/workxp'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Work Experience:</h2>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Work Experience:</h2>
                 <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
               </div>
             </a>
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
           <Link href={'/personal'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all'>Personal Information:</h2>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Personal Information:</h2>
                 <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
               </div>
             </a>

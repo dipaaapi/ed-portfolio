@@ -6,44 +6,44 @@ const Footer = () => (
         <hr className="w-full bg-blue-500 h-1" />
         <div className="w-10/12 md:w-4/5 mx-auto grid grid-cols-1 md:grid-cols-4 gap-5 my-5">
             <div className="p-2">
-                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5">special thanks to</p>
+                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5 font-main">special thanks to</p>
                 <div className="block md:flex md:space-x-3 w-max mx-auto">
                     <Image src="/favicon.ico" alt="vercel Logo" width={50} height={50} className="mx-auto" />
                     <p className="text-4xl md:text-base my-auto text-center md:text-left">Vercel</p>
                 </div>
             </div>
             <div className="p-2">
-                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5">links</p>
+                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5 font-main">links</p>
                 <div className="grid grid-cols-2">
                     <Link href="/home">
                         <a className="">
-                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Home</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline font-main">Home</p>
                         </a>
                     </Link>
                     <Link href="/skills">
                         <a className="">
-                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Skills</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline font-main">Skills</p>
                         </a>
                     </Link>
                     <Link href="/hobbies">
                         <a className="">
-                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Hobbies</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline font-main">Hobbies</p>
                         </a>
                     </Link>
                     <Link href="/projects">
                         <a className="">
-                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Projects</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline font-main">Projects</p>
                         </a>
                     </Link>
                     <Link href="/personal">
                         <a className="">
-                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline">Personal Info.</p>
+                            <p className="hover:bg-redg hover:text-white p-2 text-xs text-red-500 text-center md:text-left hover:underline font-main">Personal Info.</p>
                         </a>
                     </Link>
                 </div>
             </div>
             <div className="p-2">
-                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5">Contact</p>
+                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5 font-main">Contact</p>
                 <ul>
                     <li className="my-2">
                         <p className="text-xs my-auto text-center md:text-left italic">09663679205</p>
@@ -57,7 +57,7 @@ const Footer = () => (
                 </ul>
             </div>
             <div className="p-2">
-                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5">others</p>
+                <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5 font-main">others</p>
                 <div className="grid grid-cols-2 md:grid-cols-4">
                     {/* <div className="p-3 group">
                         <svg className='group-hover:text-red-500 fill-current border group-hover:rounded-full' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
