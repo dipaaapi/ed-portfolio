@@ -8,8 +8,12 @@ const Footer = () => (
             <div className="p-2">
                 <p className="text-lg uppercase font-bold text-center md:text-left text-red-500 mb-5 font-main">special thanks to</p>
                 <div className="block md:flex md:space-x-3 w-max mx-auto">
-                    <Image src="/favicon.ico" alt="vercel Logo" width={50} height={50} className="mx-auto" />
-                    <p className="text-4xl md:text-base my-auto text-center md:text-left">Vercel</p>
+                    <Link href="https://vercel.com/dipaaapi/ed-portfolio" >
+                        <a href="" className="">
+                            <Image src="/favicon.ico" alt="vercel Logo" width={50} height={50} className="mx-auto" />
+                            <p className="text-4xl md:text-base my-auto text-center md:text-left">Vercel</p>
+                        </a>
+                    </Link>
                 </div>
             </div>
             <div className="p-2">
