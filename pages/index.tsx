@@ -91,6 +91,14 @@ const Home: NextPage = () => {
               </div>
             </a>
           </Link>
+          <Link href={'/education'}>
+            <a className='group'>
+              <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Educational Attainment:</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
+              </div>
+            </a>
+          </Link>
         </div>
 
         {/* 0- */}
