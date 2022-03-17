@@ -24,6 +24,13 @@ const Project: NextPage = () => {
                 <link rel="icon" href="/CyberEd.gif" />
             </Head>
             <Navigation />
+
+            <div className="flex mx-auto w-max space-x-5 my-5">
+                <p className="">front-end web developer</p>
+                <p className="">ui/ux / graphic designer</p>
+                <p className="">quality assurance / tester</p>
+            </div>
+
             <Swiper className='w-full h-screen'
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={50}
