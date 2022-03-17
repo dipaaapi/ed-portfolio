@@ -15,6 +15,8 @@ import 'swiper/css/scrollbar';
 
 const Project: NextPage = () => {
 
+    const info = {projects: ["Barangay Monitoring System for the Provincial Municipality of Pulilan Bulacan", "Ant-Pay Video presentation Project", "Lokalize Video presentation Project", "QuickBooks Landing Page", "Elite Jinzai Marketing Inc.","Vanity Health and wellness", "SwiftUi-Weather", "Rodell Ramos Website", "Golden Carabao"]};
+
     return (
         <>
             <Head>
@@ -33,20 +35,40 @@ const Project: NextPage = () => {
                 onSwiper={(swiper) => console.log(swiper)}
                 >
                 <SwiperSlide>
-                    <p className="text-2xl">sample 1</p>
+                    <p className="text-2xl text-center">{info.projects[0]}</p>
                     <Image src='/ads1.png' alt='ads1' layout='fill' className='w-10/12 h-full mx-auto' />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <p className="text-2xl">sample 2</p>
+                    <p className="text-2xl text-center">{info.projects[1]}</p>
                     <Image src='/ads2.png' alt='ads2' layout='fill' className='w-10/12 h-full mx-auto' />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <p className="text-2xl">sample 3</p>
+                    <p className="text-2xl text-center">{info.projects[2]}</p>
                     <Image src='/ads3.png' alt='ads3' layout='fill' className='w-10/12 h-full mx-auto' />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <p className="text-2xl">sample 4</p>
+                    <p className="text-2xl text-center">{info.projects[3]}</p>
                     <Image src='/ads1.png' alt='ads4' layout='fill' className='w-10/12 h-full mx-auto' />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <p className="text-2xl text-center">{info.projects[4]}</p>
+                    <Image src='/ads1.png' alt='ads1' layout='fill' className='w-10/12 h-full mx-auto' />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <p className="text-2xl text-center">{info.projects[5]}</p>
+                    <Image src='/ads2.png' alt='ads2' layout='fill' className='w-10/12 h-full mx-auto' />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <p className="text-2xl text-center">{info.projects[6]}</p>
+                    <Image src='/ads3.png' alt='ads3' layout='fill' className='w-10/12 h-full mx-auto' />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <p className="text-2xl text-center">{info.projects[7]}</p>
+                    <Image src='/ads1.png' alt='ads4' layout='fill' className='w-10/12 h-full mx-auto' />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <p className="text-2xl text-center">{info.projects[8]}</p>
+                    <Image src='/ads1.png' alt='ads1' layout='fill' className='w-10/12 h-full mx-auto' />
                 </SwiperSlide>
             </Swiper>
             <Footer />
