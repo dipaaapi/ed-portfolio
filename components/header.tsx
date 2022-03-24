@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Navigation from '../components/nav'
-import Image from 'next/image'
 
 const Header = () => (
     <div className="w-full my-2 px-3">
@@ -13,9 +12,7 @@ const Header = () => (
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
 
-    <header>
         <Navigation />
-    </header>
     </div>
 )
 
