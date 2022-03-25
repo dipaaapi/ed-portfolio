@@ -24,7 +24,7 @@ const education = () => {
                 <h1 className='md:text-2xl text-sm uppercase text-whiteg p-3 font-bold text-center mt-10 border-t-2 bg-redg'>Educational Attainment</h1>
 
                 <div className="w-full bg-lime-500">
-                    <div className="w-min mx-auto md:flex p-5 space-x-5">
+                    <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[0]}</p>
                             <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[0]}</p>
@@ -35,7 +35,7 @@ const education = () => {
                             <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[0]}</p>
                         </div>
                     </div>
-                    <div className="w-min mx-auto md:flex p-5 space-x-5">
+                    <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[1]}</p>
                             <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[1]}</p>
@@ -46,7 +46,7 @@ const education = () => {
                             <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[1]}</p>
                         </div>
                     </div>
-                    <div className="w-min mx-auto md:flex p-5 space-x-5">
+                    <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[2]}</p>
                             <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[2]}</p>
@@ -57,7 +57,7 @@ const education = () => {
                             <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[2]}</p>
                         </div>
                     </div>
-                    <div className="w-min mx-auto md:flex p-5 space-x-5">
+                    <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[3]}</p>
                             <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[3]}</p>
@@ -68,7 +68,7 @@ const education = () => {
                             <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[3]}</p>
                         </div>
                     </div>
-                    <div className="w-min mx-auto md:flex p-5 space-x-5">
+                    <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[4]}</p>
                             <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[4]}</p>
