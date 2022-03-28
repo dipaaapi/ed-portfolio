@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Navigation from '../components/nav'
+export const config = { amp: true }
+const date = new Date()
 
 const Header = () => (
     <div className="w-full my-2 px-3">
@@ -10,9 +12,14 @@ const Header = () => (
             <link href="https://dipaaapi.github.io/personal.json" />
             <script src="//unpkg.com/alpinejs" defer></script>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            <script
+                async
+                key="amp-timeago"
+                custom-element="amp-timeago"
+                src="https://github.com/dipaaapi/dipaaapi.github.io/blob/main/db.json"
+            />
         </Head>
-
-        <Navigation />
+        <p>Some time: {date.toJSON()}</p>
     </div>
 )
 
