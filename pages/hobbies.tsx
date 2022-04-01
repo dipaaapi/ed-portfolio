@@ -24,63 +24,63 @@ const Home: NextPage = () => {
                         <li className='h-full w-full'>
                             <Link href="https://leagueoflegends.com/">
                                 <a className=''>
-                                    <Image src="https://cdngarenanow-a.akamaihd.net/web/image/lol/landing-dominion/WEBSITE/img/logo.png" alt="league of legends" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/leagueoflegends.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://terraria.org/">
                                 <a className=''>
-                                    <Image src="https://terraria.org/static/media/logo.734118ae.png" alt="terrara" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/terraria.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://www.facebook.com/MobileLegendsOnlinePH">
                                 <a className=''>
-                                    <Image src="/ML_logo.png" alt="mobile legends bang bang" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/ML_logo.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://www.facebook.com/farmcityofficial/">
                                 <a className=''>
-                                    <Image src="/farmcity.png" alt="farm city" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/farmcity.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://genshin.hoyoverse.com/en/home">
                                 <a className=''>
-                                <Image src="https://uploadstatic-sea.mihoyo.com/hk4e/upload/officialsites/202004/GIEN_1587984203_6764.png" alt="genshin impact" className="w-max h-max m-auto" width={250} height={120} />
+                                <Image src="/genshin.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://www.ea.com/games/the-sims/the-sims-4">
                                 <a className=''>
-                                <Image src="https://media.contentapi.ea.com/content/dam/eacom/SIMS/brand-refresh-assets/common/ts4-nav-logo-blue-refresh.svg" alt="the sims 4" className="w-max h-max m-auto" width={250} height={120} />
+                                <Image src="/thesims4.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://cncnz.com/games/yuris-revenge/">
                                 <a className=''>
-                                <Image src="/yuri.png" alt="yuris revenge" className="w-max h-max m-auto" width={250} height={120} />
+                                <Image src="/yuri.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/Tales_(video_game_series)">
                                 <a className=''>
-                                <Image src="https://upload.wikimedia.org/wikipedia/commons/4/46/Tales_of_Series_logo.png" alt="tales series" className="w-max h-max m-auto" width={250} height={120} />
+                                <Image src="/talesofseries.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="http://iro.ragnarokonline.com/">
                                 <a className=''>
-                                <Image src="https://cdn.jsdelivr.net/gh/n-25/public/images/brandingbar/nav_ro1.png" alt="ragnarok online" className="w-max h-max m-auto" width={250} height={120} />
+                                <Image src="/ragnarok.png" alt="" className="w-max h-max m-auto" width={250} height={120} />
                                 </a>
                             </Link>
                         </li>
@@ -97,42 +97,42 @@ const Home: NextPage = () => {
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/Dragon_Ball_Super">
                                 <a className=''>
-                                    <Image src="https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Dragon_Ball_Super_Volume_1.png/220px-Dragon_Ball_Super_Volume_1.png" alt="dragon ball supper" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/dragonball.png" alt="" className="w-max h-max m-auto" height={250} width={150} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/One_Piece">
                                 <a className=''>
-                                    <Image src="https://upload.wikimedia.org/wikipedia/en/thumb/9/90/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg/220px-One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg" alt="one piece" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/onepiece.jpg" alt="" className="w-max h-max m-auto" height={250} width={150} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/Naruto">
                                 <a className=''>
-                                    <Image src="https://upload.wikimedia.org/wikipedia/en/thumb/9/94/NarutoCoverTankobon1.jpg/220px-NarutoCoverTankobon1.jpg" alt="naruto" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/naruto.png" alt="" className="w-max h-max m-auto" height={250} width={150} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/YuYu_Hakusho">
                                 <a className=''>
-                                    <Image src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/YuYu_Hakusho_volume_1.jpg/220px-YuYu_Hakusho_volume_1.jpg" alt="yuyu hakusho" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/yuyuhakusho.jpg" alt="" className="w-max h-max m-auto" height={250} width={150} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/Fullmetal_Alchemist">
                                 <a className=''>
-                                    <Image src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Fullmetal123.jpg/220px-Fullmetal123.jpg" alt="full metal alchemist" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/fullmetal.jpg" alt="" className="w-max h-max m-auto" height={250} width={150} />
                                 </a>
                             </Link>
                         </li>
                         <li className='h-full w-full'>
                             <Link href="https://en.wikipedia.org/wiki/Dr._Stone">
                                 <a className=''>
-                                    <Image src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Doctor_stone.jpg/220px-Doctor_stone.jpg" alt="dr. stone" className="w-max h-max m-auto" width={250} height={120} />
+                                    <Image src="/drstone.jpg" alt="" className="w-max h-max m-auto" height={250} width={150} />
                                 </a>
                             </Link>
                         </li>
