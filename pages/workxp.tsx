@@ -27,7 +27,7 @@ const workxp = () => {
                     <div className="w-10/12 md:w-2/3 mx-auto grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-5 p-0 md:p-5">
                         <div className="relative w-full md:w-[20vw] group bg-white rounded group-hover:shadow-lg shadow mx-auto p-5 group font-main">
                             <div className="">
-                                <img src="/digima_logo_square.png" alt="digima logo" className="absolute left-[25%] bottom-[12.5%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
+                                <Image src="/digima_logo_square.png" alt="digima logo" className="absolute left-[25%] bottom-[12.5%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
                             </div>
                             <div className="group-hover:opacity-100 opacity-0 group-hover:transition-all group-hover:delay-500 w-full">
                                 <div className="w-max mx-auto">
@@ -38,7 +38,7 @@ const workxp = () => {
                         </div>
                         <div className="relative w-full md:w-[20vw] group bg-white rounded group-hover:shadow-lg shadow mx-auto p-5 group font-main">
                             <div className="">
-                                <img src="/vanity_logo_square.png" alt="vanity logo" className="absolute left-[25%] bottom-[20%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
+                                <Image src="/vanity_logo_square.png" alt="vanity logo" className="absolute left-[25%] bottom-[20%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
                             </div>
                             <div className="group-hover:opacity-100 opacity-0 group-hover:transition-all group-hover:delay-500 w-full">
                                 <div className="w-max mx-auto">
@@ -49,7 +49,7 @@ const workxp = () => {
                         </div>
                         <div className="relative w-full md:w-[20vw] group bg-white rounded group-hover:shadow-lg shadow mx-auto p-5 group font-main">
                             <div className="">
-                                <img src="/vertex_logo_square.png" alt="vertex logo" className="absolute left-[25%] bottom-[12.5%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
+                                <Image src="/vertex_logo_square.png" alt="vertex logo" className="absolute left-[25%] bottom-[12.5%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
                             </div>
                             <div className="group-hover:opacity-100 opacity-0 group-hover:transition-all group-hover:delay-500 w-full">
                                 <div className="w-max mx-auto">
@@ -60,7 +60,7 @@ const workxp = () => {
                         </div>
                         <div className="relative w-full md:w-[20vw] group bg-white rounded group-hover:shadow-lg shadow mx-auto p-5 group font-main">
                             <div className="">
-                                <img src="/aipaygo_logo_square.png" alt="aipaygo logo" className="absolute left-[25%] bottom-[12.5%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
+                                <Image src="/aipaygo_logo_square.png" alt="aipaygo logo" className="absolute left-[25%] bottom-[12.5%] z-10 md:w-1/2 h-auto w-max opacity-100 group-hover:opacity-0 group-hover:transition-all group-hover:delay-500" />
                             </div>
                             <div className="group-hover:opacity-100 opacity-0 group-hover:transition-all group-hover:delay-500 w-full">
                                 <div className="w-max mx-auto">

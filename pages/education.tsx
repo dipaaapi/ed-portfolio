@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Navigation from '../components/nav';
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
+import Image from 'next/image';
 
 const education = () => {
     const info = {
@@ -23,60 +24,70 @@ const education = () => {
             <main>
                 <h1 className='md:text-2xl text-sm uppercase text-whiteg p-3 font-bold text-center mt-10 border-t-2 bg-redg'>Educational Attainment</h1>
 
-                <div className="w-full bg-lime-500">
+                <div className="w-full bg-gray-700">
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
-                        <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[0]}</p>
-                            <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[0]}</p>
+                        <div className="w-max p-3 rounded-md bg-whiteg">
+                            <Image src="/amado.png" alt="amado" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
-                        <img src="/amado.png" alt="amado" className="md:w-[10vw] w-min mx-auto hover:animate-ping" />
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.status[0]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[0]}</p>
+                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[0]}</p>
+                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[0]}</p>
+                            <div className="flex space-x-5">
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[0]}</p>
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[0]}</p>
+                            </div>
                         </div>
                     </div>
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
-                        <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[1]}</p>
-                            <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[1]}</p>
+                        <div className="w-max p-3 rounded-md bg-whiteg">
+                            <Image src="/nolasco.png" alt="nolasco" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
-                        <img src="/nolasco.png" alt="nolasco" className="md:w-[10vw] w-min mx-auto hover:animate-ping" />
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.status[1]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[1]}</p>
-                        </div>
-                    </div>
-                    <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
-                        <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[2]}</p>
-                            <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[2]}</p>
-                        </div>
-                        <img src="/iscom.png" alt="iscom" className="md:w-[10vw] w-min mx-auto hover:animate-ping" />
-                        <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.status[2]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[2]}</p>
+                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[1]}</p>
+                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[1]}</p>
+                            <div className="flex space-x-5">
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[1]}</p>
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[1]}</p>
+                            </div>
                         </div>
                     </div>
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
-                        <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[3]}</p>
-                            <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[3]}</p>
+                        <div className="w-max p-3 rounded-md bg-whiteg">
+                            <Image src="/iscom.png" alt="iscom" width={185} height={125} className="md:w-[10vw] w-min mx-auto" />
                         </div>
-                        <img src="/tesda.png" alt="tesda" className="md:w-[10vw] w-min mx-auto hover:animate-ping" />
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.status[3]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[3]}</p>
+                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[2]}</p>
+                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[2]}</p>
+                            <div className="flex space-x-5">
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[2]}</p>
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[2]}</p>
+                            </div>
                         </div>
                     </div>
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
-                        <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-right text-center font-bold text-white uppercase">{info.title[4]}</p>
-                            <p className="md:text-2xl text-sm md:text-right text-center font-bold text-white uppercase">{info.graduate[4]}</p>
+                        <div className="w-max p-3 rounded-md bg-whiteg">
+                            <Image src="/tesda.png" alt="tesda" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
-                        <img src="/informatics.png" alt="informatics" className="md:w-[10vw] w-min mx-auto hover:animate-ping" />
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.status[4]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-bold text-white uppercase">{info.level[4]}</p>
+                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[3]}</p>
+                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[3]}</p>
+                            <div className="flex space-x-5">
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[3]}</p>
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[3]}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
+                        <div className="w-max p-3 rounded-md bg-whiteg">
+                            <Image src="/informatics.png" alt="informatics" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
+                        </div>
+                        <div className="my-auto">
+                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[4]}</p>
+                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[4]}</p>
+                            <div className="flex space-x-5">
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[4]}</p>
+                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[4]}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
