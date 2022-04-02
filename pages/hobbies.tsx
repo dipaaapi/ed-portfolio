@@ -4,7 +4,6 @@ import Footer from '../components/footer'
 import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
-import Animecard from '../components/Animecard'
 
 const Home: NextPage = () => {
     return (
@@ -138,7 +137,6 @@ const Home: NextPage = () => {
                         </li>
                     </ul>
                 </div>
-                {/* <p className="text-center font-bold text-4xl uppercase">Fish Parent</p> */}
             </div>
             <Footer />
         </div>
