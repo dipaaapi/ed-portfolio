@@ -11,7 +11,8 @@ const education = () => {
         title: ['amado v. hernandez', 'dr. juan g. nolasco', 'iscom', 'TESDA', 'informatics college manila'],
         status: ['elementary school', 'high school', 'computer literacy basic and advance', 'CHS or CSS / Comp. Tech.', 'information tecnology (bsit)'],
         graduate: ['april 25, 2001', 'april 13, 2005', 'june 8, 2008', 'july 16, 2012', 'april 28, 2018'],
-        address: ['sto. niño street, barrio magsaysay, tondo, sto. niño street, 107, tondo, manilla, 1012 metro manila', '#252 tioco, tondo, maynila, kalakhang maynila', 'plaza morga corner moriones st., tondo, manila', '#233 lopez bldg. tayuman street tondo, manila', '2070 bdo building c.m. recto, manila philippines']
+        address: ['sto. niño street, barrio magsaysay, tondo, sto. niño street, 107, tondo, manilla, 1012 metro manila', '#252 tioco, tondo, maynila, kalakhang maynila', 'plaza morga corner moriones st., tondo, manila', '#233 lopez bldg. tayuman street tondo, manila', '2070 bdo building c.m. recto, manila philippines'],
+        style1: ['md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase', 'md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase', 'md:text-base text-sm md:text-left text-center italic text-white uppercase']
     }
 
     return (
@@ -30,11 +31,11 @@ const education = () => {
                             <Image src="/amado.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[0]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[0]}</p>
+                            <p className={info.style1[0]}>{info.title[0]}</p>
+                            <p className={info.style1[1]}>{info.status[0]}</p>
                             <div className="flex space-x-5">
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[0]}</p>
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[0]}</p>
+                                <p className={info.style1[2]}>{info.graduate[0]}</p>
+                                <p className={info.style1[2]}>{info.level[0]}</p>
                             </div>
                         </div>
                     </div>
@@ -43,11 +44,11 @@ const education = () => {
                             <Image src="/nolasco.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[1]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[1]}</p>
+                            <p className={info.style1[0]}>{info.title[1]}</p>
+                            <p className={info.style1[1]}>{info.status[1]}</p>
                             <div className="flex space-x-5">
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[1]}</p>
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[1]}</p>
+                                <p className={info.style1[2]}>{info.graduate[1]}</p>
+                                <p className={info.style1[2]}>{info.level[1]}</p>
                             </div>
                         </div>
                     </div>
@@ -56,11 +57,11 @@ const education = () => {
                             <Image src="/iscom.png" alt="" width={185} height={125} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[2]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[2]}</p>
+                            <p className={info.style1[0]}>{info.title[2]}</p>
+                            <p className={info.style1[1]}>{info.status[2]}</p>
                             <div className="flex space-x-5">
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[2]}</p>
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[2]}</p>
+                                <p className={info.style1[2]}>{info.graduate[2]}</p>
+                                <p className={info.style1[2]}>{info.level[2]}</p>
                             </div>
                         </div>
                     </div>
@@ -69,11 +70,11 @@ const education = () => {
                             <Image src="/tesda.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[3]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[3]}</p>
+                            <p className={info.style1[0]}>{info.title[3]}</p>
+                            <p className={info.style1[1]}>{info.status[3]}</p>
                             <div className="flex space-x-5">
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[3]}</p>
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[3]}</p>
+                                <p className={info.style1[2]}>{info.graduate[3]}</p>
+                                <p className={info.style1[2]}>{info.level[3]}</p>
                             </div>
                         </div>
                     </div>
@@ -82,11 +83,11 @@ const education = () => {
                             <Image src="/informatics.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
-                            <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[4]}</p>
-                            <p className="md:text-2xl text-sm md:text-left text-center font-semibold text-white uppercase">{info.status[4]}</p>
+                            <p className={info.style1[0]}>{info.title[4]}</p>
+                            <p className={info.style1[1]}>{info.status[4]}</p>
                             <div className="flex space-x-5">
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.graduate[4]}</p>
-                                <p className="md:text-base text-sm md:text-left text-center italic text-white uppercase">{info.level[4]}</p>
+                                <p className={info.style1[2]}>{info.graduate[4]}</p>
+                                <p className={info.style1[2]}>{info.level[4]}</p>
                             </div>
                         </div>
                     </div>
