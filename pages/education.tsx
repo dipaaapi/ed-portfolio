@@ -27,7 +27,7 @@ const education = () => {
                 <div className="w-full bg-gray-700">
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="w-max p-3 rounded-md bg-whiteg">
-                            <Image src="/amado.png" alt="amado" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
+                            <Image src="/amado.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[0]}</p>
@@ -40,7 +40,7 @@ const education = () => {
                     </div>
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="w-max p-3 rounded-md bg-whiteg">
-                            <Image src="/nolasco.png" alt="nolasco" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
+                            <Image src="/nolasco.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[1]}</p>
@@ -53,7 +53,7 @@ const education = () => {
                     </div>
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="w-max p-3 rounded-md bg-whiteg">
-                            <Image src="/iscom.png" alt="iscom" width={185} height={125} className="md:w-[10vw] w-min mx-auto" />
+                            <Image src="/iscom.png" alt="" width={185} height={125} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[2]}</p>
@@ -66,7 +66,7 @@ const education = () => {
                     </div>
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="w-max p-3 rounded-md bg-whiteg">
-                            <Image src="/tesda.png" alt="tesda" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
+                            <Image src="/tesda.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[3]}</p>
@@ -79,7 +79,7 @@ const education = () => {
                     </div>
                     <div className="w-min md:w-max mx-auto md:flex p-5 space-x-5">
                         <div className="w-max p-3 rounded-md bg-whiteg">
-                            <Image src="/informatics.png" alt="informatics" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
+                            <Image src="/informatics.png" alt="" width={150} height={150} className="md:w-[10vw] w-min mx-auto" />
                         </div>
                         <div className="my-auto">
                             <p className="md:text-3xl text-sm md:text-left text-center font-bold text-white uppercase">{info.title[4]}</p>
