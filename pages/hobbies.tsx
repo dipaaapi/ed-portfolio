@@ -6,6 +6,10 @@ import Image from 'next/image'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
+    // function anything() {
+    //     createCanvas(200, 200);
+    //     loadJSON = ('http://api.weatherapi.com/v1/current.json?key=97f90c2ace4a4e8599a62434220304&q=Philippines&aqi=no', gotData);
+    // }
     return (
         <div className="">
             <Head>
