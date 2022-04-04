@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Navigation from "../components/nav";
-import Footer from "../components/footer";
+import Navigation from "../../components/nav";
+import Footer from "../../components/footer";
 export const getStaticProps = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/users');
     const data = await res.json();
