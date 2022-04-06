@@ -20,9 +20,11 @@ const gallery = ({ images }) => {
             <Navigation />
             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 w-10/12 md:w-2/3 mx-auto">
                 {images.map(images => (
-                    <div key={images.id} className="">
+                    <div key={images.id} className="group">
                         <img src={ images.thumbnailUrl } alt={ images.title } className="w-[150px] h-[150px] mx-auto" />
-                        <p className="text-xs italic text-center">{ images.title }</p>
+                        <div className="w-full absolute bottom-0 left-0 p-2 bg-black bg-opacity-25 group-hover:opacity-100">
+                            <p className="text-xs italic text-center">{ images.title }</p>
+                        </div>
                     </div>
                 ))}
             </div>
