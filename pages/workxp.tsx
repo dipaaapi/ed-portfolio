@@ -21,7 +21,7 @@ const workxp = () => {
                 <link rel="icon" href="/CyberEd.gif" />
             </Head>
             <Navigation />
-            <main>
+            <main className='scroll-smooth'>
                 <h1 className='text-2xl uppercase text-whiteg p-3 font-bold text-center mt-10 border-t-2 bg-redg'>Work Experience</h1>
                 <div className="w-full bg-whiteg p-5">
                     <div className="w-10/12 md:w-2/3 mx-auto grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-5 p-0 md:p-5">

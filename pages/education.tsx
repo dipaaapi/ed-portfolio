@@ -22,7 +22,7 @@ const education = () => {
                 <link rel="icon" href="/CyberEd.gif" />
             </Head>
             <Navigation />
-            <main>
+            <main className='scroll-smooth'>
                 <h1 className='md:text-2xl text-sm uppercase text-whiteg p-3 font-bold text-center mt-10 border-t-2 bg-redg'>Educational Attainment</h1>
 
                 <div className="w-full bg-gray-700">

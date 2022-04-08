@@ -18,7 +18,7 @@ const Project: NextPage = () => {
     const info = {projects: ["Barangay Monitoring System for the Provincial Municipality of Pulilan Bulacan", "Ant-Pay Video presentation Project", "Lokalize Video presentation Project", "QuickBooks Landing Page", "Elite Jinzai Marketing Inc.","Vanity Health and wellness", "SwiftUi-Weather", "Rodell Ramos Website", "Golden Carabao"]};
 
     return (
-        <>
+        <main className='scroll-smooth'>
             <Head>
                 <title>Ed Portfolio | Projects Page</title>
                 <link rel="icon" href="/CyberEd.gif" />
@@ -79,7 +79,7 @@ const Project: NextPage = () => {
                 </SwiperSlide>
             </Swiper>
             <Footer />
-        </>
+        </main>
     )
 }
 

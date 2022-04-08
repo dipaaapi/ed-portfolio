@@ -16,7 +16,7 @@ const Skills: NextPage = () => {
             </Head>
             <Navigation />
 
-            <main>
+            <main className='scroll-smooth'>
                 <h1 className='text-2xl uppercase text-red-500 font-bold my-3 text-center'>Technical Skill</h1>
                 <ul>
                     <li className='group'>

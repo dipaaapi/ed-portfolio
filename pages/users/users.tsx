@@ -11,7 +11,7 @@ export const getStaticProps = async () => {
 
 const users = ({ owner }) => {
     return (
-        <>
+        <main className="scroll-smooth">
             <Head>
                 <title>Ed Portfolio | User Fetch Data Page</title>
                 <link rel="icon" href="/CyberEd.gif" />
@@ -35,7 +35,7 @@ const users = ({ owner }) => {
                 </div>
             </div>
             <Footer />
-        </>
+        </main>
     )
 }
 

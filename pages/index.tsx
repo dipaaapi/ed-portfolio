@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <main className='px-5 pb-10 justify-center text-center'>
+      <main className='scroll-smooth px-5 pb-10 justify-center text-center'>
 
         <div className='md:grid align-middle justify-center grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-0 md:gap-10 w-full md:w-2/3 md:mx-auto'>
           <Link href={'/skills'}>

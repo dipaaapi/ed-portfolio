@@ -18,7 +18,7 @@ const Personal: NextPage = () => {
         style: ['italic text-sm text-center hover:underline hover:text-red-500 text-gray-500', 'flex space-x-2 my-2 border p-5 cursor-pointer hover:shadow hover:rounded-full transition-all hover:bg-white']
     }
     return (
-        <div className={styles.container}>
+        <div className='scroll-smooth'>
             <Head>
                 <title>Ed Portfolio | Personal Information Page</title>
                 <link rel="icon" href="/CyberEd.gif" />

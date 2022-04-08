@@ -12,7 +12,7 @@ export const getStaticProps = async () => {
 
 const gallery = ({ images }) => {
     return (
-        <>
+        <main className="scroll-smooth">
             <Head>
                 <title>Ed Portfolio | User Fetch Data Page</title>
                 <link rel="icon" href="/CyberEd.gif" />
@@ -34,7 +34,7 @@ const gallery = ({ images }) => {
                 </div>
             </div>
             <Footer />
-        </>
+        </main>
     )
 }
 
