@@ -78,6 +78,13 @@ const Project: NextPage = () => {
                     <Image src='/ads1.png' alt='ads1' layout='fill' className='w-10/12 h-full mx-auto' />
                 </SwiperSlide>
             </Swiper>
+
+            <div className="mt-5 w-full">
+                <div className="w-2/3 mx-auto">
+                    <Image src='/project/aivso.png' alt='ads1' layout='fill' className='w-10/12 h-full mx-auto' />
+                </div>
+            </div>
+
             <Footer />
         </main>
     )
