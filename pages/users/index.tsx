@@ -9,7 +9,7 @@ export const getStaticProps = async () => {
     }
 }
 
-const users = ({ owner }) => {
+const index = ({ owner }) => {
     return (
         <main className="scroll-smooth">
             <Head>
@@ -39,4 +39,4 @@ const users = ({ owner }) => {
     )
 }
 
-export default users;
+export default index;
