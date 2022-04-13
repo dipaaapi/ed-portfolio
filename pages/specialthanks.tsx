@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Navigation from '../components/nav'
 import Head from 'next/head'
 import Footer from '../components/footer'
-import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 
 const Specialthanks: NextPage = () => {
@@ -17,6 +16,7 @@ const Specialthanks: NextPage = () => {
         email: ['dipaaapi8@gmail.com', 'ichewit01@gmail.com' ],
         style: ['italic text-sm text-center hover:underline hover:text-red-500 text-gray-500', 'flex space-x-2 my-2 border p-5 cursor-pointer hover:shadow hover:rounded-full transition-all hover:bg-white']
     }
+    console.log(info.name)
     return (
         <div className='scroll-smooth'>
             <Head>
