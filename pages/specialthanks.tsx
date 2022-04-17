@@ -14,7 +14,29 @@ const Specialthanks: NextPage = () => {
             <Navigation />
 
             <main>
-                <p className="">welcome to special thanks page</p>
+
+                <p className="text-center text-4xl font-bold uppercase">special thanks to the following:</p>
+
+                <div className="p-5 lg:w-2/3 md:w-2/3 w-10/12 mx-auto">
+                    <ul className=''>
+                        <li className="">
+                            <p className="">vercel</p>
+                        </li>
+                        <li className="">
+                            <p className="">JSON placeholder</p>
+                        </li>
+                        <li className="">
+                            <p className="">w3school</p>
+                        </li>
+                        <li className="">
+                            <p className="">github</p>
+                        </li>
+                        <li className="">
+                            <p className="">vscode</p>
+                        </li>
+                    </ul>
+                </div>
+
             </main>
 
             <Footer />
