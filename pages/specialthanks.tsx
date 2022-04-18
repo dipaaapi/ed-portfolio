@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Navigation from '../components/nav'
 import Head from 'next/head'
 import Footer from '../components/footer'
-import Image from 'next/image'
 
 const Specialthanks: NextPage = () => {
     return (
