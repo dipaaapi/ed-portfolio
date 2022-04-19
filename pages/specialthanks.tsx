@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Footer from '../components/footer'
 
 const Specialthanks: NextPage = () => {
+    const infos = ["vercel", "JSON placeholder", "w3school", "github", "vscode"]
     return (
         <div className='scroll-smooth'>
             <Head>
@@ -14,11 +15,17 @@ const Specialthanks: NextPage = () => {
 
             <main>
 
+
                 <p className="text-center text-4xl font-bold uppercase">special thanks to the following:</p>
 
                 <div className="p-5 lg:w-2/3 md:w-2/3 w-10/12 mx-auto">
                     <ul className=''>
-                        <li className="">
+                        {infos.map((info) => {
+                            <li className="">
+                                <p className="text-black text-center" key="info">{info}</p>
+                            </li>
+                        })}
+                        {/* <li className="">
                             <p className="">vercel</p>
                         </li>
                         <li className="">
@@ -32,7 +39,7 @@ const Specialthanks: NextPage = () => {
                         </li>
                         <li className="">
                             <p className="">vscode</p>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 
