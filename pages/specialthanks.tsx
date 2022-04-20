@@ -25,7 +25,7 @@ const Specialthanks: NextPage = () => {
                                 <p className="text-black text-center" key="info">{info}</p>
                             </li>
                         })}
-                        {/* <li className="">
+                        <li className="">
                             <p className="">vercel</p>
                         </li>
                         <li className="">
@@ -39,7 +39,7 @@ const Specialthanks: NextPage = () => {
                         </li>
                         <li className="">
                             <p className="">vscode</p>
-                        </li> */}
+                        </li>
                     </ul>
                 </div>
 
