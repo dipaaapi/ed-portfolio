@@ -15,7 +15,6 @@ const Specialthanks: NextPage = () => {
 
             <main>
 
-
                 <p className="text-center text-4xl font-bold uppercase">special thanks to the following:</p>
 
                 <div className="p-5 lg:w-2/3 md:w-2/3 w-10/12 mx-auto">
@@ -26,19 +25,19 @@ const Specialthanks: NextPage = () => {
                             </li>
                         })}
                         <li className="">
-                            <p className="">vercel</p>
+                            <p className="text-center font-bold">vercel</p>
                         </li>
                         <li className="">
-                            <p className="">JSON placeholder</p>
+                            <p className="text-center font-bold">JSON placeholder</p>
                         </li>
                         <li className="">
-                            <p className="">w3school</p>
+                            <p className="text-center font-bold">w3school</p>
                         </li>
                         <li className="">
-                            <p className="">github</p>
+                            <p className="text-center font-bold">github</p>
                         </li>
                         <li className="">
-                            <p className="">vscode</p>
+                            <p className="text-center font-bold">vscode</p>
                         </li>
                     </ul>
                 </div>
