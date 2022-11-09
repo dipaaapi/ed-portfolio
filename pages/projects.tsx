@@ -26,9 +26,10 @@ const Project: NextPage = () => {
             <Navigation />
 
             <div className="flex mx-auto w-max space-x-5 my-5">
-                <p className="">front-end web developer</p>
-                <p className="">ui/ux / graphic designer</p>
-                <p className="">quality assurance / tester</p>
+                <p className="capitalize">front-end web developer</p>
+                <p className="capitalize">ui/ux / graphic designer</p>
+                <p className="capitalize">quality assurance / tester</p>
+                <p className="capitalize">associate unity game developer</p>
             </div>
 
             <Swiper className='w-full h-screen'
