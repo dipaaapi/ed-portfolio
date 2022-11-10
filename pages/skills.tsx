@@ -8,6 +8,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 const Skills: NextPage = () => {
+
+    const designerskills = ["/adobeXd.png", "/adobePs.png", "/adobeAi.png", "/figma.png", "/balsamiq.png"];
+
+    const unityskills = ["animation", "asset management", "audio", "editor interface", "game art principles", "game design principles", "industry awareness", "lighting", "materials and effects", "navigation and pathfinding", "physics", "programming", "project management", "user interface"];
+
     return (
         <div className={styles.container}>
             <Head>
@@ -27,36 +32,14 @@ const Skills: NextPage = () => {
                             </div>
                             <div className="w-4/5 mx-auto mb-10 text-white group-hover:text-dark">
                                 <ul className='grid grid-cols-2 md:grid-cols-5 space-x-3 justify-center text-center'>
-                                    <li className='hover:animate-ping'>
+                                    {designerskills.map((designerskill) => {
+                                        return <li className='hover:animate-ping'>
                                         <div className='bg-transparent group-hover:bg-white p-5 rounded w-max mx-auto'>
-                                            <Image src='/adobeXd.png' width={50} alt="" height={50} className='bg-transparent' />
+                                            <Image src={designerskill} width={50} alt="" height={50} className='bg-transparent' />
                                         </div>
-                                        <p className="">Adobe XD</p>
-                                    </li>
-                                    <li className='hover:animate-ping'>
-                                        <div className='bg-transparent group-hover:bg-white p-5 rounded w-max mx-auto'>
-                                            <Image src='/adobePs.png' width={50} alt="" height={50} className='bg-transparent' />
-                                        </div>
-                                        <p className="">Adobe Photoshop</p>
-                                    </li>
-                                    <li className='hover:animate-ping'>
-                                        <div className='bg-transparent group-hover:bg-white p-5 rounded w-max mx-auto'>
-                                            <Image src='/adobeAi.png' width={50} alt="" height={50} className='bg-transparent' />
-                                        </div>
-                                        <p className="">Adobe Illustration</p>
-                                    </li>
-                                    <li className='hover:animate-ping'>
-                                        <div className='bg-transparent group-hover:bg-white p-5 rounded w-max mx-auto'>
-                                            <Image src='/figma.png' width={50} alt="" height={50} className='bg-transparent' />
-                                        </div>
-                                        <p className="">Figma</p>
-                                    </li>
-                                    <li className='hover:animate-ping'>
-                                        <div className='bg-transparent group-hover:bg-white p-5 rounded w-max mx-auto'>
-                                            <Image src='/balsamiq.png' width={50} alt="" height={50} className='bg-transparent' />
-                                        </div>
-                                        <p className="">Balsamiq</p>
-                                    </li>
+                                        <p className="">{designerskill}</p>
+                                    </li>;
+                                    })}
                                 </ul>
                             </div>
                         </div>
@@ -162,6 +145,23 @@ const Skills: NextPage = () => {
                                         </li>
                                     </Carousel>
                                 </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li className='group'>
+                        <div className="w-full h-auto grid grid-cols-1 grid-rows-2 justify-center items-center transition-all group-hover:bg-redg bg-dark border-b-2">
+                            <div className="w-max mx-auto my-4">
+                                <Image src='/unityBadge.png' width={150} alt="" height={150} className='mx-auto rounded mb-5' />
+                            </div>
+                            <div className="w-2/3 text-center gap-10 mx-auto mb-10 text-white group-hover:text-dark">
+                                <div className="w-max">
+                                    <p className="group-hover:text-dark text-white text-2xl uppercase bold mb-5">Skills</p>
+                                    <ul className="grid grid-cols-5 text-center gap-5">
+                                        {unityskills.map((skill) => {
+                                            return <li className="border-2 p-2 hover:animate-bounce rounded-md border-dashed hover:bg-white group-hover:shadow-lg border-white group-hover:border-solid ease-in-out duration-300"> <p className="capitalize text-lg">{skill}</p> </li>;
+                                        })}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </li>
