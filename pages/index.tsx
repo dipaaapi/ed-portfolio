@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const Home: NextPage = () => {
 

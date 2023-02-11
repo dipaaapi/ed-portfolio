@@ -32,16 +32,18 @@ const Skills: NextPage = () => {
                             </div>
                             <div className="w-4/5 mx-auto mb-10 text-white group-hover:text-dark">
                                 <ul className='grid grid-cols-2 md:grid-cols-5 space-x-3 justify-center text-center'>
-                                    {designerskills.map((designerskill) => {
-                                        return <li className='hover:animate-ping'>
-                                        <div className='bg-transparent group-hover:bg-white p-5 rounded w-max mx-auto'>
+                                    {designerskills.map((designerskill, index) => {
+                                        return (
+                                        <li key={index} className='hover:animate-ping'>
+                                            <div className='bg-transparent group-hover:bg-white p-5 rounded w-max mx-auto'>
                                             <Image src={designerskill} width={50} alt="" height={50} className='bg-transparent' />
-                                        </div>
-                                        <p className="">{designerskill}</p>
-                                    </li>;
+                                            </div>
+                                            <p className="">{designerskill}</p>
+                                        </li>
+                                        );
                                     })}
                                 </ul>
-                            </div>
+                            </div>x
                         </div>
                     </li>
                     <li className='group'>
@@ -157,8 +159,12 @@ const Skills: NextPage = () => {
                                 <div className="w-max">
                                     <p className="group-hover:text-dark text-white text-2xl uppercase bold mb-5">Skills</p>
                                     <ul className="grid grid-cols-5 text-center gap-5">
-                                        {unityskills.map((skill) => {
-                                            return <li className="border-2 p-2 hover:animate-bounce rounded-md border-dashed hover:bg-white group-hover:shadow-lg border-white group-hover:border-solid ease-in-out duration-300"> <p className="capitalize text-lg">{skill}</p> </li>;
+                                        {unityskills.map((skill, index) => {
+                                            return (
+                                                <li key={index} className="border-2 p-2 hover:animate-bounce rounded-md border-dashed hover:bg-white group-hover:shadow-lg border-white group-hover:border-solid ease-in-out duration-300">
+                                                <p className="capitalize text-lg">{skill}</p>
+                                                </li>
+                                            );
                                         })}
                                     </ul>
                                 </div>
