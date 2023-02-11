@@ -9,7 +9,7 @@ const Personal: NextPage = () => {
     const info = {
         name: 'John Edward M. Cabrera',
         age: "January 28, 1989",
-        position: ['Front-end Developer', 'UI/UX Designer', 'Quality Assurance'],
+        position: ['Front-end Developer', 'UI/UX Designer', 'Quality Assurance', 'Unity Game Developer'],
         gender: 'male',
         address: '23 sta. fe street blk-3 brgy. 103 zone-8 magsaysay village District 1 Tondo, Manila Philippines',
         mobile: ['09663679205', '09761740995'],

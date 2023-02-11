@@ -6,9 +6,9 @@ import Image from 'next/image'
 
 const Home: NextPage = () => {
 
-  const main = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec nisl fringilla, vestibulum erat eu, fermentum metus. Donec finibus nec lacus at tristique. Praesent dictum sapien nunc. Cras finibus gravida lobortis. Proin risus massa, lobortis lacinia finibus a, finibus in enim. Duis eu mauris eget velit efficitur aliquet non sit amet orci. Etiam non felis sem. Phasellus vitae egestas erat, a pharetra risus.";
+  const main = ["I am proficient in web development, with expertise in front-end development and UI design. I also have experience in quality assurance and game development. My skillset includes proficiency in HTML, CSS, JavaScript, and jQuery, as well as experience with various web development frameworks and tools. I am also skilled in project management, problem-solving, and communication.", "As a well-rounded individual, you have diverse hobbies that include playing video games, watching anime, and reading manga. You also enjoy taking care of pets, particularly dogs, cats, and fish such as flower horn. Your hobbies show your interest in technology and your creative side, and they provide a balance to your busy work life as an IT professional and game developer in the Philippines.", "As a web developer in the Philippines, you specialize in building and maintaining websites, creating web applications, and designing UI features. Your portfolio can demonstrate your front-end and back-end development skills, as well as your notable achievements in web development projects. With a strong portfolio, you can showcase your expertise and stand out in the competitive tech industry in the Philippines.", "As a web development professional, you have experience in designing and developing websites and web applications with a focus on UI design. You have experience creating visually appealing and user-friendly interfaces, testing and debugging front-end web development projects, creating optimized visual content, and building the client-side of web applications using various front-end frameworks and libraries.", "I'm a web development professional based in the Philippines, with a degree in Information Technology and several years of experience in web development. I specialize in UI design and have expertise in various front-end frameworks and libraries. I'm also skilled in quality assurance and graphic art. Additionally, I have experience as an Associate Unity game developer.", "I completed my primary education at Amado V. Hernandez Elementary and then went on to graduate from Nolasco High School, completing my secondary education. I then pursued a degree in Information Technology from Informatics College Manila, Philippines, and completed various courses that provided me with the necessary skills for web development."];
 
-  const infos = ["/adobeXd.png", "/adobeAi.png", "/adobePs.png", "/balsamiq.png", "/html5.png", "/css.png", "/javascript.png", "/php.png", "/mysql.png", "/react.png", "/next.png", "/bootstrap.png", "/materialui.png", "/sass.png", "/tailwindcss.png", "/laravel.png", "/laraveljetstream.png", "/laravellivewire.png"];
+  const title = ["skills", "hobbies", "projects", "work experience", "personal information", "educational attainment"];
 
   return (
     <div className="p-0 relative">
@@ -24,72 +24,52 @@ const Home: NextPage = () => {
           <Link href={'/skills'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Skills:</h2>
-                <div className="grid grid-cols-4 md:grid-cols-6 my-2 gap-3">
-                  {infos.map((info) => {
-                    // eslint-disable-next-line react/jsx-key
-                    return <Image src={info} width={50} height={50} alt={info} className='p-0' />;
-                  })}
-                </div>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl uppercase transition-all font-main'>{ title[0] }</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all text-justify'>{ main[0] }</p>
               </div>
             </a>
           </Link>
           <Link href={'/hobbies'}>
             <a className='group'>
-              <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md md:my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Hobbies:</h2>
-                <div className="my-2 gap-3">
-                  <div className="flex md:space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-[12px] md:text-2xl my-auto text-center md:text-left">Playing Video Games</p>
-                    <Image src="/gaming.png" width={45} height={50} alt="html5" className='p-0' />
-                  </div>
-                  <div className="flex space-x-3 w-10/12 mx-auto">
-                    <Image src="/anime.png" width={50} height={50} alt="html5" className='w-max h-auto p-0' />
-                    <p className="flex-grow text-[12px] md:text-3xl my-auto text-center md:text-left">Watching Anime</p>
-                  </div>
-                  <div className="flex space-x-3 w-10/12 mx-auto">
-                    <p className="flex-grow text-[12px] md:text-4xl my-auto text-center md:text-left">Adopting Pets</p>
-                    <Image src="/pets.png" width={50} height={50} alt="html5" className='p-0' />
-                  </div>
-                </div>
+              <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl uppercase transition-all font-main'>{ title[1] }</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all text-justify'>{ main[1] }</p>
               </div>
             </a>
           </Link>
           <Link href={'/projects'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Projects:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{ main }</p>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl uppercase transition-all font-main'>{ title[2] }</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all text-justify'>{ main[2] }</p>
               </div>
             </a>
           </Link>
           <Link href={'/workxp'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Work Experience:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl uppercase transition-all font-main'>{ title[3] }</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all text-justify'>{ main[3] }</p>
               </div>
             </a>
           </Link>
           <Link href={'/personal'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Personal Information:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl uppercase transition-all font-main'>{ title[4] }</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all text-justify'>{ main[4] }</p>
               </div>
             </a>
           </Link>
           <Link href={'/education'}>
             <a className='group'>
               <div className='p-5 border-2 group-hover:border-red-500 transition-all rounded-md my-3'>
-                <h2 className='text-red-500 group-hover:underline font-bold text-2xl transition-all font-main'>Educational Attainment:</h2>
-                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all'>{main}</p>
+                <h2 className='text-red-500 group-hover:underline font-bold text-2xl uppercase transition-all font-main'>{ title[5] }</h2>
+                <p className='italic text-base text-gray-600 group-hover:text-red-500 transition-all text-justify'>{ main[5] }</p>
               </div>
             </a>
           </Link>
         </div>
-
-        {/* 0- */}
       </main>
       <Footer />
     </div>
