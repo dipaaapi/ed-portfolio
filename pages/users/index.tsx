@@ -1,17 +1,17 @@
 import Head from "next/head";
 import Navigation from "../../components/nav";
 import Footer from "../../components/footer";
-export const getStaticProps = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await res.json();
-    return {
-        props: { owner: data }
-    }
-}
+import React from 'react';
 
-const index = ({ owner }) => {
-    return (
-        <main className="scroll-smooth">
+interface Owner {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    }
+
+    const index = ({ owner }: { owner: Owner[] }) => {
+    <main className="scroll-smooth">
             <Head>
                 <title>Ed Portfolio | User Fetch Data Page</title>
                 <link rel="icon" href="/CyberEd.gif" />
@@ -36,7 +36,14 @@ const index = ({ owner }) => {
             </div>
             <Footer />
         </main>
-    )
-}
+    };
+
+    export const getStaticProps = async () => {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    const data = await res.json();
+    return {
+        props: { owner: data }
+    };
+    };
 
 export default index;
