@@ -9,10 +9,8 @@ const Navigation = () => {
 
     useEffect(() => {
         setIsMounted(true);
-        // 1. Digital Clock Timer
         const timer = setInterval(() => setTime(new Date()), 1000);
 
-        // 2. Scroll-to-Top Visibility Logic
         const checkScrollTop = () => {
             if (!showScroll && window.pageYOffset > 400) {
                 setShowScroll(true);
@@ -52,8 +50,15 @@ const Navigation = () => {
                     <li className='font-semibold'>
                         <Link href="/">
                             <a className='flex items-center group'>
-                                <div className="relative overflow-hidden rounded-lg shadow-sm group-hover:shadow-md transition-all">
-                                    <Image src="/edLogo.png" alt="Edward Logo" width={45} height={45} className='flex-shrink-0' />
+                                {/* FIX: Removed overflow-hidden to prevent shadow clipping on hover */}
+                                <div className="relative p-1 rounded-lg transition-all duration-300 group-hover:bg-red-50 group-hover:shadow-md">
+                                    <Image 
+                                        src="/edLogo.png" 
+                                        alt="Edward Logo" 
+                                        width={45} 
+                                        height={45} 
+                                        className='flex-shrink-0 rounded-md' 
+                                    />
                                 </div>
                                 <div className="ml-3 hidden md:block">
                                     <p className="text-xs uppercase font-black tracking-tighter text-red-600">Ed Cabrera</p>

@@ -17,6 +17,13 @@ const Home: NextPage = () => {
 
   const [index, setIndex] = useState(0);
 
+  // Form State
+  const [formData, setFormData] = useState({
+    name: "",
+    title: "",
+    description: ""
+  });
+
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % roles.length);
@@ -29,7 +36,6 @@ const Home: NextPage = () => {
     return ['a', 'e', 'i', 'o', 'u'].includes(firstLetter) ? 'an' : 'a';
   };
 
-  // RESTORED ALL SIX SECTIONS
   const sections = [
     { title: "Technical Skills", path: "/skills", content: "Expertise in Front-end development (React/NextJS) and UI Design. Certified Instruction based on TESDA Training Regulations." },
     { title: "Personal Hobbies", path: "/hobbies", content: "A balance of creativity and tech: Gaming, Anime, and Manga. These interests fuel my design inspiration and keep logic sharp." },
@@ -46,13 +52,24 @@ const Home: NextPage = () => {
     { category: "Existence", text: "We are the architects of our own reality. Life is about finding the balance between logic and beauty.", icon: "✨" }
   ];
 
+  // EMAIL HANDLER
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const emailTo = "cabrerajohnedward@gmail.com";
+    const subject = encodeURIComponent(`Project Query: ${formData.title}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n\nProject Title/Purpose: ${formData.title}\n\nDescription:\n${formData.description}`
+    );
+    window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen font-main">
       <Header />
 
       <main className='scroll-smooth'>
         
-        {/* HERO SECTION - NEW HORIZONTAL SLIDE ANIMATION */}
+        {/* HERO SECTION */}
         <section className="h-[70vh] flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-red-900 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full blur-[150px] opacity-20"></div>
           
@@ -62,7 +79,6 @@ const Home: NextPage = () => {
             <div className="font-black text-3xl md:text-5xl tracking-tighter mb-8 leading-none">
               Hi, I&lsquo;m <span className="text-red-500">ED</span>. I am {getArticle(roles[index])}
               <br />
-              
               <div className="flex flex-col items-center mt-6">
                 <div className="relative w-full max-w-4xl h-24 overflow-hidden">
                   <div 
@@ -96,29 +112,77 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        {/* ALL 6 SECTIONS DISPLAYED AS BENTO TILES */}
+        {/* BENTO TILES SECTIONS */}
         <section className="w-11/12 md:w-10/12 mx-auto py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sections.map((item, i) => (
                 <Link key={i} href={item.path}>
                     <a className="group bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl border-b-4 border-transparent hover:border-red-500 transition-all duration-300 h-full flex flex-col">
                         <h3 className="text-red-500 font-black text-2xl mb-4 group-hover:underline uppercase tracking-tighter">{item.title}</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed italic text-justify flex-grow">
-                            {item.content}
-                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed italic text-justify flex-grow">{item.content}</p>
                         <div className="mt-6 text-xs font-bold text-gray-300 group-hover:text-red-500 transition-colors uppercase tracking-[0.2em]">Explore More →</div>
                     </a>
                 </Link>
             ))}
         </section>
 
-        {/* PERSONAL EXPRESSIONS SECTION */}
+        {/* --- NEW QUERY FORM SECTION --- */}
+        <section className="w-full bg-gray-900 py-24 px-4">
+            <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl font-black uppercase text-red-500 tracking-widest">Connect with Me</h2>
+                    <p className="text-gray-400 mt-2 italic">Have a project in mind or need training? Send a query below.</p>
+                </div>
+                
+                <form onSubmit={handleEmailSubmit} className="bg-white/5 backdrop-blur-lg p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div className="flex flex-col">
+                            <label className="text-xs font-bold text-red-500 uppercase tracking-widest mb-2">Full Name</label>
+                            <input 
+                                required
+                                type="text" 
+                                placeholder="Juan Dela Cruz"
+                                className="bg-gray-800 border-none text-white rounded-xl p-4 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-xs font-bold text-red-500 uppercase tracking-widest mb-2">Purpose / Title</label>
+                            <input 
+                                required
+                                type="text" 
+                                placeholder="e.g. Website Design Project"
+                                className="bg-gray-800 border-none text-white rounded-xl p-4 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                                onChange={(e) => setFormData({...formData, title: e.target.value})}
+                            />
+                        </div>
+                    </div>
+                    <div className="flex flex-col mb-8">
+                        <label className="text-xs font-bold text-red-500 uppercase tracking-widest mb-2">Description</label>
+                        <textarea 
+                            required
+                            rows={5}
+                            placeholder="Tell me more about your project or inquiry..."
+                            className="bg-gray-800 border-none text-white rounded-2xl p-4 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                            onChange={(e) => setFormData({...formData, description: e.target.value})}
+                        ></textarea>
+                    </div>
+                    <button 
+                        type="submit"
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-[0.3em] py-5 rounded-2xl shadow-lg hover:shadow-red-500/20 transition-all transform active:scale-95"
+                    >
+                        Launch Direct Query
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        {/* CORE VALUES */}
         <section className="bg-gray-100 py-20 border-y border-gray-200">
             <div className="w-10/12 mx-auto">
                 <div className="flex items-center gap-4 mb-12">
                     <h2 className="text-3xl font-black uppercase text-gray-900">Core Values & Philosophy</h2>
                     <div className="h-1 flex-grow bg-red-200"></div>
                 </div>
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {thoughts.map((item, i) => (
                         <div key={i} className="bg-white p-6 rounded-2xl shadow-md hover:-translate-y-2 transition-transform duration-300">
@@ -131,7 +195,7 @@ const Home: NextPage = () => {
             </div>
         </section>
 
-        {/* TECH STACK SECTION */}
+        {/* TECH STACK */}
         <section className="py-20 text-center bg-white">
             <p className="text-[10px] font-black tracking-[0.5em] text-gray-400 mb-10 uppercase">Special Thanks To</p>
             <div className="flex flex-wrap justify-center items-center gap-12">
@@ -149,9 +213,7 @@ const Home: NextPage = () => {
                 </Link>
             </div>
         </section>
-
       </main>
-      
       <Footer />
     </div>
   )
