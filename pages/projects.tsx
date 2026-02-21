@@ -8,25 +8,32 @@ import { useState, useMemo } from 'react';
 const Project: NextPage = () => {
     const [activeFilter, setActiveFilter] = useState('All');
     const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const projects = [
-        { title: "AIVSO", fullTitle: "Advance Vehicle Inspection Service Online", category: "Web Development", description: "A portal for LTO third-party providers in the Philippines.", quote: "Efficiency in government services starts with a clean UI and a robust back-end.", image: "/projects/aipaygo/aviso1md.png" },
-        { title: "BOOYA", fullTitle: "Booya Donuts & Bagels", category: "UI/UX Design", description: "Modern e-commerce interface for a food services brand.", quote: "Design should be as sweet and accessible as the product it sells.", image: "/projects/aipaygo/booyamd1.PNG" },
-        { title: "Skytel", fullTitle: "Skytel Community Wifi", category: "Web Development", description: "A community-based wifi service management system.", quote: "Connectivity is a right, not a privilege. Building for the community requires empathy.", image: "/projects/aipaygo/communifimd1.png" },
-        { title: "Golden Carabao", fullTitle: "Golden Carabao Hospitality Group", category: "UI/UX Design", description: "Showcasing world-class hospitality services and apprentice tracking.", quote: "Hospitality is about experience; the digital platform must reflect that same care.", image: "/projects/aipaygo/goldencarabaomd1.png" },
-        { title: "HyperPocket", fullTitle: "HyperPocket E-Coins", category: "Online System", description: "An automated trade e-coin system for digital traders.", quote: "Security and transparency are the currencies of the digital age.", image: "/projects/aipaygo/hyperpocketdarkmd.png" },
-        { title: "Barangay Monitoring", fullTitle: "Pulilan LGU Monitoring System", category: "Government System", description: "Stand-alone administrative system for Pulilan, Bulacan.", quote: "Empowering local leaders with data-driven decision-making tools.", image: "/projects/pulilan.png" },
-        { title: "Ant-Pay", fullTitle: "Ant-Pay Video Presentation", category: "Graphic Design", description: "Engaging motion graphics showcasing payroll automation.", quote: "Motion design turns complex data into a compelling visual narrative.", image: "/projects/antPay/antpay.png" },
-        { title: "Cheroniel", fullTitle: "Cheroniel Branding Project", category: "UI Design", description: "Branding and product design for the Cheroniel project.", quote: "Branding is the soul of the project. It's how we speak without using words.", image: "/projects/cheroniel/main_logo.png" },
-        { title: "Vanity Health", fullTitle: "Vanity Health & Wellness", category: "Graphic Design", description: "Brand identity and marketing collateral for wellness services.", quote: "Wellness is a holistic journey; branding must breathe tranquility.", image: "/projects/vanity/fbCover.jpg" },
-        { title: "Skytel Iloilo", fullTitle: "Jam Jam Baronda Free Wifi", category: "Web Design", description: "Custom captive portal design for Iloilo public wifi.", quote: "Public access requires seamless and intuitive user on-boarding.", image: "/projects/aipaygo/skyteliloilomd.png" },
-        { title: "Skytel Pangasinan", fullTitle: "Pilo Villamar Free Wifi", category: "Web Design", description: "UI Design for free wifi access points in Pangasinan.", quote: "Visual consistency across regions strengthens the service brand.", image: "/projects/aipaygo/skytelpangasinanmd.png" },
-        { title: "Skytel Aklan", fullTitle: "Rodell Ramos Aklan Free Wifi", category: "Web Design", description: "Localized wifi landing page for the Aklan region.", quote: "Localization makes technology feel closer to the people it serves.", image: "/projects/aipaygo/skytelbatanmd.png" }
+        { title: "AIVSO", fullTitle: "Advance Vehicle Inspection Service Online", category: "Web Development", description: "A portal for LTO third-party providers in the Philippines.", quote: "Efficiency in government services starts with a clean UI and a robust back-end.", image: "/projects/aipaygo/aviso1md.png", techStack: ["React", "Next.js", "TailwindCSS"], liveLink: "https://aivso.ph", repoLink: "https://github.com/dipaaapi" },
+        { title: "BOOYA", fullTitle: "Booya Donuts & Bagels", category: "UI/UX Design", description: "Modern e-commerce interface for a food services brand.", quote: "Design should be as sweet and accessible as the product it sells.", image: "/projects/aipaygo/booyamd1.PNG", techStack: ["Figma", "Adobe Core"], liveLink: "https://www.figma.com/file/sample/booya" },
+        { title: "Skytel", fullTitle: "Skytel Community Wifi", category: "Web Development", description: "A community-based wifi service management system.", quote: "Connectivity is a right, not a privilege. Building for the community requires empathy.", image: "/projects/aipaygo/communifimd1.png", techStack: ["PHP", "Vanilla JS", "Bootstrap"], liveLink: "https://skytel.ph", repoLink: "https://github.com/dipaaapi" },
+        { title: "Golden Carabao", fullTitle: "Golden Carabao Hospitality Group", category: "UI/UX Design", description: "Showcasing world-class hospitality services and apprentice tracking.", quote: "Hospitality is about experience; the digital platform must reflect that same care.", image: "/projects/aipaygo/goldencarabaomd1.png", techStack: ["Figma"], liveLink: "https://goldencarabao.com" },
+        { title: "HyperPocket", fullTitle: "HyperPocket E-Coins", category: "Online System", description: "An automated trade e-coin system for digital traders.", quote: "Security and transparency are the currencies of the digital age.", image: "/projects/aipaygo/hyperpocketdarkmd.png", techStack: ["React", "Node.js", "MongoDB"], liveLink: "https://hyperpocket.app" },
+        { title: "Barangay Monitoring", fullTitle: "Pulilan LGU Monitoring System", category: "Government System", description: "Stand-alone administrative system for Pulilan, Bulacan.", quote: "Empowering local leaders with data-driven decision-making tools.", image: "/projects/pulilan.png", techStack: ["Next.js", "PostgreSQL", "Prisma"], liveLink: "https://pulilan.gov.ph", repoLink: "https://github.com/dipaaapi" },
+        { title: "Ant-Pay", fullTitle: "Ant-Pay Video Presentation", category: "Graphic Design", description: "Engaging motion graphics showcasing payroll automation.", quote: "Motion design turns complex data into a compelling visual narrative.", image: "/projects/antPay/antpay.png", techStack: ["After Effects", "Premiere Pro"], liveLink: "https://youtube.com/antpay" },
+        { title: "Cheroniel", fullTitle: "Cheroniel Branding Project", category: "UI Design", description: "Branding and product design for the Cheroniel project.", quote: "Branding is the soul of the project. It's how we speak without using words.", image: "/projects/cheroniel/main_logo.png", techStack: ["Illustrator", "Photoshop"], liveLink: "https://behance.net/cheroniel" },
+        { title: "Vanity Health", fullTitle: "Vanity Health & Wellness", category: "Graphic Design", description: "Brand identity and marketing collateral for wellness services.", quote: "Wellness is a holistic journey; branding must breathe tranquility.", image: "/projects/vanity/fbCover.jpg", techStack: ["Illustrator", "Photoshop"], liveLink: "https://facebook.com/vanityhealth" },
+        { title: "Skytel Iloilo", fullTitle: "Jam Jam Baronda Free Wifi", category: "Web Design", description: "Custom captive portal design for Iloilo public wifi.", quote: "Public access requires seamless and intuitive user on-boarding.", image: "/projects/aipaygo/skyteliloilomd.png", techStack: ["HTML", "CSS", "JS"], liveLink: "https://skytel.ph/iloilo" },
+        { title: "Skytel Pangasinan", fullTitle: "Pilo Villamar Free Wifi", category: "Web Design", description: "UI Design for free wifi access points in Pangasinan.", quote: "Visual consistency across regions strengthens the service brand.", image: "/projects/aipaygo/skytelpangasinanmd.png", techStack: ["HTML", "CSS", "JS"], liveLink: "https://skytel.ph/pangasinan" },
+        { title: "Skytel Aklan", fullTitle: "Rodell Ramos Aklan Free Wifi", category: "Web Design", description: "Localized wifi landing page for the Aklan region.", quote: "Localization makes technology feel closer to the people it serves.", image: "/projects/aipaygo/skytelbatanmd.png", techStack: ["HTML", "CSS", "JS"], liveLink: "https://skytel.ph/aklan" }
     ];
 
     const positions = ['Computer Instructor', 'Web Developer', 'UI/UX Designer', 'Quality Assurance', 'Visual Graphic Designer', 'Game Developer'];
     const categories = useMemo(() => ['All', ...Array.from(new Set(projects.map(p => p.category)))], []);
-    const filteredProjects = projects.filter(p => activeFilter === 'All' ? true : p.category === activeFilter);
+    const filteredProjects = projects.filter(p => {
+        const matchesCategory = activeFilter === 'All' ? true : p.category === activeFilter;
+        const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.fullTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
 
     return (
         <div className="scroll-smooth bg-gray-50 font-main relative">
@@ -48,9 +55,29 @@ const Project: NextPage = () => {
                     </div>
                 </div>
 
-                {/* FILTER */}
-                <section className="w-11/12 mx-auto -mt-8 mb-12 relative z-10">
-                    <div className="bg-white p-4 rounded-3xl shadow-xl flex flex-wrap justify-center gap-2 border border-gray-100">
+                {/* FILTER & SEARCH */}
+                <section className="w-11/12 mx-auto -mt-16 mb-12 relative z-10 flex flex-col items-center">
+                    {/* Search Bar */}
+                    <div className="w-full max-w-2xl bg-white p-2 rounded-full shadow-xl mb-6 flex items-center border border-gray-100">
+                        <div className="p-3 text-gray-400">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search projects by name or description..."
+                            className="w-full py-3 px-4 outline-none text-gray-700 bg-transparent rounded-r-full font-medium"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        {searchQuery && (
+                            <button onClick={() => setSearchQuery('')} className="p-3 text-gray-400 hover:text-red-500 transition-colors">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Category Buttons */}
+                    <div className="bg-white p-4 rounded-3xl shadow-xl flex flex-wrap justify-center gap-2 border border-gray-100 w-full max-w-4xl">
                         {categories.map((cat) => (
                             <button key={cat} onClick={() => setActiveFilter(cat)} className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeFilter === cat ? 'bg-red-600 text-white shadow-lg' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'}`}>{cat}</button>
                         ))}
@@ -89,10 +116,32 @@ const Project: NextPage = () => {
                             <div className="w-full lg:w-1/3 p-10 flex flex-col justify-center bg-white">
                                 <span className="text-red-500 text-xs font-black uppercase tracking-widest mb-4">{selectedProject.category}</span>
                                 <h2 className="text-3xl font-black text-gray-900 leading-tight mb-6">{selectedProject.fullTitle}</h2>
-                                <p className="text-gray-600 text-sm leading-relaxed mb-8">{selectedProject.description}</p>
-                                <div className="border-t-2 border-red-500 pt-6">
+                                <p className="text-gray-600 text-sm leading-relaxed mb-6">{selectedProject.description}</p>
+
+                                {selectedProject.techStack && (
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        {selectedProject.techStack.map((tech: string, i: number) => (
+                                            <span key={i} className="bg-gray-100 text-gray-600 text-[10px] font-bold px-3 py-1 rounded-full">{tech}</span>
+                                        ))}
+                                    </div>
+                                )}
+
+                                <div className="border-t-2 border-red-500 pt-6 mb-6">
                                     <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Project Insight:</p>
                                     <p className="text-lg italic font-serif text-gray-800">"{selectedProject.quote}"</p>
+                                </div>
+
+                                <div className="flex gap-4 mt-auto">
+                                    {selectedProject.liveLink && (
+                                        <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-center text-xs font-bold uppercase tracking-widest py-4 rounded-xl transition-all shadow-md">
+                                            Visit Live Site
+                                        </a>
+                                    )}
+                                    {selectedProject.repoLink && (
+                                        <a href={selectedProject.repoLink} target="_blank" rel="noreferrer" className="flex-1 bg-white border-2 border-gray-200 hover:border-gray-900 text-gray-900 text-center text-xs font-bold uppercase tracking-widest py-4 rounded-xl transition-all shadow-md">
+                                            Source Code
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>

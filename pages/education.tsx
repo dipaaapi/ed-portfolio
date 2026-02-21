@@ -57,7 +57,7 @@ const Education = () => {
     ];
 
     return (
-        <div className={styles.container}>
+        <div className="scroll-smooth bg-gray-50 font-main relative">
             <Head>
                 <title>Educational Journey Page | ElevatED by Code | IllustratED by Design</title>
                 <link rel="icon" href="/edLogo.png" />
@@ -66,49 +66,68 @@ const Education = () => {
 
             <main className='scroll-smooth bg-gray-50 pb-20'>
                 {/* HERO HEADER */}
-                <div className="bg-gradient-to-r from-gray-900 via-red-800 to-gray-900 py-20 text-white text-center shadow-xl">
-                    <h1 className='text-4xl md:text-5xl font-black uppercase tracking-tighter'>Educational Journey</h1>
-                    <div className="h-1 w-24 bg-red-500 mx-auto my-4 rounded-full"></div>
-                    <p className="text-lg font-light tracking-[0.3em] opacity-80 uppercase">Academic & Professional Foundation</p>
+                <div className="bg-gradient-to-r from-gray-900 via-red-800 to-gray-900 py-32 text-white text-center shadow-2xl relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/5 opacity-50 blur-3xl"></div>
+                    <div className="relative z-10">
+                        <h1 className='text-4xl md:text-5xl font-black uppercase tracking-tighter drop-shadow-2xl'>Educational Journey</h1>
+                        <div className="h-1.5 w-32 bg-red-500 mx-auto my-6 rounded-full shadow-lg"></div>
+                        <p className="text-lg font-light tracking-[0.3em] opacity-90 uppercase">Academic & Professional Foundation</p>
+                    </div>
                 </div>
 
-                {/* 2. TIMELINE SECTION */}
-                <section className="w-11/12 md:w-10/12 mx-auto -mt-10">
-                    <div className="space-y-6">
-                        {educationData.map((edu, index) => (
-                            <div key={index} className="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 group hover:shadow-2xl transition-all">
+                {/* 2. AUTO-PLAY CAROUSEL SECTION */}
+                <section className="w-full relative z-20 mt-8 mb-20 overflow-hidden">
+                    <style jsx>{`
+                        @keyframes autoScroll {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(-50%); }
+                        }
+                        .animate-scroll {
+                            display: flex;
+                            width: max-content;
+                            animation: autoScroll 30s linear infinite;
+                        }
+                        .animate-scroll:hover {
+                            animation-play-state: paused;
+                        }
+                    `}</style>
+
+                    <div className="animate-scroll gap-6 md:gap-8 pb-12 pt-4 px-4">
+                        {[...educationData, ...educationData].map((edu, index) => (
+                            <div key={index} className="flex-shrink-0 w-[320px] md:w-[450px] flex flex-col bg-white rounded-[2.5rem] shadow-xl overflow-hidden border border-gray-100 group hover:shadow-2xl hover:border-red-500 hover:-translate-y-4 transition-all duration-500 cursor-default">
                                 {/* Logo Box */}
-                                <div className="w-full md:w-1/4 bg-gray-100 p-8 flex items-center justify-center group-hover:bg-red-50 transition-colors">
-                                    <div className="relative w-24 h-24 md:w-32 md:h-32">
-                                        <Image 
-                                            src={edu.logo} 
-                                            alt={edu.school} 
-                                            layout="fill" 
-                                            objectFit="contain" 
-                                            className="group-hover:scale-110 transition-transform"
+                                <div className="w-full bg-gray-50 h-56 flex items-center justify-center group-hover:bg-red-50 transition-colors border-b border-gray-100 p-8">
+                                    <div className="relative w-full h-full">
+                                        <Image
+                                            src={edu.logo}
+                                            alt={edu.school}
+                                            layout="fill"
+                                            objectFit="contain"
+                                            className="group-hover:scale-110 transition-transform duration-700"
                                         />
                                     </div>
                                 </div>
 
                                 {/* Content Box */}
-                                <div className="w-full md:w-3/4 p-8 text-center md:text-left">
-                                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                        <span className="text-xs font-black text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-full w-max mx-auto md:mx-0">
-                                            {edu.level}
-                                        </span>
-                                        <span className="text-[10px] text-gray-400 font-bold uppercase mt-2 md:mt-0">
-                                            Graduated: {edu.date}
-                                        </span>
-                                    </div>
-                                    <h2 className="text-2xl md:text-3xl font-black text-gray-800 uppercase leading-tight group-hover:text-red-700 transition-colors">
+                                <div className="p-8 md:p-10 flex-grow flex flex-col items-center text-center">
+                                    <span className="text-[10px] font-black text-red-600 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                                        {edu.level}
+                                    </span>
+                                    <h2 className="text-2xl font-black text-gray-900 uppercase leading-tight tracking-tight mb-2 group-hover:text-red-600 transition-colors flex-grow">
                                         {edu.school}
                                     </h2>
-                                    <h3 className="text-md font-bold text-gray-500 mt-1 italic">
+                                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">
                                         {edu.course}
                                     </h3>
-                                    <p className="text-[10px] text-gray-400 mt-4 uppercase tracking-widest border-t pt-4">
-                                        📍 {edu.address}
-                                    </p>
+                                    <div className="mt-auto w-full pt-6 border-t border-gray-100">
+                                        <p className="text-xs text-gray-500 leading-relaxed italic mb-4">
+                                            📍 {edu.address}
+                                        </p>
+                                        <div className="flex items-center justify-center gap-2 text-[10px] font-black uppercase text-gray-400 tracking-widest group-hover:text-gray-600">
+                                            <span>Graduated:</span>
+                                            <span className="text-red-500">{edu.date}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -116,20 +135,26 @@ const Education = () => {
                 </section>
 
                 {/* 3. PHYSICAL CERTIFICATES SHOWCASE */}
-                <section className="w-10/12 mx-auto mt-20">
-                    <h2 className="text-center text-2xl font-black uppercase text-gray-800 mb-10 tracking-widest">Digital Credentials & Licenses</h2>
+                <section className="w-11/12 md:w-10/12 mx-auto mt-20 mb-20">
+                    <div className="text-center mb-16">
+                        <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Vocational Mastery</span>
+                        <h2 className="text-4xl lg:text-5xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
+                            Licenses & Assessments
+                            <span className="h-1.5 w-24 bg-red-500 rounded-full"></span>
+                        </h2>
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {certificates.map((cert, i) => (
-                            <div key={i} className="group relative h-[400px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white hover:border-red-500 transition-all">
-                                <Image 
-                                    src={cert.src} 
-                                    alt={cert.alt} 
-                                    layout="fill" 
-                                    objectFit="cover" 
-                                    className="group-hover:scale-105 transition-transform duration-500"
+                            <div key={i} className="group relative h-[450px] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-gray-100 hover:border-red-500 transition-all duration-500 hover:-translate-y-3">
+                                <Image
+                                    src={cert.src}
+                                    alt={cert.alt}
+                                    layout="fill"
+                                    objectFit="cover"
+                                    className="group-hover:scale-110 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <p className="text-white font-bold uppercase tracking-widest border-2 border-white px-4 py-2">{cert.alt}</p>
+                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-8">
+                                    <p className="text-white font-black text-xl uppercase tracking-widest transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 border-b-2 border-red-500 pb-2">{cert.alt}</p>
                                 </div>
                             </div>
                         ))}

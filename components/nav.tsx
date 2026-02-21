@@ -45,19 +45,19 @@ const Navigation = () => {
             {/* GLASSMORPHISM NAVBAR */}
             <nav className='bg-white/80 backdrop-blur-md border-b border-gray-100 py-3 px-6 shadow-sm'>
                 <ul className='flex items-center justify-between max-w-7xl mx-auto'>
-                    
+
                     {/* LOGO & BRAND */}
                     <li className='font-semibold'>
                         <Link href="/">
                             <a className='flex items-center group'>
                                 {/* FIX: Removed overflow-hidden to prevent shadow clipping on hover */}
                                 <div className="relative p-1 rounded-lg transition-all duration-300 group-hover:bg-red-50 group-hover:shadow-md">
-                                    <Image 
-                                        src="/edLogo.png" 
-                                        alt="Edward Logo" 
-                                        width={45} 
-                                        height={45} 
-                                        className='flex-shrink-0 rounded-md' 
+                                    <Image
+                                        src="/edLogo.png"
+                                        alt="Edward Logo"
+                                        width={45}
+                                        height={45}
+                                        className='flex-shrink-0 rounded-md'
                                     />
                                 </div>
                                 <div className="ml-3 hidden md:block">
@@ -67,15 +67,17 @@ const Navigation = () => {
                             </a>
                         </Link>
                     </li>
-                    
+
                     {/* PST CLOCK & FLAG */}
                     <li className="flex items-center gap-4">
                         <div className="hidden lg:flex gap-6 mr-6 text-[10px] font-black uppercase tracking-widest text-gray-400">
                             <Link href="/skills"><a className="hover:text-red-500 transition-colors">Skills</a></Link>
                             <Link href="/projects"><a className="hover:text-red-500 transition-colors">Projects</a></Link>
                             <Link href="/workxp"><a className="hover:text-red-500 transition-colors">Experience</a></Link>
+                            <Link href="/certifications"><a className="hover:text-red-500 transition-colors">Certifications</a></Link>
+                            <Link href="/aboutme"><a className="hover:text-red-500 transition-colors">About Me</a></Link>
                         </div>
-                        
+
                         <div className="font-mono text-[11px] md:text-xs bg-gray-900 text-white px-4 py-2 rounded-full shadow-lg flex items-center space-x-3 border border-gray-700">
                             <div className="relative w-5 h-3 overflow-hidden rounded-sm">
                                 <Image src="/flag.gif" layout="fill" objectFit="cover" alt="PH Flag" />
@@ -91,17 +93,16 @@ const Navigation = () => {
             {/* AUTO SCROLL UP BUTTON */}
             <button
                 onClick={scrollTop}
-                className={`fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-red-600 text-white shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 ${
-                    showScroll ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-                }`}
+                className={`fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-red-600 text-white shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 ${showScroll ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+                    }`}
                 aria-label="Scroll to top"
             >
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-6 w-6" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                     strokeWidth={3}
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
