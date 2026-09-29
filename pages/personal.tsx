@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
-import Navigation from '../components/nav'
 import Head from 'next/head'
 import Footer from '../components/footer'
+import PageHero from '../components/PageHero'
 import Image from 'next/image'
 
 const Personal: NextPage = () => {
@@ -42,38 +42,29 @@ const Personal: NextPage = () => {
                 <title>Professional Profile Page | ElevatED by Code | IllustratED by Design</title>
                 <link rel="icon" href="/edLogo.png" />
             </Head>
-            <Navigation />
 
             <main className="pb-20">
                 {/* HERO PROFILE SECTION */}
-                <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-red-900 py-32 text-white shadow-2xl relative overflow-hidden">
-                    <div className="absolute inset-0 bg-white/5 opacity-50 blur-3xl"></div>
-                    <div className="w-11/12 md:w-10/12 mx-auto relative z-10 flex flex-col md:flex-row items-center gap-12">
-                        <div className="relative group flex-shrink-0">
-                            <div className="absolute -inset-1 bg-red-500 rounded-full opacity-25 group-hover:opacity-50 blur transition duration-500"></div>
-                            <Image
-                                src="/ed2025.jpg"
-                                width={240}
-                                height={240}
-                                alt="ed picture"
-                                className="relative rounded-full border-4 border-white object-cover shadow-2xl"
-                            />
-                        </div>
-                        <div className="text-center md:text-left flex-grow">
-                            <p className="text-lg font-light tracking-[0.4em] opacity-90 uppercase italic mb-4">Professional Profile</p>
-                            <h1 className='text-4xl md:text-6xl font-black uppercase tracking-tighter drop-shadow-2xl'>{info[0].data}</h1>
-                            <div className="h-1.5 w-32 bg-red-500 my-6 rounded-full shadow-lg mx-auto md:mx-0"></div>
-
-                            <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                                {positions.map((pos, i) => (
-                                    <span key={i} className="bg-white/10 border border-white/20 backdrop-blur-md px-4 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-red-500 hover:border-red-500 transition-colors cursor-default shadow-sm">
-                                        {pos}
-                                    </span>
-                                ))}
+                <PageHero
+                    eyebrow="Professional Profile"
+                    title={info[0].data}
+                    avatar={
+                        <div className="relative group">
+                            <div className="absolute -inset-1 bg-red-500 rounded-full opacity-40 group-hover:opacity-70 blur transition duration-500"></div>
+                            <div className="relative w-[88px] h-[88px] rounded-full border-2 border-white/80 overflow-hidden shadow-2xl">
+                                <Image src="/ed2025.jpg" layout="fill" objectFit="cover" priority alt="ed picture" />
                             </div>
                         </div>
+                    }
+                >
+                    <div className="flex flex-wrap justify-center gap-2">
+                        {positions.map((pos, i) => (
+                            <span key={i} className="bg-white/10 border border-white/20 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-red-500 hover:border-red-500 transition-colors cursor-default shadow-sm">
+                                {pos}
+                            </span>
+                        ))}
                     </div>
-                </div>
+                </PageHero>
 
                 {/* ROW 1: BIOGRAPHICAL DETAILS */}
                 <section className="w-11/12 md:w-10/12 mx-auto mt-8 relative z-20 mb-16">

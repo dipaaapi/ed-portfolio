@@ -4,6 +4,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* The shared navbar sits outside each page's wrapper, so give the page itself a light base. */
+html,
+body {
+    @apply bg-gray-50;
+    color-scheme: light;
+}
+
+/* Home hero: rotating role fades up, typing caret blinks. */
+@keyframes role-in {
+    from { opacity: 0; transform: translateY(0.4em); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.role-in { animation: role-in 0.5s ease-out; }
+
+@keyframes caret-blink {
+    50% { opacity: 0; }
+}
+.caret-blink { animation: caret-blink 1s step-end infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .role-in, .caret-blink { animation: none; }
+}
+
+/* Elliptical curve along the bottom edge of every page banner (PageHero + home hero). */
+.hero-curve {
+    border-bottom-left-radius: 50% 1.5rem;
+    border-bottom-right-radius: 50% 1.5rem;
+}
+
+/* Same ellipse, flipped: the footer's top edge arcs upward to mirror the banners. */
+.footer-curve {
+    border-top-left-radius: 50% 1.5rem;
+    border-top-right-radius: 50% 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .footer-curve {
+        border-top-left-radius: 50% 3.5rem;
+        border-top-right-radius: 50% 3.5rem;
+    }
+    .hero-curve {
+        border-bottom-left-radius: 50% 3.5rem;
+        border-bottom-right-radius: 50% 3.5rem;
+    }
+}
+
 .text-first {
     @apply text-center text-sm uppercase underline hover:underline-offset-8 transition-all cursor-pointer;
 }

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import React, { useState, useRef } from 'react'
-import Navigation from '../components/nav'
 import Footer from '../components/footer'
+import PageHero from '../components/PageHero'
 import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
@@ -91,42 +91,18 @@ const Hobbies: NextPage = () => {
                 <title>Hobbies | ElevatED by Code | IllustratED by Design</title>
                 <link rel="icon" href="/edLogo.png" />
             </Head>
-            <Navigation />
 
             <main className="pb-20">
                 {/* HERO HEADER */}
-                <div className="bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-700 py-32 text-white text-center shadow-xl relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-full bg-white/5 opacity-50 blur-3xl"></div>
-                    <div className="relative z-10">
-                        <h1 className='text-5xl font-black uppercase tracking-tighter drop-shadow-2xl'>Hobbies</h1>
-                        <div className="h-1.5 w-32 bg-white mx-auto my-6 rounded-full shadow-lg"></div>
-                        <p className="text-lg font-light tracking-[0.4em] opacity-90 uppercase">Games | Anime | Manga</p>
-                    </div>
-                </div>
-
-                {/* THE SEARCH BAR */}
-                <section className="w-11/12 md:w-10/12 mx-auto -mt-8 mb-12 relative z-30">
-                    <div className="w-full bg-white p-2 rounded-full shadow-2xl flex items-center border border-gray-100 max-w-3xl mx-auto">
-                        <div className="p-3 text-indigo-500">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Explore Games, Anime, or Manga genres..."
-                            className="w-full py-3 px-4 outline-none text-gray-700 bg-transparent rounded-r-full font-medium"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        {searchQuery && (
-                            <button onClick={() => setSearchQuery('')} className="p-3 text-gray-400 hover:text-indigo-600 transition-colors">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                            </button>
-                        )}
-                    </div>
-                </section>
+                <PageHero
+                    eyebrow="Off the clock"
+                    title="Hobbies"
+                    subtitle="Games | Anime | Manga"
+                    search={{ value: searchQuery, onChange: setSearchQuery, placeholder: 'Explore Games, Anime, or Manga genres...' }}
+                />
 
                 {/* THE 45/35/20 SPLIT & PHILOSOPHY */}
-                <section className="w-11/12 md:w-10/12 mx-auto mb-24 p-12 bg-white text-gray-800 rounded-[3rem] shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-20 border border-gray-100">
+                <section className="w-11/12 md:w-10/12 mx-auto mt-12 mb-24 p-12 bg-white text-gray-800 rounded-[3rem] shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-20 border border-gray-100">
                     <div>
                         <h3 className="text-3xl font-black uppercase mb-8 border-l-4 border-indigo-500 pl-6 tracking-tighter">Lifestyle Balance</h3>
                         <p className="text-gray-600 text-[15px] leading-loose text-justify italic font-light bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-inner">

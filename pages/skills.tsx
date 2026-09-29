@@ -1,23 +1,77 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import Navigation from '../components/nav'
 import Footer from '../components/footer'
-import styles from '../styles/Home.module.css'
+import Reveal from '../components/Reveal'
+import PageHero from '../components/PageHero'
+import StickyPillBar from '../components/StickyPillBar'
 import Image from 'next/image'
 import Link from 'next/link'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import { projects } from '../data/projects'
+
+// Tailwind 3.0 has no line-clamp utility, so clamp with inline styles.
+const clamp = (lines: number) => ({ display: '-webkit-box', WebkitLineClamp: lines, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' });
+
+// Projects whose tech stack mentions any of the keywords, e.g. "React" -> AIVSO, HyperPocket.
+const projectsUsing = (keywords: string[] = []) =>
+    projects.filter(p => p.techStack?.some(t => keywords.some(k => t.toLowerCase().includes(k.toLowerCase()))));
+
+// "Built with this" list inside the web-skill and software popups.
+const BuiltWith = ({ keywords, dark = false }: { keywords?: string[], dark?: boolean }) => {
+    const used = projectsUsing(keywords);
+    if (used.length === 0) return null;
+    return (
+        <div className="w-full text-left mt-6">
+            <h4 className={`font-black uppercase tracking-widest text-xs mb-3 ${dark ? 'text-blue-400' : 'text-red-600'}`}>Built with this ({used.length})</h4>
+            <div className="flex flex-wrap gap-2">
+                {used.map((p) => (
+                    <Link key={p.title} href={{ pathname: '/projects', query: { project: p.title } }}>
+                        <a className={`text-[10px] font-bold uppercase tracking-widest px-3 py-2 rounded-full border transition-colors ${dark ? 'border-white/15 bg-white/5 text-gray-200 hover:bg-blue-500 hover:border-blue-500 hover:text-white' : 'border-gray-200 bg-gray-50 text-gray-600 hover:bg-red-600 hover:border-red-600 hover:text-white'}`}>
+                            {p.title} &rarr;
+                        </a>
+                    </Link>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const sectionLinks = [
+    { id: 'core', label: 'Technical Core' },
+    { id: 'web', label: 'Web Stack' },
+    { id: 'gamedev', label: 'Game Dev' },
+    { id: 'credentials', label: 'Credentials' },
+    { id: 'soft', label: 'Soft Skills' },
+    { id: 'design', label: 'Design Tools' },
+];
 
 const Skills: NextPage = () => {
+    const [activeSection, setActiveSection] = useState('core');
     const [selectedUnitySkill, setSelectedUnitySkill] = useState<any>(null);
-    const [selectedSoftSkill, setSelectedSoftSkill] = useState<any>(null);
+    const [activeSoft, setActiveSoft] = useState(0);
     const [selectedSoftware, setSelectedSoftware] = useState<any>(null);
     const [selectedWebSkill, setSelectedWebSkill] = useState<any>(null);
     const [selectedTechnicalCore, setSelectedTechnicalCore] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState('');
 
     const searchStr = searchQuery.toLowerCase();
+
+    // Highlight the section-jump pill for whichever section is on screen.
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id); });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        sectionLinks.forEach(({ id }) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+        return () => observer.disconnect();
+    }, [searchQuery]);
+
+    const jumpTo = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 150, behavior: 'smooth' });
+    };
 
     // UPDATED GOOGLE BADGES WITH COMPREHENSIVE VARIABLES
     const googleBadges = [
@@ -65,23 +119,23 @@ const Skills: NextPage = () => {
     ];
 
     const designerskills = [
-        { name: "Adobe Photoshop", image: "/adobePs.png", desc: "Advanced raster graphics editing and digital painting.", detailedDesc: "I use Photoshop for comprehensive image manipulation, precise color correction, and crafting complex UI assets. Its robust layer and masking systems are critical for my high-fidelity mockups." },
-        { name: "Adobe Illustrator", image: "/adobeAi.png", desc: "Precision vector graphics and scalable logo design.", detailedDesc: "My go-to tool for typography, iconography, and scalable vector assets. Illustrator ensures that all of my graphical resources remain crisp across every device resolution." },
-        { name: "Figma", image: "/figma.png", desc: "Collaborative UI/UX design and interactive prototyping.", detailedDesc: "Figma anchors my entire design process. I use it to establish design systems, wireframe layouts rapidly, and create high-fidelity interactive prototypes before writing a single line of code." },
+        { name: "Adobe Photoshop", keywords: ["Photoshop", "Adobe Core"], image: "/adobePs.png", desc: "Advanced raster graphics editing and digital painting.", detailedDesc: "I use Photoshop for comprehensive image manipulation, precise color correction, and crafting complex UI assets. Its robust layer and masking systems are critical for my high-fidelity mockups." },
+        { name: "Adobe Illustrator", keywords: ["Illustrator", "Adobe Core"], image: "/adobeAi.png", desc: "Precision vector graphics and scalable logo design.", detailedDesc: "My go-to tool for typography, iconography, and scalable vector assets. Illustrator ensures that all of my graphical resources remain crisp across every device resolution." },
+        { name: "Figma", keywords: ["Figma"], image: "/figma.png", desc: "Collaborative UI/UX design and interactive prototyping.", detailedDesc: "Figma anchors my entire design process. I use it to establish design systems, wireframe layouts rapidly, and create high-fidelity interactive prototypes before writing a single line of code." },
         { name: "Balsamiq", image: "/balsamiq.png", desc: "Rapid low-fidelity wireframing and initial conceptualization.", detailedDesc: "Balsamiq allows me to focus purely on layout and structure without getting derailed by visual aesthetics. It's essential for rapid brainstorming and initial client pitches." },
         { name: "Canva", image: "/canva.png", desc: "Quick-turnaround marketing materials and presentation assets.", detailedDesc: "When I need professional, visually appealing graphics on a tight deadline, Canva streamlines my workflow for social media updates, slide decks, and basic promotional content." },
         { name: "Google Sites", image: "/siteGoogle.png", desc: "Rapid development of internal wikis and educational portals.", detailedDesc: "Perfect for integrating seamlessly with the Google Workspace ecosystem. I deploy Google Sites to host curriculum materials, classroom hubs, and internal documentation quickly." }
     ];
 
     const webskills = [
-        { name: "HTML5", image: "/html5.png", desc: "The standard markup language for documents designed to be displayed in a web browser.", detailedDesc: "Purpose: It provides the basic structure (the skeleton) of every single web page on the internet. Without it, there is no website." },
-        { name: "CSS", image: "/css.png", desc: "Cascading Style Sheets used for describing the presentation of a document written in HTML.", detailedDesc: "Purpose: It provides the visual styling (colors, layouts, fonts) to make a boring HTML skeleton into a beautiful graphical page." },
-        { name: "Javascript", image: "/javascript.png", desc: "A programming language that allows you to implement complex features and interactivity on web pages.", detailedDesc: "Purpose: It adds behavior and logic. Whenever something moves, updates rapidly, or reacts to your clicks without reloading the page, Javascript is doing the work." },
-        { name: "Php", image: "/php.png", desc: "A general-purpose scripting language that is especially suited to backend server web development.", detailedDesc: "Purpose: It runs on the server (behind the scenes) to connect websites to databases, process form submissions, and handle logical calculations secretly." },
-        { name: "MySQL", image: "/mysql.png", desc: "An open-source relational database management system.", detailedDesc: "Purpose: It is the digital filing cabinet where all website data (like user accounts, passwords, and submitted posts) is securely stored, organized, and retrieved." },
-        { name: "ReactJs", image: "/react.png", desc: "A front-end JavaScript library for building user interfaces based on UI components.", detailedDesc: "Purpose: It allows me to build extremely fast, app-like websites by breaking the design down into reusable 'components' rather than building massive, slow, individual pages." },
-        { name: "NextJs", image: "/next.png", desc: "A React framework that gives you building blocks to create extremely fast web applications.", detailedDesc: "Purpose: It powers this very portfolio! It optimizes React websites so they load instantly on search engines and are incredibly fast for users to interact with." },
-        { name: "Bootstrap", image: "/bootstrap.png", desc: "A CSS framework directed at responsive, mobile-first front-end web development.", detailedDesc: "Purpose: It provides pre-built buttons, layouts, and menus so I can rapidly construct a standard, mobile-friendly website without coding every style from scratch." },
+        { name: "HTML5", keywords: ["HTML"], image: "/html5.png", desc: "The standard markup language for documents designed to be displayed in a web browser.", detailedDesc: "Purpose: It provides the basic structure (the skeleton) of every single web page on the internet. Without it, there is no website." },
+        { name: "CSS", keywords: ["CSS"], image: "/css.png", desc: "Cascading Style Sheets used for describing the presentation of a document written in HTML.", detailedDesc: "Purpose: It provides the visual styling (colors, layouts, fonts) to make a boring HTML skeleton into a beautiful graphical page." },
+        { name: "Javascript", keywords: ["JS", "JavaScript", "TypeScript", "Phaser"], image: "/javascript.png", desc: "A programming language that allows you to implement complex features and interactivity on web pages.", detailedDesc: "Purpose: It adds behavior and logic. Whenever something moves, updates rapidly, or reacts to your clicks without reloading the page, Javascript is doing the work." },
+        { name: "Php", keywords: ["PHP", "Laravel"], image: "/php.png", desc: "A general-purpose scripting language that is especially suited to backend server web development.", detailedDesc: "Purpose: It runs on the server (behind the scenes) to connect websites to databases, process form submissions, and handle logical calculations secretly." },
+        { name: "MySQL", keywords: ["MySQL"], image: "/mysql.png", desc: "An open-source relational database management system.", detailedDesc: "Purpose: It is the digital filing cabinet where all website data (like user accounts, passwords, and submitted posts) is securely stored, organized, and retrieved." },
+        { name: "ReactJs", keywords: ["React"], image: "/react.png", desc: "A front-end JavaScript library for building user interfaces based on UI components.", detailedDesc: "Purpose: It allows me to build extremely fast, app-like websites by breaking the design down into reusable 'components' rather than building massive, slow, individual pages." },
+        { name: "NextJs", keywords: ["Next.js"], image: "/next.png", desc: "A React framework that gives you building blocks to create extremely fast web applications.", detailedDesc: "Purpose: It powers this very portfolio! It optimizes React websites so they load instantly on search engines and are incredibly fast for users to interact with." },
+        { name: "Bootstrap", keywords: ["Bootstrap"], image: "/bootstrap.png", desc: "A CSS framework directed at responsive, mobile-first front-end web development.", detailedDesc: "Purpose: It provides pre-built buttons, layouts, and menus so I can rapidly construct a standard, mobile-friendly website without coding every style from scratch." },
         { name: "Material UI", image: "/materialUi.png", desc: "An open-source React component library that implements Google's Material Design visually.", detailedDesc: "Purpose: It provides highly polished, professional-looking buttons, sliders, and interactive elements straight out of the box, imitating standard Google application designs." }
     ];
 
@@ -98,11 +152,23 @@ const Skills: NextPage = () => {
     ];
 
     const filteredTechnicalInsights = technicalInsights.filter(item => item.label.toLowerCase().includes(searchStr) || item.desc.toLowerCase().includes(searchStr));
-    const filteredWebSkills = webskills.filter(skill => skill.name.toLowerCase().includes(searchStr));
+    const filteredWebSkills = webskills.filter(skill => skill.name.toLowerCase().includes(searchStr) || skill.desc.toLowerCase().includes(searchStr) || skill.keywords?.some(k => k.toLowerCase().includes(searchStr)));
     const filteredUnitySkills = unityskills.filter(skill => skill.name.toLowerCase().includes(searchStr) || skill.desc.toLowerCase().includes(searchStr));
     const filteredGoogleBadges = googleBadges.filter(badge => badge.title.toLowerCase().includes(searchStr) || badge.skills.some(s => s.toLowerCase().includes(searchStr)));
     const filteredSoftSkills = softSkills.filter(skill => skill.label.toLowerCase().includes(searchStr) || skill.desc.toLowerCase().includes(searchStr));
-    const filteredDesignerSkills = designerskills.filter(skill => skill.name.toLowerCase().includes(searchStr));
+    const filteredDesignerSkills = designerskills.filter(skill => skill.name.toLowerCase().includes(searchStr) || skill.desc.toLowerCase().includes(searchStr));
+    const totalMatches = filteredTechnicalInsights.length + filteredWebSkills.length + filteredUnitySkills.length + filteredGoogleBadges.length + filteredSoftSkills.length + filteredDesignerSkills.length;
+
+    const stats = [
+        { value: `${new Date().getFullYear() - 2018}+`, label: 'Years building' },
+        { value: webskills.length + designerskills.length, label: 'Tools & languages' },
+        { value: googleBadges.length + 1, label: 'Certified badges' },
+        { value: projects.length, label: 'Portfolio projects' },
+    ];
+    const games = projects.filter(p => p.type === 'Games');
+    // Clamp so the selected soft-skill tab stays valid when search shrinks the list.
+    const activeSoftIndex = Math.min(activeSoft, Math.max(filteredSoftSkills.length - 1, 0));
+    const activeSkill = filteredSoftSkills[activeSoftIndex];
 
     return (
         <div className="scroll-smooth bg-gray-50 font-main relative">
@@ -110,67 +176,81 @@ const Skills: NextPage = () => {
                 <title>Expertise & Mastery Page | ElevatED by Code | IllustratED by Design</title>
                 <link rel="icon" href="/edLogo.png" />
             </Head>
-            <Navigation />
 
             <main className='scroll-smooth pb-20 bg-gray-50'>
                 {/* HERO HEADER */}
-                <div className="bg-gradient-to-r from-red-600 to-red-500 py-32 text-white text-center shadow-2xl relative overflow-hidden">
-                    <div className="absolute inset-0 bg-white/5 opacity-50 blur-3xl"></div>
-                    <div className="relative z-10">
-                        <h1 className='text-5xl font-black uppercase tracking-tighter drop-shadow-2xl'>Expertise & Mastery</h1>
-                        <div className="h-1.5 w-32 bg-white mx-auto my-6 rounded-full shadow-lg"></div>
-                        <p className="text-lg font-light tracking-[0.4em] opacity-90 uppercase italic">Code | Design | Industry Leadership</p>
+                <PageHero
+                    eyebrow="Skills & Stack"
+                    title="Expertise & Mastery"
+                    subtitle="Code | Design | Industry Leadership"
+                    search={{ value: searchQuery, onChange: setSearchQuery, placeholder: 'Search skills, software, keywords...' }}
+                >
+                    {/* AT-A-GLANCE STATS */}
+                    <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3">
+                        {stats.map((stat) => (
+                            <div key={stat.label} className="flex items-baseline justify-center gap-1.5 sm:gap-2 bg-white/10 backdrop-blur-md border border-white/25 rounded-full px-3 sm:px-4 py-2 shadow-lg">
+                                <span className="text-lg sm:text-xl font-black tracking-tighter">{stat.value}</span>
+                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-gray-300">{stat.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </PageHero>
+
+                {/* SEARCH SUGGESTIONS / MATCH COUNT (the search bar itself lives in the banner) */}
+                <div className="w-11/12 md:w-8/12 mx-auto mt-8 mb-6">
+                    <div className="flex flex-wrap justify-center items-center gap-2">
+                        {searchQuery ? (
+                            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">{totalMatches} {totalMatches === 1 ? 'match' : 'matches'} for &ldquo;{searchQuery}&rdquo;</p>
+                        ) : (
+                            <>
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mr-1">Try:</span>
+                                {['React', 'Unity', 'Figma', 'Google', 'Leadership'].map((term) => (
+                                    <button key={term} onClick={() => setSearchQuery(term)} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 hover:border-red-500 hover:text-red-600 transition-colors">{term}</button>
+                                ))}
+                            </>
+                        )}
                     </div>
                 </div>
 
-                {/* SEARCH BAR */}
-                <div className="w-11/12 md:w-8/12 mx-auto mt-[-2.5rem] relative z-30 mb-20">
-                    <div className="bg-white rounded-full shadow-2xl p-2 flex items-center border border-gray-100 hover:border-red-500 transition-colors duration-500 group">
-                        <div className="bg-red-50 p-4 rounded-full text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors duration-500">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Search skills, software, keywords..."
-                            className="w-full bg-transparent border-none text-gray-700 px-6 py-4 outline-none text-lg font-bold tracking-wide placeholder-gray-300 focus:ring-0"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
+                {/* SECTION JUMP BAR */}
+                <StickyPillBar items={sectionLinks} active={activeSection} onSelect={jumpTo} className="mb-12" />
+
+                {totalMatches === 0 && (
+                    <div className="text-center py-20 px-4">
+                        <p className="text-5xl mb-4">🔍</p>
+                        <p className="text-gray-500 font-bold">No skills match &ldquo;{searchQuery}&rdquo;.</p>
+                        <button onClick={() => setSearchQuery('')} className="mt-6 text-xs font-black uppercase tracking-widest text-red-600 hover:underline">Clear search</button>
                     </div>
-                </div>
+                )}
 
                 {/* 1. TECHNICAL EXPERTISE OVERVIEW */}
                 {filteredTechnicalInsights.length > 0 && (
-                    <section className="w-11/12 md:w-10/12 mx-auto mt-8 mb-20 bg-white p-12 rounded-[3rem] shadow-2xl border border-gray-100 relative z-20">
-                        <div className="text-center mb-12">
+                    <section id="core" className="w-11/12 md:w-10/12 mx-auto mb-24 grid lg:grid-cols-[1fr_2fr] gap-10 lg:gap-14 items-start">
+                        {/* Intro column stays in view while the cards scroll on desktop */}
+                        <Reveal className="lg:sticky lg:top-40 text-center lg:text-left">
                             <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Foundation</span>
-                            <h2 className="text-3xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
-                                Technical Core
-                                <span className="h-1.5 w-24 bg-red-500 rounded-full"></span>
-                            </h2>
-                        </div>
-                        <p className="text-sm text-gray-500 mb-12 text-center max-w-4xl mx-auto italic leading-loose">
-                            My technical foundation is built on the intersection of instructional pedagogy and industry-standard production. These core areas represent my ability to deliver both high-quality digital products and effective technical education.
-                        </p>
+                            <h2 className="text-3xl md:text-4xl font-black uppercase text-gray-900 tracking-tight">Technical Core</h2>
+                            <div className="h-1.5 w-20 bg-red-500 rounded-full mt-5 mx-auto lg:mx-0"></div>
+                            <p className="text-sm text-gray-500 mt-6 leading-relaxed">
+                                Where instructional pedagogy meets industry-standard production: the areas that let me ship quality digital products and teach others to do the same.
+                            </p>
+                            <p className="mt-6 text-[10px] font-black uppercase tracking-widest text-gray-400">{filteredTechnicalInsights.length} core areas &middot; tap one for the plain-language version</p>
+                        </Reveal>
 
-                        <div className="space-y-12">
+                        <div className="grid sm:grid-cols-2 gap-5">
                             {filteredTechnicalInsights.map((insight, index) => (
-                                <div key={index} onClick={() => setSelectedTechnicalCore(insight)} className="flex flex-col md:flex-row gap-8 items-start group cursor-pointer bg-white p-6 rounded-[2.5rem] hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all duration-300">
-                                    <div className="text-6xl p-6 bg-red-50 rounded-[2rem] group-hover:bg-red-600 group-hover:text-white transition-all duration-500 shadow-sm group-hover:-translate-y-2">
-                                        {insight.icon}
-                                    </div>
-                                    <div className="flex-grow">
-                                        <h3 className="text-xl font-black text-gray-900 leading-tight mb-2 group-hover:text-red-600 transition-colors uppercase tracking-tight">{insight.label}</h3>
-                                        <div className="h-0.5 w-12 bg-red-100 mb-4 group-hover:bg-red-400 transition-colors"></div>
-                                        <p className="text-sm text-gray-500 leading-relaxed italic line-clamp-2">
-                                            {insight.desc}
-                                        </p>
-                                        <div className="mt-4 text-[10px] font-bold text-red-500 uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-2 transition-transform">
-                                            <span>Read Explanation</span>
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                <Reveal key={insight.label} delay={index * 80} className="h-full">
+                                    <button onClick={() => setSelectedTechnicalCore(insight)} className="group relative w-full h-full text-left bg-white p-7 rounded-[2rem] border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                                        <span className="absolute top-0 left-7 right-7 h-1 rounded-b-full bg-red-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></span>
+                                        <div className="flex items-start justify-between">
+                                            <div className="text-3xl w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center group-hover:bg-red-600 group-hover:scale-110 transition-all duration-300">{insight.icon}</div>
+                                            <span className="text-3xl font-black text-gray-100 group-hover:text-red-100 transition-colors">{String(index + 1).padStart(2, '0')}</span>
                                         </div>
-                                    </div>
-                                </div>
+                                        <h3 className="mt-6 text-lg font-black text-gray-900 uppercase tracking-tight leading-tight group-hover:text-red-600 transition-colors">{insight.label}</h3>
+                                        <p className="mt-3 text-sm text-gray-500 leading-relaxed" style={clamp(3)}>{insight.desc}</p>
+                                        <p className="mt-5 text-[10px] font-black uppercase tracking-widest text-red-500 group-hover:translate-x-1 transition-transform">Why it matters &rarr;</p>
+                                    </button>
+                                </Reveal>
                             ))}
                         </div>
                     </section>
@@ -178,24 +258,33 @@ const Skills: NextPage = () => {
 
                 {/* 2. WEB DEVELOPMENT STACK */}
                 {filteredWebSkills.length > 0 && (
-                    <section className="w-full bg-gray-900 py-20 mb-20">
-                        <div className="w-10/12 mx-auto">
-                            <div className="flex flex-col items-center text-center justify-center mb-16">
+                    <section id="web" className="w-full bg-gray-900 py-20 relative overflow-hidden">
+                        <div className="absolute top-10 right-0 w-[400px] h-[400px] bg-blue-600 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
+                        <div className="w-11/12 md:w-10/12 mx-auto relative z-10">
+                            <Reveal className="flex flex-col items-center text-center justify-center mb-16">
                                 <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Languages & Frameworks</span>
-                                <h2 className="text-4xl lg:text-5xl font-black uppercase text-white tracking-widest drop-shadow-lg">Web Development Stack</h2>
+                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white tracking-widest drop-shadow-lg">Web Development Stack</h2>
                                 <div className="h-1.5 w-32 bg-blue-500 rounded-full mt-6 shadow-lg shadow-blue-500/50"></div>
-                                <p className="text-gray-400 mt-6 max-w-2xl italic text-sm leading-relaxed">Full-Stack engineering and Responsive UI architecture.</p>
-                            </div>
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
-                                {filteredWebSkills.map((skill, index) => (
-                                    <div key={index} onClick={() => setSelectedWebSkill(skill)} className="flex flex-col items-center group cursor-pointer relative">
-                                        <div className="w-24 h-24 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all duration-500 p-4 shadow-lg group-hover:shadow-blue-500/30 group-hover:-translate-y-3">
-                                            <Image src={skill.image} width={60} height={60} objectFit="contain" alt={skill.name} className="group-hover:scale-110 transition-transform" />
-                                        </div>
-                                        <p className="mt-4 text-[10px] font-bold uppercase text-gray-400 tracking-widest group-hover:text-blue-400 transition-colors">{skill.name}</p>
-                                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 bottom-[-20px] bg-blue-600 text-white text-[9px] px-3 py-1 rounded-full whitespace-nowrap shadow-lg uppercase font-bold tracking-widest z-10 w-max">Why use this?</div>
-                                    </div>
-                                ))}
+                                <p className="text-gray-400 mt-6 max-w-2xl italic text-sm leading-relaxed">Full-Stack engineering and Responsive UI architecture. Tap a technology to see why I use it and the projects I built with it.</p>
+                            </Reveal>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-12">
+                                {filteredWebSkills.map((skill, index) => {
+                                    const usedIn = projectsUsing(skill.keywords).length;
+                                    return (
+                                        <Reveal key={skill.name} delay={index * 60}>
+                                            <button onClick={() => setSelectedWebSkill(skill)} className="w-full flex flex-col items-center group cursor-pointer relative focus:outline-none">
+                                                <div className="relative w-24 h-24 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-blue-500 group-focus:border-blue-500 group-hover:bg-blue-500/10 transition-all duration-500 p-4 shadow-lg group-hover:shadow-blue-500/30 group-hover:-translate-y-3">
+                                                    <Image src={skill.image} width={60} height={60} objectFit="contain" alt={skill.name} className="group-hover:scale-110 transition-transform" />
+                                                    {usedIn > 0 && (
+                                                        <span className="absolute -top-2 -right-2 min-w-[1.5rem] h-6 px-1.5 rounded-full bg-blue-500 text-white text-[10px] font-black flex items-center justify-center shadow-lg shadow-blue-500/40" title={`Used in ${usedIn} projects`}>{usedIn}</span>
+                                                    )}
+                                                </div>
+                                                <p className="mt-4 text-[10px] font-bold uppercase text-gray-400 tracking-widest group-hover:text-blue-400 transition-colors">{skill.name}</p>
+                                                <p className="mt-1 text-[9px] font-bold uppercase tracking-widest text-gray-600 group-hover:text-blue-300 transition-colors">{usedIn > 0 ? `${usedIn} ${usedIn === 1 ? 'project' : 'projects'}` : 'Why use this?'}</p>
+                                            </button>
+                                        </Reveal>
+                                    );
+                                })}
                             </div>
                         </div>
                     </section>
@@ -203,7 +292,7 @@ const Skills: NextPage = () => {
 
                 {/* 3. ASSOCIATE UNITY GAME DEVELOPER */}
                 {filteredUnitySkills.length > 0 && (
-                    <section className="w-full bg-indigo-900 py-20 mb-20 relative overflow-hidden">
+                    <section id="gamedev" className="w-full bg-indigo-900 py-20 relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-indigo-600 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
                         <div className="w-10/12 mx-auto relative z-10 flex flex-col md:flex-row gap-12 items-center">
                             <div className="md:w-1/3 flex justify-center flex-shrink-0">
@@ -213,14 +302,40 @@ const Skills: NextPage = () => {
                             </div>
                             <div className="md:w-2/3 text-center md:text-left">
                                 <h2 className="text-3xl lg:text-4xl font-black uppercase text-white mb-4 tracking-widest drop-shadow-md">Unity Game Development</h2>
-                                <p className="text-indigo-200 text-sm italic mb-10 text-justify max-w-2xl">Certified Associate Unity Game Developer core competencies. Click on a skill to explore its practical application in my workflow.</p>
-                                <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                                <p className="text-indigo-200 text-sm italic mb-10 md:text-justify max-w-2xl">Certified Associate Unity Game Developer core competencies. Click on a skill to explore its practical application in my workflow.</p>
+                                <div className="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4">
                                     {filteredUnitySkills.map((skill, index) => (
-                                        <button onClick={() => setSelectedUnitySkill(skill)} key={index} className="px-6 py-3 bg-white/10 rounded-full border border-white/20 hover:border-indigo-400 hover:bg-indigo-500 transition-all duration-300 shadow-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-400">
-                                            <p className="text-sm font-bold uppercase text-indigo-100 tracking-widest group-hover:text-white transition-colors">{skill.name}</p>
+                                        <button onClick={() => setSelectedUnitySkill(skill)} key={index} className="px-5 sm:px-6 py-3 bg-white/10 rounded-full border border-white/20 hover:border-indigo-400 hover:bg-indigo-500 transition-all duration-300 shadow-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                                            <p className="text-xs sm:text-sm font-bold uppercase text-indigo-100 tracking-widest group-hover:text-white transition-colors">{skill.name}</p>
                                         </button>
                                     ))}
                                 </div>
+                            </div>
+                        </div>
+
+                        {/* GAMES I'VE BUILT */}
+                        <div className="w-11/12 md:w-10/12 mx-auto relative z-10 mt-16">
+                            <p className="text-indigo-300 font-bold tracking-[0.4em] uppercase text-[10px] mb-6 text-center md:text-left">Game dev in practice</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {games.map((game, index) => (
+                                    <Reveal key={game.title} delay={index * 120}>
+                                        <Link href={{ pathname: '/projects', query: { project: game.title } }}>
+                                            <a className="group relative block h-56 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                                                <Image src={game.image!} layout="fill" objectFit="cover" alt={game.fullTitle} className="transition-transform duration-700 group-hover:scale-110" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-indigo-900 via-indigo-900/50 to-transparent"></div>
+                                                <div className="absolute bottom-0 left-0 p-6 w-full">
+                                                    <h3 className="text-white text-xl font-black uppercase tracking-tight">{game.fullTitle}</h3>
+                                                    <div className="flex flex-wrap gap-1.5 mt-2">
+                                                        {game.techStack?.slice(0, 3).map((t) => (
+                                                            <span key={t} className="text-[9px] font-bold uppercase tracking-widest bg-white/15 backdrop-blur-md text-indigo-100 px-2.5 py-1 rounded-full">{t}</span>
+                                                        ))}
+                                                    </div>
+                                                    <p className="text-indigo-200 text-[10px] font-black uppercase tracking-widest mt-3 group-hover:translate-x-2 transition-transform">View project &rarr;</p>
+                                                </div>
+                                            </a>
+                                        </Link>
+                                    </Reveal>
+                                ))}
                             </div>
                         </div>
                     </section>
@@ -228,12 +343,18 @@ const Skills: NextPage = () => {
 
                 {/* 4. UPDATED GOOGLE CREDENTIALS SECTION */}
                 {filteredGoogleBadges.length > 0 && (
-                    <section className="w-10/12 mx-auto mb-20">
-                        <h2 className="text-3xl font-black uppercase text-blue-600 mb-10">Google for Education Credentials</h2>
+                    <section id="credentials" className="w-11/12 md:w-10/12 mx-auto mt-20 mb-20">
+                        <Reveal className="text-center mb-12">
+                            <span className="text-blue-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Verified by Google</span>
+                            <h2 className="text-3xl md:text-4xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
+                                Google for Education Credentials
+                                <span className="h-1.5 w-24 bg-blue-500 rounded-full"></span>
+                            </h2>
+                        </Reveal>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {filteredGoogleBadges.map((badge, index) => (
-                                <Link key={index} href={badge.link} target="_blank">
-                                    <a className="block p-8 bg-white rounded-[2.5rem] border border-gray-100 shadow-xl hover:-translate-y-3 transition-transform flex flex-col items-center text-center h-full">
+                                <Reveal key={index} delay={index * 100} className="h-full">
+                                    <a href={badge.link} target="_blank" rel="noreferrer" className="group p-8 bg-white rounded-[2.5rem] border border-gray-100 hover:border-blue-300 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-3 transition-all duration-300 flex flex-col items-center text-center h-full">
                                         <div className="relative w-24 h-24 mb-6">
                                             <Image src={badge.badgeImage} layout="fill" objectFit="contain" alt={badge.title} />
                                         </div>
@@ -247,8 +368,9 @@ const Skills: NextPage = () => {
                                             <span className="text-gray-400">Acquired: {badge.acquired}</span>
                                             <span className="text-red-500">Exp: {badge.expiry}</span>
                                         </div>
+                                        <span className="mt-4 text-[10px] font-black uppercase tracking-widest text-blue-500 group-hover:text-blue-700 transition-colors">Verify credential &#8599;</span>
                                     </a>
-                                </Link>
+                                </Reveal>
                             ))}
                         </div>
                     </section>
@@ -256,51 +378,99 @@ const Skills: NextPage = () => {
 
                 {/* 5. EXPANDED SOFT SKILLS (TRANSVERSAL COMPETENCIES) */}
                 {filteredSoftSkills.length > 0 && (
-                    <section className="w-11/12 md:w-10/12 mx-auto mb-20 p-12 bg-white rounded-[3rem] shadow-xl border border-gray-100 relative">
-                        <div className="text-center mb-16">
+                    <section id="soft" className="w-11/12 md:w-10/12 mx-auto mb-24">
+                        <Reveal className="text-center mb-10">
                             <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Interpersonal</span>
-                            <h2 className="text-3xl md:text-4xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
-                                Transversal Soft Skills
-                                <span className="h-1.5 w-24 bg-red-500 rounded-full"></span>
-                            </h2>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {filteredSoftSkills.map((skill, index) => (
-                                <div key={index} onClick={() => setSelectedSoftSkill(skill)} className="group bg-gray-50 p-8 rounded-[2rem] shadow-sm hover:shadow-xl border border-gray-100 hover:border-red-500 transition-all duration-500 flex flex-col items-center text-center hover:-translate-y-3 cursor-pointer">
-                                    <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{skill.icon}</div>
-                                    <h3 className="text-xl font-black text-gray-900 group-hover:text-red-600 mb-4 uppercase tracking-tighter transition-colors">{skill.label}</h3>
-                                    <div className="h-0.5 w-8 bg-red-200 mb-4 group-hover:bg-red-400 transition-colors"></div>
-                                    <p className="text-sm text-gray-500 group-hover:text-gray-700 italic leading-relaxed transition-colors line-clamp-3">{skill.desc}</p>
-                                    <div className="mt-6 text-[10px] font-bold text-red-400 uppercase tracking-widest group-hover:text-red-600 transition-colors">Learn More</div>
+                            <h2 className="text-3xl md:text-4xl font-black uppercase text-gray-900 tracking-tight">Transversal Soft Skills</h2>
+                            <div className="h-1.5 w-20 bg-red-500 rounded-full mt-5 mx-auto"></div>
+                        </Reveal>
+
+                        {/* Tab panel: pick a skill on the left, read it in full on the right */}
+                        <Reveal className="grid grid-cols-1 lg:grid-cols-[minmax(0,20rem)_1fr] gap-5">
+                            <div role="tablist" aria-label="Soft skills" className="min-w-0 flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0">
+                                {filteredSoftSkills.map((skill, i) => (
+                                    <button
+                                        key={skill.label}
+                                        role="tab"
+                                        aria-selected={i === activeSoftIndex}
+                                        onClick={() => setActiveSoft(i)}
+                                        className={`flex-shrink-0 flex items-center gap-3 text-left px-4 py-3 rounded-2xl border transition-all duration-300 ${i === activeSoftIndex ? 'bg-gray-900 text-white border-gray-900 shadow-xl' : 'bg-white text-gray-600 border-gray-100 hover:border-red-300 hover:text-gray-900'}`}
+                                    >
+                                        <span className="text-2xl">{skill.icon}</span>
+                                        <span className="text-[11px] font-black uppercase tracking-widest whitespace-nowrap lg:whitespace-normal">{skill.label}</span>
+                                    </button>
+                                ))}
+                            </div>
+
+                            {activeSkill && (
+                                <div role="tabpanel" key={activeSkill.label} className="role-in relative overflow-hidden bg-white rounded-[2rem] border border-gray-100 shadow-xl p-7 sm:p-10">
+                                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-red-100 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+                                    <div className="relative">
+                                        <div className="flex items-center gap-4">
+                                            <div className="text-4xl w-16 h-16 rounded-2xl bg-red-50 flex items-center justify-center">{activeSkill.icon}</div>
+                                            <div>
+                                                <p className="text-[10px] font-black uppercase tracking-widest text-red-500">{String(activeSoftIndex + 1).padStart(2, '0')} / {String(filteredSoftSkills.length).padStart(2, '0')}</p>
+                                                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-gray-900">{activeSkill.label}</h3>
+                                            </div>
+                                        </div>
+                                        <p className="mt-8 text-base sm:text-lg text-gray-800 font-medium leading-relaxed border-l-4 border-red-500 pl-5">{activeSkill.desc}</p>
+                                        <h4 className="mt-8 text-red-600 font-black uppercase tracking-widest text-xs">In practice</h4>
+                                        <p className="mt-3 text-sm text-gray-600 leading-loose">{activeSkill.detailedDesc}</p>
+                                    </div>
                                 </div>
-                            ))}
-                        </div>
+                            )}
+                        </Reveal>
                     </section>
                 )}
 
                 {/* 6. SOFTWARE MASTERY LOGOS */}
                 {filteredDesignerSkills.length > 0 && (
-                    <section className="w-11/12 md:w-10/12 mx-auto mb-20 text-center">
+                    <section id="design" className="w-11/12 md:w-10/12 mx-auto mb-20 text-center">
                         <div className="text-center mb-16">
                             <span className="text-gray-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Design Stack</span>
-                            <h2 className="text-4xl lg:text-5xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
                                 Creative Software Mastery
                                 <span className="h-1.5 w-24 bg-gray-300 rounded-full"></span>
                             </h2>
                         </div>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                            {filteredDesignerSkills.map((skill, index) => (
-                                <div key={index} onClick={() => setSelectedSoftware(skill)} className="flex flex-col items-center group bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-400 transition-all duration-500 hover:-translate-y-3 cursor-pointer relative">
-                                    <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-white transition-all duration-500 mb-4 grayscale group-hover:grayscale-0 group-hover:scale-110 flex items-center justify-center w-20 h-20 shadow-inner group-hover:shadow-md">
-                                        <Image src={skill.image} width={50} height={50} objectFit="contain" alt={skill.name} />
-                                    </div>
-                                    <p className="mt-3 text-[10px] font-black uppercase text-gray-400 tracking-widest group-hover:text-gray-900 transition-colors">{skill.name}</p>
-                                    <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 bottom-[-20px] bg-gray-800 text-white text-[9px] px-3 py-1 rounded-full whitespace-nowrap shadow-lg uppercase font-bold tracking-widest z-10">View Details</div>
-                                </div>
-                            ))}
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-8">
+                            {filteredDesignerSkills.map((skill, index) => {
+                                const usedIn = projectsUsing(skill.keywords).length;
+                                return (
+                                    <Reveal key={skill.name} delay={index * 60} className="h-full">
+                                        <button onClick={() => setSelectedSoftware(skill)} className="w-full h-full flex flex-col items-center group bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-400 transition-all duration-500 hover:-translate-y-3 cursor-pointer relative">
+                                            <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-white transition-all duration-500 mb-4 grayscale group-hover:grayscale-0 group-hover:scale-110 flex items-center justify-center w-20 h-20 shadow-inner group-hover:shadow-md">
+                                                <Image src={skill.image} width={50} height={50} objectFit="contain" alt={skill.name} />
+                                            </div>
+                                            <p className="mt-3 text-[10px] font-black uppercase text-gray-400 tracking-widest group-hover:text-gray-900 transition-colors">{skill.name}</p>
+                                            <p className="mt-1 text-[9px] font-bold uppercase tracking-widest text-gray-300 group-hover:text-red-500 transition-colors">{usedIn > 0 ? `${usedIn} ${usedIn === 1 ? 'project' : 'projects'}` : 'View details'}</p>
+                                        </button>
+                                    </Reveal>
+                                );
+                            })}
                         </div>
                     </section>
                 )}
+
+                {/* CALL TO ACTION */}
+                <Reveal className="w-11/12 md:w-10/12 mx-auto">
+                    <section className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-gradient-to-br from-gray-900 via-gray-900 to-red-900 p-8 sm:p-14 text-center shadow-2xl">
+                        <div className="absolute -top-20 -right-20 w-72 h-72 bg-red-600 rounded-full blur-[120px] opacity-40 pointer-events-none"></div>
+                        <div className="relative z-10">
+                            <span className="text-red-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">See it in action</span>
+                            <h2 className="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">These skills built {projects.length} projects</h2>
+                            <p className="text-gray-400 text-sm italic mt-4 max-w-xl mx-auto">From government systems and e-commerce to games and desktop tools. Browse the work, or reach out to build something together.</p>
+                            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+                                <Link href="/projects">
+                                    <a className="bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full shadow-lg shadow-red-600/30 transition-colors">Explore projects</a>
+                                </Link>
+                                <Link href="/certifications">
+                                    <a className="bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full transition-colors">View certifications</a>
+                                </Link>
+                            </div>
+                        </div>
+                    </section>
+                </Reveal>
             </main>
 
             {/* UNITY SKILL MODAL */}
@@ -326,29 +496,10 @@ const Skills: NextPage = () => {
                 </div>
             )}
 
-            {/* SOFT SKILL MODAL */}
-            {selectedSoftSkill && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-gray-900/80 backdrop-blur-sm transition-all" onClick={() => setSelectedSoftSkill(null)}>
-                    <div className="relative w-full max-w-2xl bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl border-4 border-gray-100 text-center flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
-                        <button className="absolute top-6 right-6 text-gray-400 hover:text-red-500 transition-colors" onClick={() => setSelectedSoftSkill(null)}>
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
-                        <div className="text-7xl mb-6 drop-shadow-md bg-red-50 w-32 h-32 rounded-full flex items-center justify-center">{selectedSoftSkill.icon}</div>
-                        <h3 className="text-3xl font-black text-gray-900 uppercase tracking-tighter mb-4">{selectedSoftSkill.label}</h3>
-                        <div className="h-1.5 w-16 bg-red-500 rounded-full mb-8"></div>
-                        <p className="text-gray-900 font-medium italic leading-relaxed bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8 w-full">"{selectedSoftSkill.desc}"</p>
-                        <div className="text-left w-full px-2">
-                            <h4 className="text-red-600 font-black uppercase tracking-widest text-xs mb-4">In Practice</h4>
-                            <p className="text-gray-600 leading-loose text-sm">{selectedSoftSkill.detailedDesc}</p>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             {/* SOFTWARE MODAL */}
             {selectedSoftware && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-gray-900/80 backdrop-blur-sm transition-all" onClick={() => setSelectedSoftware(null)}>
-                    <div className="relative w-full max-w-xl bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl border-4 border-gray-100 text-center flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+                    <div className="relative w-full max-w-xl bg-white rounded-[3rem] p-10 md:p-14 max-h-[90vh] overflow-y-auto shadow-2xl border-4 border-gray-100 text-center flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
                         <button className="absolute top-6 right-6 text-gray-400 hover:text-red-500 transition-colors" onClick={() => setSelectedSoftware(null)}>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
@@ -362,6 +513,7 @@ const Skills: NextPage = () => {
                             <h4 className="text-gray-500 font-black uppercase tracking-widest text-xs mb-4">Workflow Application</h4>
                             <p className="text-gray-600 leading-loose text-sm">{selectedSoftware.detailedDesc}</p>
                         </div>
+                        <BuiltWith keywords={selectedSoftware.keywords} />
                     </div>
                 </div>
             )}
@@ -369,7 +521,7 @@ const Skills: NextPage = () => {
             {/* TECHNICAL CORE MODAL */}
             {selectedTechnicalCore && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-gray-900/80 backdrop-blur-sm transition-all" onClick={() => setSelectedTechnicalCore(null)}>
-                    <div className="relative w-full max-w-2xl bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl border-4 border-gray-100 text-center flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+                    <div className="relative w-full max-w-2xl bg-white rounded-[3rem] p-10 md:p-14 max-h-[90vh] overflow-y-auto shadow-2xl border-4 border-gray-100 text-center flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
                         <button className="absolute top-6 right-6 text-gray-400 hover:text-red-500 transition-colors" onClick={() => setSelectedTechnicalCore(null)}>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
@@ -391,7 +543,7 @@ const Skills: NextPage = () => {
             {/* WEB SKILL MODAL */}
             {selectedWebSkill && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-gray-900/80 backdrop-blur-sm transition-all" onClick={() => setSelectedWebSkill(null)}>
-                    <div className="relative w-full max-w-xl bg-gray-900 border border-gray-800 rounded-[3rem] p-10 md:p-14 shadow-2xl text-center flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+                    <div className="relative w-full max-w-xl bg-gray-900 border border-gray-800 rounded-[3rem] p-10 md:p-14 max-h-[90vh] overflow-y-auto shadow-2xl text-center flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
                         <button className="absolute top-6 right-6 text-gray-500 hover:text-blue-500 transition-colors" onClick={() => setSelectedWebSkill(null)}>
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
@@ -408,6 +560,7 @@ const Skills: NextPage = () => {
                             </h4>
                             <p className="text-gray-300 leading-loose text-sm">{selectedWebSkill.detailedDesc}</p>
                         </div>
+                        <BuiltWith keywords={selectedWebSkill.keywords} dark />
                     </div>
                 </div>
             )}

@@ -5,9 +5,25 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
 import { useState, useEffect } from "react"
+import { projects, Project } from '../data/projects'
+import Reveal from '../components/Reveal'
+
+// Random projects from different rows, each with a cover image.
+const pickFeatured = (count: number): Project[] => {
+  const pool = projects.filter(p => p.image).sort(() => Math.random() - 0.5);
+  const picked: Project[] = [];
+  for (const p of pool) {
+    if (picked.length === count) break;
+    if (!picked.some(q => q.type === p.type)) picked.push(p);
+  }
+  return picked;
+}
 
 const Home: NextPage = () => {
-  const [selectedThought, setSelectedThought] = useState<any>(null);
+  const [openThought, setOpenThought] = useState<number | null>(null);
+  // Picked after mount so the server render and the first client render match.
+  const [featured, setFeatured] = useState<Project[]>([]);
+  useEffect(() => setFeatured(pickFeatured(2)), []);
 
   const roles = [
     "Computer Instructor",
@@ -15,10 +31,11 @@ const Home: NextPage = () => {
     "UI/UX Designer",
     "Visual Graphic Designer",
     "Game Developer",
-    "Quality Assurance"
+    "Quality Assurance Tester"
   ];
 
   const [index, setIndex] = useState(0);
+  const yearsBuilding = new Date().getFullYear() - 2018;
 
   // Form State
   const [formData, setFormData] = useState({
@@ -27,26 +44,17 @@ const Home: NextPage = () => {
     description: ""
   });
 
+  // Advance the role every 4s; restarting on each change means a clicked role chip gets its full 4s.
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % roles.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [roles.length]);
+    const timer = setTimeout(() => setIndex((index + 1) % roles.length), 4000);
+    return () => clearTimeout(timer);
+  }, [index, roles.length]);
 
   const getArticle = (word: string) => {
     const firstLetter = word.charAt(0).toLowerCase();
     return ['a', 'e', 'i', 'o', 'u'].includes(firstLetter) ? 'an' : 'a';
   };
 
-  const sections = [
-    { title: "Technical Skills", path: "/skills", content: "Expertise in Front-end development (React/NextJS) and UI Design. Certified Instruction based on TESDA Training Regulations." },
-    { title: "Personal Hobbies", path: "/hobbies", content: "A balance of creativity and tech: Gaming, Anime, and Manga. These interests fuel my design inspiration and keep logic sharp." },
-    { title: "Project Gallery", path: "/projects", content: "A showcase of LGU systems, marketing websites, and video presentations built for industry impact and efficiency." },
-    { title: "Work Experience", path: "/workxp", content: "From Tondo to Camarines Sur—a career journey of growth, technical execution, and instructional leadership." },
-    { title: "Personal Info", path: "/personal", content: "Get to know me: A dedicated IT professional and Computer Instructor based in Pili, Camarines Sur." },
-    { title: "Education", path: "/education", content: "Academic foundation from Informatics College Manila and vocational certifications from TESDA and Google." }
-  ];
 
   const thoughts = [
     { category: "Work", text: "Consistency is the bridge between goals and accomplishment. In design and code, the smallest details often hold the most weight.", icon: "💼", detailedText: "My approach to work involves breaking down complex institutional challenges into clear, manageable systems. I believe that sustainable growth in software engineering comes from building readable, well-architected solutions that respect both the machine executing them and the engineers maintaining them in the future. I lead by example, fostering a collaborative environment where every line of code serves a well-defined purpose." },
@@ -80,85 +88,233 @@ const Home: NextPage = () => {
       <main className='scroll-smooth'>
 
         {/* HERO SECTION */}
-        <section className="h-[70vh] flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-red-900 text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full blur-[150px] opacity-20"></div>
+        {/* Same brand banner treatment as components/PageHero.tsx, sized to fit the role slider and CTAs */}
+        <section className="hero-curve -mt-20 pt-20 flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-slate-800 to-red-900 text-white relative overflow-hidden shadow-2xl">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/30 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -bottom-40 -right-24 w-[30rem] h-[30rem] bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)', backgroundSize: '48px 48px' }}></div>
+          <div className="min-h-[24rem] md:min-h-[30rem] w-11/12 md:w-10/12 mx-auto grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center pt-8 pb-20 relative z-10">
 
-          <div className="z-10 text-center px-4 w-full">
-            <h2 className="text-sm md:text-xl font-light tracking-[0.5em] uppercase mb-6 opacity-70">ElevatED by Code | IllustratED by Design</h2>
+            {/* INTRO */}
+            <div className="text-center lg:text-left">
+              <span className="inline-block text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] bg-white/10 border border-white/25 backdrop-blur-md px-4 py-2 rounded-full shadow-lg">
+                ElevatED by Code <span className="text-red-400">|</span> IllustratED by Design
+              </span>
 
-            <div className="font-black text-3xl md:text-5xl tracking-tighter mb-8 leading-none">
-              Hi, I&lsquo;m <span className="text-red-500">ED</span>. I am {getArticle(roles[index])}
-              <br />
-              <div className="flex flex-col items-center mt-6">
-                <div className="relative w-full max-w-4xl h-24 overflow-hidden">
-                  <div
-                    className="flex transition-transform duration-700 ease-in-out italic text-red-500"
-                    style={{ transform: `translateX(-${index * 100}%)` }}
+              <h1 className="mt-6 text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-none">
+                Hi, I&rsquo;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-600">Ed.</span>
+              </h1>
+
+              <p className="mt-5 text-xl sm:text-3xl font-black tracking-tight text-gray-300 min-h-[2.5rem] sm:min-h-[3rem]">
+                {getArticle(roles[index]) === 'an' ? 'An' : 'A'}{' '}
+                <span key={index} className="role-in inline-block text-white italic">{roles[index]}</span>
+                <span className="inline-block w-[3px] h-[0.9em] bg-red-500 ml-1 align-middle caret-blink" aria-hidden="true"></span>
+              </p>
+
+              <p className="mt-5 text-sm sm:text-base text-gray-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Teaching, building and designing for the web and for games since 2018, from Camarines Sur, Philippines.
+              </p>
+
+              <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-3">
+                <Link href="/projects">
+                  <a className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg shadow-red-600/30 transition-colors">
+                    Explore projects
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </a>
+                </Link>
+                <Link href="/workxp">
+                  <a className="bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg transition-colors">
+                    Experience &amp; CV
+                  </a>
+                </Link>
+              </div>
+
+              {/* ROLE CHIPS: highlight the current role; click to jump to one */}
+              <div className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-2 mt-8">
+                {roles.map((role, i) => (
+                  <button
+                    key={role}
+                    onClick={() => setIndex(i)}
+                    className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border transition-all duration-300 ${i === index ? 'bg-white text-red-600 border-white shadow-lg' : 'bg-white/5 text-gray-300 border-white/15 hover:bg-white/15'}`}
                   >
-                    {roles.map((role, i) => (
-                      <div key={i} className="min-w-full flex items-center justify-center text-center">
-                        <p className="text-3xl md:text-5xl whitespace-nowrap px-4 leading-tight">
-                          {role}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                    {role}
+                  </button>
+                ))}
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-6 mt-10">
-              <div className="flex gap-4">
-                <Link href="https://github.com/dipaaapi" target="_blank">
-                  <a className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:px-8 rounded-full border border-gray-600 transition-all shadow-xl flex items-center gap-2">
-                    <svg className='fill-current w-5 h-5 text-white' viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
-                    View GitHub
-                  </a>
-                </Link>
-                <div className="relative group">
-                  <div className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 md:px-8 rounded-full transition-all shadow-xl hover:shadow-red-500/50 flex items-center gap-2 cursor-pointer">
-                    Download CV
-                    <svg className="w-4 h-4 ml-1 transform group-hover:-rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7"></path></svg>
-                  </div>
-                  <div className="absolute top-full left-0 mt-4 w-full bg-white text-gray-800 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-2 transition-all duration-300 flex flex-col overflow-hidden border border-gray-100 z-50">
-                    <a href="/PDS-ED.pdf" target="_blank" rel="noopener noreferrer" className="block px-6 py-4 hover:bg-red-50 hover:text-red-600 font-black text-sm tracking-widest uppercase border-b border-gray-100 transition-colors text-center">
-                      PDS-ED
-                    </a>
-                    <div className="px-6 py-4 bg-gray-50/50 text-gray-300 font-black text-sm tracking-widest uppercase cursor-not-allowed text-center relative group/tooltip">
-                      RESUME
-                      <div className="absolute hidden group-hover/tooltip:block bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-gray-900 text-white text-[9px] py-1 px-3 rounded">Coming Soon</div>
-                    </div>
+            {/* GLASS PROFILE CARD */}
+            <div className="hidden lg:block">
+              <div className="relative mx-auto max-w-sm rounded-[2rem] bg-white/10 border border-white/20 backdrop-blur-xl backdrop-saturate-150 shadow-2xl p-6">
+                <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-white/20 via-transparent to-red-500/20 pointer-events-none"></div>
+                <div className="relative aspect-square w-full rounded-3xl overflow-hidden border border-white/20 shadow-xl">
+                  <Image src="/ed2025.jpg" layout="fill" objectFit="cover" priority alt="John Edward Cabrera" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-gray-900/60 backdrop-blur-md border border-white/15 rounded-full px-3 py-1.5">
+                    <span className="relative flex w-2 h-2">
+                      <span className="absolute inline-flex w-full h-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                      <span className="relative inline-flex w-2 h-2 rounded-full bg-green-400"></span>
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest">Open to projects &amp; training</span>
                   </div>
                 </div>
-              </div>
-              <div className="flex gap-4">
-                <Link href="https://www.linkedin.com/in/john-edward-cabrera-956bba147/" target="_blank">
-                  <a className='hover:scale-125 transition-transform bg-white/10 p-3 rounded-full backdrop-blur-md border border-white/10'>
-                    <svg className='fill-current w-5 h-5 text-white' viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
-                  </a>
-                </Link>
-                <Link href="https://www.facebook.com/MasterEd28/" target="_blank">
-                  <a className='hover:scale-125 transition-transform bg-white/10 p-3 rounded-full backdrop-blur-md border border-white/10'>
-                    <svg className='fill-current w-5 h-5 text-white' viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" /></svg>
-                  </a>
-                </Link>
+                <div className="relative mt-5 grid grid-cols-3 gap-2 text-center">
+                  {[
+                    { value: `${yearsBuilding}+`, label: 'Years' },
+                    { value: projects.length, label: 'Projects' },
+                    { value: roles.length, label: 'Roles' },
+                  ].map((stat) => (
+                    <div key={stat.label} className="rounded-2xl bg-white/5 border border-white/10 py-3">
+                      <p className="text-2xl font-black tracking-tighter">{stat.value}</p>
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* BENTO TILES SECTIONS */}
-        <section className="w-11/12 md:w-10/12 mx-auto py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sections.map((item, i) => (
-            <Link key={i} href={item.path}>
-              <a className="group bg-white p-8 rounded-[2rem] shadow-xl hover:shadow-2xl border border-gray-100 hover:border-red-500 transition-all duration-500 h-full flex flex-col items-center text-center hover:-translate-y-3">
-                <h3 className="text-red-600 font-black text-2xl mb-4 uppercase tracking-tighter group-hover:text-red-500 transition-colors">{item.title}</h3>
-                <div className="h-0.5 w-12 bg-red-100 mb-6 group-hover:bg-red-400 transition-colors"></div>
-                <p className="text-sm text-gray-500 leading-relaxed italic flex-grow px-2">{item.content}</p>
-                <div className="mt-8 text-[10px] font-black text-gray-300 group-hover:text-red-500 transition-colors uppercase tracking-[0.2em]">Explore More →</div>
-              </a>
-            </Link>
-          ))}
+        {/* BENTO GRID: tiles of different sizes that show their content instead of describing it */}
+        <section className="w-11/12 md:w-10/12 mx-auto py-20">
+          <Reveal className="flex flex-col items-center text-center mb-12">
+            <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3">Explore</span>
+            <h2 className="font-black text-3xl lg:text-4xl uppercase tracking-tight text-gray-900">Everything in one place</h2>
+            <div className="h-1.5 w-24 bg-red-500 rounded-full mt-5"></div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[14rem] gap-5">
+
+            {/* PROJECTS: 2x2, collage of real project covers */}
+            <Reveal className="md:col-span-2 lg:row-span-2 h-80 lg:h-full">
+              <Link href="/projects">
+                <a className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl bg-gray-900">
+                  <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 opacity-70 group-hover:opacity-90 transition-opacity duration-500">
+                    {projects.filter(p => p.image).slice(0, 4).map((p) => (
+                      <div key={p.title} className="relative overflow-hidden">
+                        <Image src={p.image!} layout="fill" objectFit="cover" alt="" className="group-hover:scale-110 transition-transform duration-700" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-8">
+                    <span className="text-[10px] font-black uppercase tracking-widest bg-red-600 text-white px-3 py-1 rounded-full">{projects.length} projects</span>
+                    <h3 className="mt-4 text-3xl sm:text-4xl font-black uppercase tracking-tighter text-white">Project Gallery</h3>
+                    <p className="mt-2 text-sm text-gray-300 max-w-md">Games, tools, government systems, e-commerce and brand work.</p>
+                    <p className="mt-4 text-[10px] font-black uppercase tracking-widest text-red-400 group-hover:translate-x-2 transition-transform">Browse projects &rarr;</p>
+                  </div>
+                </a>
+              </Link>
+            </Reveal>
+
+            {/* SKILLS: 2x1, tech logos */}
+            <Reveal delay={80} className="md:col-span-2 h-56 lg:h-full">
+              <Link href="/skills">
+                <a className="group relative flex flex-col justify-between h-full rounded-[2rem] p-7 bg-gray-900 shadow-xl overflow-hidden">
+                  <div className="absolute -top-16 -right-16 w-56 h-56 bg-blue-600 rounded-full blur-[90px] opacity-30"></div>
+                  <div className="relative flex flex-wrap gap-3">
+                    {['html5', 'css', 'javascript', 'react', 'next', 'php', 'laravel', 'figma'].map((logo, i) => (
+                      <div key={logo} style={{ transitionDelay: `${i * 40}ms` }} className="w-11 h-11 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center p-2 group-hover:-translate-y-1 group-hover:bg-white/15 transition-all">
+                        <Image src={`/${logo}.png`} width={28} height={28} objectFit="contain" alt={logo} />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="relative">
+                    <h3 className="text-2xl font-black uppercase tracking-tighter text-white">Technical Skills</h3>
+                    <p className="text-xs text-gray-400 mt-1">Front-end, back-end, UI/UX and TESDA-certified instruction.</p>
+                  </div>
+                </a>
+              </Link>
+            </Reveal>
+
+            {/* EXPERIENCE: current role */}
+            <Reveal delay={120} className="h-56 lg:h-full">
+              <Link href="/workxp">
+                <a className="group relative flex flex-col justify-between h-full rounded-[2rem] p-7 bg-gradient-to-br from-red-600 to-rose-700 text-white shadow-xl overflow-hidden">
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                  <span className="relative self-start text-[10px] font-black uppercase tracking-widest bg-white/15 border border-white/25 px-3 py-1 rounded-full">Now</span>
+                  <div className="relative">
+                    <h3 className="text-lg font-black uppercase tracking-tight leading-tight">Computer Instructor</h3>
+                    <p className="text-xs text-red-100 mt-1">Provincial Government of Camarines Sur</p>
+                    <p className="mt-3 text-[10px] font-black uppercase tracking-widest group-hover:translate-x-2 transition-transform">Career journey &rarr;</p>
+                  </div>
+                </a>
+              </Link>
+            </Reveal>
+
+            {/* CERTIFICATIONS: Google badges */}
+            <Reveal delay={160} className="h-56 lg:h-full">
+              <Link href="/certifications">
+                <a className="group flex flex-col justify-between h-full rounded-[2rem] p-7 bg-white border border-gray-100 shadow-xl hover:border-blue-300 transition-colors">
+                  <div className="flex -space-x-3">
+                    {['gemini_certified_educator', 'certified_educator_level1', 'certified_educator_level2'].map((b) => (
+                      <div key={b} className="relative w-14 h-14 rounded-full bg-white border-2 border-white shadow-md group-hover:-translate-y-1 transition-transform">
+                        <Image src={`/skills/${b}.png`} layout="fill" objectFit="contain" alt="" />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-black uppercase tracking-tight text-gray-900">Certifications</h3>
+                    <p className="text-xs text-gray-500 mt-1">Google, TESDA, DICT and more.</p>
+                  </div>
+                </a>
+              </Link>
+            </Reveal>
+
+            {/* PERSONAL: photo */}
+            <Reveal delay={80} className="h-56 lg:h-full">
+              <Link href="/personal">
+                <a className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl">
+                  <Image src="/ed2025.jpg" layout="fill" objectFit="cover" alt="John Edward Cabrera" className="group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6">
+                    <h3 className="text-lg font-black uppercase tracking-tight text-white">Get to know me</h3>
+                    <p className="text-xs text-gray-300 mt-1">Based in Pili, Camarines Sur</p>
+                  </div>
+                </a>
+              </Link>
+            </Reveal>
+
+            {/* EDUCATION: school logos */}
+            <Reveal delay={120} className="h-56 lg:h-full">
+              <Link href="/education">
+                <a className="group flex flex-col justify-between h-full rounded-[2rem] p-7 bg-white border border-gray-100 shadow-xl hover:border-red-300 transition-colors">
+                  <div className="flex gap-3">
+                    {['informatics', 'tesda'].map((logo) => (
+                      <div key={logo} className="relative w-14 h-14 rounded-2xl bg-gray-50 border border-gray-100 p-2 group-hover:-translate-y-1 transition-transform">
+                        <Image src={`/education/${logo}.png`} layout="fill" objectFit="contain" alt="" />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-black uppercase tracking-tight text-gray-900">Education</h3>
+                    <p className="text-xs text-gray-500 mt-1">Informatics College Manila and TESDA vocational training.</p>
+                  </div>
+                </a>
+              </Link>
+            </Reveal>
+
+            {/* HOBBIES: 2x1, anime art strip */}
+            <Reveal delay={160} className="md:col-span-2 h-56 lg:h-full">
+              <Link href="/hobbies">
+                <a className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl bg-indigo-900">
+                  <div className="absolute inset-0 flex">
+                    {['onepiece.jpg', 'kimetsunoYaiba.jpg', 'fullmetal.jpg', 'drstone.jpg'].map((img) => (
+                      <div key={img} className="relative flex-1 overflow-hidden">
+                        <Image src={`/hobbies/anime/${img}`} layout="fill" objectFit="cover" alt="" className="group-hover:scale-110 transition-transform duration-700" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 via-indigo-900/80 to-indigo-900/20"></div>
+                  <div className="absolute inset-y-0 left-0 p-7 flex flex-col justify-end">
+                    <h3 className="text-2xl font-black uppercase tracking-tighter text-white">Off the clock</h3>
+                    <p className="text-xs text-indigo-200 mt-1">Games, anime and manga that fuel the design side.</p>
+                    <p className="mt-3 text-[10px] font-black uppercase tracking-widest text-indigo-300 group-hover:translate-x-2 transition-transform">See hobbies &rarr;</p>
+                  </div>
+                </a>
+              </Link>
+            </Reveal>
+          </div>
         </section>
 
         {/* FEATURED WORK SECTION */}
@@ -168,27 +324,25 @@ const Home: NextPage = () => {
             <div className="h-1.5 w-32 bg-red-500 rounded-full mt-6 shadow-sm"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {featured.length === 0 ? (
+              [0, 1].map((i) => <div key={i} className="h-80 rounded-3xl bg-gray-200 animate-pulse"></div>)
+            ) : featured.map((project) => (
+              <Link key={project.title} href={{ pathname: '/projects', query: { project: project.title } }}>
+                <a className="group relative h-80 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 block border border-gray-100">
+                  <Image src={project.image!} layout="fill" objectFit="cover" alt={project.title} className="transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                  <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                    <span className="text-red-400 font-black text-[10px] uppercase tracking-widest bg-white/10 backdrop-blur-md px-3 py-1 rounded-full mb-3 inline-block">{project.type} &middot; {project.category}</span>
+                    <h3 className="text-white text-2xl font-black uppercase tracking-tight mb-2">{project.fullTitle}</h3>
+                    <p className="text-gray-300 text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{project.description}</p>
+                  </div>
+                </a>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-12">
             <Link href="/projects">
-              <a className="group relative h-80 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 block border border-gray-100">
-                <Image src="/projects/aipaygo/aviso1md.png" layout="fill" objectFit="cover" alt="AIVSO" className="transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                  <span className="text-red-500 font-black text-[10px] uppercase tracking-widest bg-white/10 backdrop-blur-md px-3 py-1 rounded-full mb-3 inline-block">Web Development</span>
-                  <h3 className="text-white text-2xl font-black uppercase tracking-tight mb-2">Advance Vehicle Inspection Service</h3>
-                  <p className="text-gray-300 text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">A portal for LTO third-party providers in the Philippines.</p>
-                </div>
-              </a>
-            </Link>
-            <Link href="/projects">
-              <a className="group relative h-80 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 block border border-gray-100">
-                <Image src="/projects/aipaygo/booyamd1.PNG" layout="fill" objectFit="cover" alt="BOOYA" className="transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                  <span className="text-indigo-400 font-black text-[10px] uppercase tracking-widest bg-white/10 backdrop-blur-md px-3 py-1 rounded-full mb-3 inline-block">UI/UX Design</span>
-                  <h3 className="text-white text-2xl font-black uppercase tracking-tight mb-2">Booya Donuts & Bagels</h3>
-                  <p className="text-gray-300 text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Modern e-commerce interface for a food services brand.</p>
-                </div>
-              </a>
+              <a className="inline-block bg-gray-900 hover:bg-red-600 text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full shadow-lg transition-colors">View all projects</a>
             </Link>
           </div>
         </section>
@@ -256,22 +410,46 @@ const Home: NextPage = () => {
         </section>
 
         {/* CORE VALUES */}
-        <section className="bg-gray-100 py-20 border-y border-gray-200">
-          <div className="w-10/12 mx-auto">
-            <div className="flex flex-col items-center text-center justify-center mb-16">
-              <h2 className="font-black text-4xl lg:text-5xl uppercase tracking-widest text-gray-900 drop-shadow-sm">Core Values & Philosophy</h2>
-              <div className="h-1.5 w-32 bg-red-500 rounded-full mt-6 shadow-sm"></div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {thoughts.map((item, i) => (
-                <div key={i} onClick={() => setSelectedThought(item)} className="bg-white p-8 border border-gray-100 flex flex-col items-center text-center rounded-[2rem] shadow-xl hover:shadow-2xl hover:border-red-500 hover:-translate-y-3 transition-all duration-500 cursor-pointer">
-                  <div className="text-5xl mb-6">{item.icon}</div>
-                  <h4 className="text-red-600 font-black uppercase text-sm tracking-widest mb-4">{item.category}</h4>
-                  <div className="h-0.5 w-12 bg-gray-100 mb-4"></div>
-                  <p className="text-sm text-gray-500 leading-relaxed italic">"{item.text}"</p>
-                  <div className="mt-6 text-[10px] font-bold text-gray-300 uppercase tracking-widest">Learn More</div>
-                </div>
-              ))}
+        <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-800 to-red-900 py-24 text-white">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/25 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -bottom-32 -right-24 w-[28rem] h-[28rem] bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="relative w-11/12 md:w-10/12 mx-auto">
+            <Reveal className="text-center mb-14">
+              <span className="inline-block text-[10px] font-black uppercase tracking-[0.4em] bg-white/10 border border-white/25 backdrop-blur-md px-4 py-2 rounded-full">What I stand for</span>
+              <h2 className="mt-5 font-black text-3xl lg:text-5xl uppercase tracking-tight">Core Values &amp; Philosophy</h2>
+              <div className="h-1.5 w-24 bg-red-500 rounded-full mt-5 mx-auto shadow-lg shadow-red-500/50"></div>
+            </Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {thoughts.map((item, i) => {
+                const open = openThought === i;
+                return (
+                  <Reveal key={item.category} delay={i * 90}>
+                    <article className={`h-full rounded-[2rem] border p-7 sm:p-9 transition-colors duration-300 ${open ? 'bg-white/15 border-white/40' : 'bg-white/5 border-white/15 hover:bg-white/10'}`}>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-3xl w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center">{item.icon}</span>
+                          <h3 className="text-sm font-black uppercase tracking-widest text-red-400">{item.category}</h3>
+                        </div>
+                        <span className="text-4xl font-black text-white/10 leading-none">{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                      <blockquote className="mt-6 text-lg sm:text-xl font-bold leading-snug text-white">
+                        &ldquo;{item.text}&rdquo;
+                      </blockquote>
+                      <div className={`grid transition-all duration-500 ${open ? 'grid-rows-[1fr] opacity-100 mt-5' : 'grid-rows-[0fr] opacity-0'}`}>
+                        <p className="overflow-hidden text-sm text-gray-300 leading-loose">{item.detailedText}</p>
+                      </div>
+                      <button
+                        onClick={() => setOpenThought(open ? null : i)}
+                        aria-expanded={open}
+                        className="mt-6 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-300 hover:text-white transition-colors"
+                      >
+                        {open ? 'Show less' : 'Read the philosophy'}
+                        <svg className={`w-4 h-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
+                      </button>
+                    </article>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -279,33 +457,6 @@ const Home: NextPage = () => {
 
       </main>
 
-      {/* CORE VALUE MODAL */}
-      {selectedThought && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm" onClick={() => setSelectedThought(null)}></div>
-          <div className="relative bg-white rounded-[3rem] p-10 md:p-14 w-full max-w-2xl shadow-2xl border-4 border-gray-100 transform transition-all text-center">
-            <button
-              onClick={() => setSelectedThought(null)}
-              className="absolute top-6 right-6 text-gray-400 hover:text-red-500 transition-colors"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <div className="text-7xl mb-6 drop-shadow-md bg-red-50 w-32 h-32 mx-auto rounded-full flex items-center justify-center">{selectedThought.icon}</div>
-            <h3 className="text-3xl font-black text-gray-900 uppercase tracking-tighter mb-4">{selectedThought.category}</h3>
-            <div className="h-1.5 w-16 bg-red-500 rounded-full mx-auto mb-8"></div>
-
-            <div className="bg-gray-50 p-6 md:p-8 rounded-[2rem] border border-gray-100 mb-8 items-center text-center">
-              <p className="text-gray-900 font-medium italic leading-relaxed">"{selectedThought.text}"</p>
-            </div>
-
-            <div className="text-left bg-white px-2">
-              <h4 className="text-red-600 font-black uppercase tracking-widest text-xs mb-4">Deep Philosophy</h4>
-              <p className="text-gray-600 leading-loose text-sm">{selectedThought.detailedText}</p>
-            </div>
-          </div>
-        </div>
-      )}
 
       <Footer />
     </div>

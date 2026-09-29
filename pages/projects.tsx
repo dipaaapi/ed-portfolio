@@ -1,34 +1,36 @@
 import type { NextPage } from 'next'
 import Head from 'next/head';
-import Navigation from '../components/nav';
 import Footer from '../components/footer'
+import PageHero from '../components/PageHero';
+import StickyPillBar from '../components/StickyPillBar'
 import Image from 'next/image'
-import { useState, useMemo } from 'react';
+import { useRouter } from 'next/router';
+import { useState, useMemo, useEffect } from 'react';
+import { projects, projectTypes } from '../data/projects';
 
 const Project: NextPage = () => {
+    const router = useRouter();
     const [activeFilter, setActiveFilter] = useState('All');
     const [selectedProject, setSelectedProject] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [activeImage, setActiveImage] = useState<string | null>(null);
 
-    const projects = [
-        { title: "AIVSO", fullTitle: "Advance Vehicle Inspection Service Online", category: "Web Development", description: "A portal for LTO third-party providers in the Philippines.", quote: "Efficiency in government services starts with a clean UI and a robust back-end.", image: "/projects/aipaygo/aviso1md.png", techStack: ["React", "Next.js", "TailwindCSS"], liveLink: "https://aivso.ph", repoLink: "https://github.com/dipaaapi" },
-        { title: "BOOYA", fullTitle: "Booya Donuts & Bagels", category: "UI/UX Design", description: "Modern e-commerce interface for a food services brand.", quote: "Design should be as sweet and accessible as the product it sells.", image: "/projects/aipaygo/booyamd1.PNG", techStack: ["Figma", "Adobe Core"], liveLink: "https://www.figma.com/file/sample/booya" },
-        { title: "Skytel", fullTitle: "Skytel Community Wifi", category: "Web Development", description: "A community-based wifi service management system.", quote: "Connectivity is a right, not a privilege. Building for the community requires empathy.", image: "/projects/aipaygo/communifimd1.png", techStack: ["PHP", "Vanilla JS", "Bootstrap"], liveLink: "https://skytel.ph", repoLink: "https://github.com/dipaaapi" },
-        { title: "Golden Carabao", fullTitle: "Golden Carabao Hospitality Group", category: "UI/UX Design", description: "Showcasing world-class hospitality services and apprentice tracking.", quote: "Hospitality is about experience; the digital platform must reflect that same care.", image: "/projects/aipaygo/goldencarabaomd1.png", techStack: ["Figma"], liveLink: "https://goldencarabao.com" },
-        { title: "HyperPocket", fullTitle: "HyperPocket E-Coins", category: "Online System", description: "An automated trade e-coin system for digital traders.", quote: "Security and transparency are the currencies of the digital age.", image: "/projects/aipaygo/hyperpocketdarkmd.png", techStack: ["React", "Node.js", "MongoDB"], liveLink: "https://hyperpocket.app" },
-        { title: "Barangay Monitoring", fullTitle: "Pulilan LGU Monitoring System", category: "Government System", description: "Stand-alone administrative system for Pulilan, Bulacan.", quote: "Empowering local leaders with data-driven decision-making tools.", image: "/projects/pulilan.png", techStack: ["Next.js", "PostgreSQL", "Prisma"], liveLink: "https://pulilan.gov.ph", repoLink: "https://github.com/dipaaapi" },
-        { title: "Ant-Pay", fullTitle: "Ant-Pay Video Presentation", category: "Graphic Design", description: "Engaging motion graphics showcasing payroll automation.", quote: "Motion design turns complex data into a compelling visual narrative.", image: "/projects/antPay/antpay.png", techStack: ["After Effects", "Premiere Pro"], liveLink: "https://youtube.com/antpay" },
-        { title: "Cheroniel", fullTitle: "Cheroniel Branding Project", category: "UI Design", description: "Branding and product design for the Cheroniel project.", quote: "Branding is the soul of the project. It's how we speak without using words.", image: "/projects/cheroniel/main_logo.png", techStack: ["Illustrator", "Photoshop"], liveLink: "https://behance.net/cheroniel" },
-        { title: "Vanity Health", fullTitle: "Vanity Health & Wellness", category: "Graphic Design", description: "Brand identity and marketing collateral for wellness services.", quote: "Wellness is a holistic journey; branding must breathe tranquility.", image: "/projects/vanity/fbCover.jpg", techStack: ["Illustrator", "Photoshop"], liveLink: "https://facebook.com/vanityhealth" },
-        { title: "Skytel Iloilo", fullTitle: "Jam Jam Baronda Free Wifi", category: "Web Design", description: "Custom captive portal design for Iloilo public wifi.", quote: "Public access requires seamless and intuitive user on-boarding.", image: "/projects/aipaygo/skyteliloilomd.png", techStack: ["HTML", "CSS", "JS"], liveLink: "https://skytel.ph/iloilo" },
-        { title: "Skytel Pangasinan", fullTitle: "Pilo Villamar Free Wifi", category: "Web Design", description: "UI Design for free wifi access points in Pangasinan.", quote: "Visual consistency across regions strengthens the service brand.", image: "/projects/aipaygo/skytelpangasinanmd.png", techStack: ["HTML", "CSS", "JS"], liveLink: "https://skytel.ph/pangasinan" },
-        { title: "Skytel Aklan", fullTitle: "Rodell Ramos Aklan Free Wifi", category: "Web Design", description: "Localized wifi landing page for the Aklan region.", quote: "Localization makes technology feel closer to the people it serves.", image: "/projects/aipaygo/skytelbatanmd.png", techStack: ["HTML", "CSS", "JS"], liveLink: "https://skytel.ph/aklan" }
-    ];
+    const openProject = (project: any) => {
+        setSelectedProject(project);
+        setActiveImage(project.image || null);
+    };
+
+    // Deep link from the home page's Featured Work: /projects?project=<title>
+    useEffect(() => {
+        if (!router.isReady) return;
+        const match = projects.find(p => p.title === router.query.project);
+        if (match) openProject(match);
+    }, [router.isReady, router.query.project]);
 
     const positions = ['Computer Instructor', 'Web Developer', 'UI/UX Designer', 'Quality Assurance', 'Visual Graphic Designer', 'Game Developer'];
-    const categories = useMemo(() => ['All', ...Array.from(new Set(projects.map(p => p.category)))], []);
+    const categories = useMemo(() => ['All', ...projectTypes.filter(t => projects.some(p => p.type === t))], []);
     const filteredProjects = projects.filter(p => {
-        const matchesCategory = activeFilter === 'All' ? true : p.category === activeFilter;
+        const matchesCategory = activeFilter === 'All' ? true : p.type === activeFilter;
         const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             p.fullTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
             p.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -41,66 +43,65 @@ const Project: NextPage = () => {
                 <title>Project Showcase Page | ElevatED by Code | IllustratED by Design</title>
                 <link rel="icon" href="/edLogo.png" />
             </Head>
-            <Navigation />
 
             <main className='pb-20'>
                 {/* HERO */}
-                <div className="bg-gradient-to-br from-indigo-900 to-indigo-700 py-20 text-white text-center shadow-2xl">
-                    <h1 className='text-5xl font-black uppercase tracking-tighter'>Project Showcase</h1>
-                    <div className="h-1.5 w-32 bg-red-500 mx-auto rounded-full mt-4"></div>
-                    <div className="flex flex-wrap justify-center gap-3 mt-8 max-w-4xl mx-auto px-4">
+                <PageHero
+                    eyebrow="Portfolio"
+                    title="Project Showcase"
+                    search={{ value: searchQuery, onChange: setSearchQuery, placeholder: 'Search projects by name or description...' }}
+                >
+                    <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
                         {positions.map((pos, i) => (
-                            <span key={i} className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/20">{pos}</span>
+                            <span key={i} className="bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/20">{pos}</span>
                         ))}
                     </div>
-                </div>
+                </PageHero>
 
-                {/* FILTER & SEARCH */}
-                <section className="w-11/12 mx-auto -mt-16 mb-12 relative z-10 flex flex-col items-center">
-                    {/* Search Bar */}
-                    <div className="w-full max-w-2xl bg-white p-2 rounded-full shadow-xl mb-6 flex items-center border border-gray-100">
-                        <div className="p-3 text-gray-400">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Search projects by name or description..."
-                            className="w-full py-3 px-4 outline-none text-gray-700 bg-transparent rounded-r-full font-medium"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        {searchQuery && (
-                            <button onClick={() => setSearchQuery('')} className="p-3 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                            </button>
-                        )}
-                    </div>
+                {/* CATEGORY FILTER (sticky glass bar, same pattern as the Skills page) */}
+                <StickyPillBar items={categories.map(c => ({ id: c, label: c }))} active={activeFilter} onSelect={setActiveFilter} className="mt-10 mb-12" />
 
-                    {/* Category Buttons */}
-                    <div className="bg-white p-4 rounded-3xl shadow-xl flex flex-wrap justify-center gap-2 border border-gray-100 w-full max-w-4xl">
-                        {categories.map((cat) => (
-                            <button key={cat} onClick={() => setActiveFilter(cat)} className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeFilter === cat ? 'bg-red-600 text-white shadow-lg' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'}`}>{cat}</button>
-                        ))}
-                    </div>
-                </section>
-
-                {/* GRID */}
-                <section className="w-11/12 mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {filteredProjects.map((project, index) => (
-                            <div key={index} onClick={() => setSelectedProject(project)} className="group cursor-pointer bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:-translate-y-3">
-                                <div className="relative h-64 w-full overflow-hidden">
-                                    <Image src={project.image} alt={project.title} layout="fill" objectFit="cover" className="transition-transform duration-700 group-hover:scale-110" />
-                                    <div className="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">{project.category}</div>
+                {/* ROWS BY PROJECT TYPE */}
+                <section className="w-11/12 mx-auto space-y-14">
+                    {projectTypes.map((type) => {
+                        const rowProjects = filteredProjects.filter(p => p.type === type);
+                        if (rowProjects.length === 0) return null;
+                        return (
+                            <div key={type}>
+                                <div className="flex items-end justify-between mb-5 px-1">
+                                    <div>
+                                        <h2 className="text-2xl md:text-3xl font-black text-gray-900 uppercase tracking-tighter">{type}</h2>
+                                        <div className="h-1 w-16 bg-red-500 rounded-full mt-2"></div>
+                                    </div>
+                                    <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{rowProjects.length} {rowProjects.length === 1 ? 'project' : 'projects'}</span>
                                 </div>
-                                <div className="p-8">
-                                    <h3 className="text-xs font-black text-red-500 uppercase tracking-widest mb-2">{project.title}</h3>
-                                    <h2 className="text-xl font-extrabold text-gray-900 leading-tight mb-4 group-hover:text-red-600 transition-colors">{project.fullTitle}</h2>
-                                    <p className="text-sm text-gray-500 leading-relaxed italic border-l-4 border-red-500 pl-4">Click to view details</p>
+                                <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pt-2 pb-8 px-1">
+                                    {rowProjects.map((project) => (
+                                        <div key={project.title} onClick={() => openProject(project)} className="group snap-start flex-shrink-0 w-[85%] sm:w-80 lg:w-96 cursor-pointer bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:-translate-y-2">
+                                            <div className="relative h-56 w-full overflow-hidden">
+                                                {project.image ? (
+                                                    <Image src={project.image} alt={project.title} layout="fill" objectFit="cover" className="transition-transform duration-700 group-hover:scale-110" />
+                                                ) : (
+                                                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 to-indigo-600 flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
+                                                        <span className="text-white/90 text-3xl font-black uppercase tracking-tighter text-center px-6">{project.title}</span>
+                                                    </div>
+                                                )}
+                                                <div className="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">{project.category}</div>
+                                            </div>
+                                            <div className="p-8">
+                                                <h3 className="text-xs font-black text-red-500 uppercase tracking-widest mb-2">{project.title}</h3>
+                                                <h2 className="text-xl font-extrabold text-gray-900 leading-tight mb-4 group-hover:text-red-600 transition-colors">{project.fullTitle}</h2>
+                                                <p className="text-sm text-gray-500 leading-relaxed italic border-l-4 border-red-500 pl-4">Click to view details</p>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        );
+                    })}
+                    {filteredProjects.length === 0 && (
+                        <p className="text-center text-gray-400 font-bold py-20">No projects match your search.</p>
+                    )}
                 </section>
             </main>
 
@@ -110,8 +111,25 @@ const Project: NextPage = () => {
                     <div className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
                         <button className="absolute top-5 right-5 z-[110] bg-red-600 text-white w-10 h-10 rounded-full font-bold shadow-lg" onClick={() => setSelectedProject(null)}>✕</button>
                         <div className="flex flex-col lg:flex-row">
-                            <div className="relative w-full lg:w-2/3 h-[300px] lg:h-[600px]">
-                                <Image src={selectedProject.image} layout="fill" objectFit="contain" className="bg-gray-100" alt="Full Preview" />
+                            <div className="w-full lg:w-2/3 flex flex-col bg-gray-100">
+                                <div className="relative w-full h-[300px] lg:h-[600px]">
+                                    {(activeImage || selectedProject.image) ? (
+                                        <Image src={activeImage || selectedProject.image} layout="fill" objectFit="contain" alt="Full Preview" />
+                                    ) : (
+                                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 to-indigo-600 flex items-center justify-center">
+                                            <span className="text-white/90 text-5xl font-black uppercase tracking-tighter text-center px-10">{selectedProject.fullTitle}</span>
+                                        </div>
+                                    )}
+                                </div>
+                                {selectedProject.gallery && (
+                                    <div className="flex gap-2 p-3 overflow-x-auto bg-gray-900">
+                                        {selectedProject.gallery.map((src: string) => (
+                                            <button key={src} onClick={() => setActiveImage(src)} className={`relative flex-shrink-0 w-24 h-14 rounded-lg overflow-hidden border-2 transition-all ${activeImage === src ? 'border-red-500' : 'border-transparent opacity-60 hover:opacity-100'}`}>
+                                                <Image src={src} layout="fill" objectFit="cover" alt={`${selectedProject.title} screenshot`} />
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                             <div className="w-full lg:w-1/3 p-10 flex flex-col justify-center bg-white">
                                 <span className="text-red-500 text-xs font-black uppercase tracking-widest mb-4">{selectedProject.category}</span>

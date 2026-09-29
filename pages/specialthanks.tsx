@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import Navigation from '../components/nav'
 import Head from 'next/head'
 import Footer from '../components/footer'
+import PageHero from '../components/PageHero'
 
 const Specialthanks: NextPage = () => {
     const thanksItems = [
@@ -22,25 +22,13 @@ const Specialthanks: NextPage = () => {
                 <title>Special Thanks | ElevatED by Code</title>
                 <link rel="icon" href="/edLogo.png" />
             </Head>
-            <Navigation />
 
             <main className="flex-grow pb-24">
                 {/* HERO SECTION */}
-                <div className="bg-gradient-to-r from-teal-600 to-emerald-600 py-32 text-white text-center shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-full bg-white/5 opacity-50 blur-3xl"></div>
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
-                    <div className="relative z-10 w-11/12 md:w-10/12 mx-auto">
-                        <span className="text-emerald-200 font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Gratitude & Acknowledgments</span>
-                        <h1 className='text-4xl md:text-5xl font-black uppercase tracking-tighter drop-shadow-2xl'>Special Thanks</h1>
-                        <div className="h-1.5 w-32 bg-white mx-auto my-6 rounded-full shadow-lg"></div>
-                        <p className="text-sm md:text-lg font-light tracking-[0.2em] opacity-90 uppercase max-w-2xl mx-auto italic">
-                            The technologies, institutions, and platforms that made this portfolio and journey possible.
-                        </p>
-                    </div>
-                </div>
+                <PageHero eyebrow="Gratitude & Acknowledgments" title="Special Thanks" subtitle="The technologies, institutions, and platforms that made this portfolio and journey possible." />
 
                 {/* CONTENT GRID */}
-                <section className="w-11/12 md:w-10/12 mx-auto mt-[-3rem] relative z-20 bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border border-gray-100">
+                <section className="w-11/12 md:w-10/12 mx-auto mt-12 relative z-20 bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border border-gray-100">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
                             Key Contributors & Platforms

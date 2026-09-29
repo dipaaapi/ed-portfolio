@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head';
-import Navigation from '../components/nav';
 import Footer from '../components/footer';
+import PageHero from '../components/PageHero'
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 
@@ -62,18 +62,10 @@ const Education = () => {
                 <title>Educational Journey Page | ElevatED by Code | IllustratED by Design</title>
                 <link rel="icon" href="/edLogo.png" />
             </Head>
-            <Navigation />
 
             <main className='scroll-smooth bg-gray-50 pb-20'>
                 {/* HERO HEADER */}
-                <div className="bg-gradient-to-r from-gray-900 via-red-800 to-gray-900 py-32 text-white text-center shadow-2xl relative overflow-hidden">
-                    <div className="absolute inset-0 bg-white/5 opacity-50 blur-3xl"></div>
-                    <div className="relative z-10">
-                        <h1 className='text-4xl md:text-5xl font-black uppercase tracking-tighter drop-shadow-2xl'>Educational Journey</h1>
-                        <div className="h-1.5 w-32 bg-red-500 mx-auto my-6 rounded-full shadow-lg"></div>
-                        <p className="text-lg font-light tracking-[0.3em] opacity-90 uppercase">Academic & Professional Foundation</p>
-                    </div>
-                </div>
+                <PageHero eyebrow="Education" title="Educational Journey" subtitle="Academic & Professional Foundation" />
 
                 {/* 2. AUTO-PLAY CAROUSEL SECTION */}
                 <section className="w-full relative z-20 mt-8 mb-20 overflow-hidden">

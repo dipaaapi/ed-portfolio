@@ -9,8 +9,9 @@ const Footer = () => {
     ];
 
     return (
-        <footer className='bg-gray-900 text-white border-t-4 border-red-600'>            
-            <div className="w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 py-12">
+        <footer className='footer-curve relative z-10 -mt-6 md:-mt-14 bg-gray-900 text-white border-t-4 border-red-600 overflow-hidden'>
+            {/* Pulled up by the curve's depth (1.5rem / 3.5rem, see .footer-curve) so the arch overlaps the section above instead of leaving a gap */}
+            <div className="w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 pt-16 md:pt-20 pb-12">
                 
                 {/* 1. CONTACTS SECTION */}
                 <div className="space-y-6">
@@ -81,7 +82,7 @@ const Footer = () => {
             {/* COPYRIGHT BAR */}
             <div className="bg-black py-4">
                 <div className="w-10/12 mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase font-bold text-gray-600 tracking-[0.3em]">
-                    <p>© 2025 Ed Cabrera Portfolio | All Rights Reserved</p>
+                    <p>© 2018&ndash;{new Date().getFullYear()} Ed Cabrera Portfolio | All Rights Reserved</p>
                     <p className="mt-2 md:mt-0">Designed & Developed by Ed Cabrera</p>
                 </div>
             </div>
