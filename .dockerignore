@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.vscode
+.claude
+*.tsbuildinfo
+npm-debug.log*
+diff_output.txt
+Dockerfile
+docker-compose.yml
+.env*.local

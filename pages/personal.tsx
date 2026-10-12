@@ -52,7 +52,7 @@ const Personal: NextPage = () => {
                         <div className="relative group">
                             <div className="absolute -inset-1 bg-red-500 rounded-full opacity-40 group-hover:opacity-70 blur transition duration-500"></div>
                             <div className="relative w-[88px] h-[88px] rounded-full border-2 border-white/80 overflow-hidden shadow-2xl">
-                                <Image src="/ed2025.jpg" layout="fill" objectFit="cover" priority alt="ed picture" />
+                                <Image src="/ed2025.jpg" fill style={{ objectFit: 'cover' }} priority alt="ed picture" />
                             </div>
                         </div>
                     }

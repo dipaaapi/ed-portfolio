@@ -75,7 +75,7 @@ const AboutMe: NextPage = () => {
                                     className="group relative block w-full h-full rounded-[1.75rem] overflow-hidden shadow-xl bg-gray-200 text-left focus:outline-none focus:ring-4 focus:ring-red-500/40"
                                     aria-label={`Open ${item.title}`}
                                 >
-                                    <Image src={item.src} layout="fill" objectFit="cover" objectPosition={item.position} alt={item.title} className="group-hover:scale-105 transition-transform duration-700" />
+                                    <Image src={item.src} fill style={{ objectFit: 'cover' }} objectPosition={item.position} alt={item.title} className="group-hover:scale-105 transition-transform duration-700" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent"></div>
                                     <span className={`absolute top-4 left-4 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full backdrop-blur-md border ${item.tag === 'Achievement' ? 'bg-red-600/80 border-red-400/50 text-white' : 'bg-white/20 border-white/30 text-white'}`}>{item.tag}</span>
                                     <div className="absolute bottom-0 left-0 right-0 p-5">
@@ -103,11 +103,12 @@ const AboutMe: NextPage = () => {
                                 ))}
                             </dl>
                             <div className="mt-auto pt-6">
-                                <Link href="/personal">
-                                    <a className="inline-flex items-center gap-2 bg-gray-900 hover:bg-red-600 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full transition-colors">
-                                        Full profile
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                                    </a>
+                                <Link
+                                    href="/personal"
+                                    className="inline-flex items-center gap-2 bg-gray-900 hover:bg-red-600 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full transition-colors">
+                                    Full profile
+                                                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+
                                 </Link>
                             </div>
                         </div>
@@ -143,7 +144,7 @@ const AboutMe: NextPage = () => {
                             </button>
                         </div>
                         <div className="relative flex-grow rounded-2xl overflow-hidden">
-                            <Image key={current.src} src={current.src} layout="fill" objectFit="contain" alt={current.title} className="role-in" />
+                            <Image key={current.src} src={current.src} fill style={{ objectFit: 'contain' }} alt={current.title} className="role-in" />
                         </div>
                         <button onClick={() => step(-1)} className="absolute left-2 top-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-md text-white flex items-center justify-center transition-colors" aria-label="Previous photo">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
@@ -157,7 +158,7 @@ const AboutMe: NextPage = () => {
 
             <Footer />
         </div>
-    )
+    );
 }
 
 export default AboutMe;

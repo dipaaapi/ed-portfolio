@@ -165,7 +165,7 @@ const Hobbies: NextPage = () => {
                             {filteredGames.map((game, i) => (
                                 <div key={i} onClick={() => setSelectedGame(game)} className="group relative block h-48 rounded-[2rem] overflow-hidden bg-gray-50 shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:-translate-y-3 cursor-pointer">
                                     <div className="absolute inset-0 flex items-center justify-center p-8 transition-all duration-500 group-hover:opacity-10 group-hover:scale-95 grayscale group-hover:grayscale-0">
-                                        <Image src={game.img} alt={game.name} width={180} height={100} objectFit="contain" />
+                                        <Image src={game.img} alt={game.name} width={180} height={100} style={{ objectFit: 'contain' }} />
                                     </div>
                                     <div className="absolute inset-0 bg-indigo-900/95 translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm">
                                         <h3 className="text-white font-black text-xl uppercase tracking-tight mb-2 drop-shadow-md">{game.name}</h3>
@@ -203,7 +203,7 @@ const Hobbies: NextPage = () => {
                                     {Array(8).fill(filteredAnimes).flat().map((anime, i) => (
                                         <div key={i} onClick={() => setSelectedAnime(anime)} className="min-w-[260px] md:min-w-[340px] snap-center group cursor-pointer inline-block">
                                             <div className="relative h-[380px] md:h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group-hover:border-blue-500 transition-all duration-700 group-hover:-translate-y-4">
-                                                <Image src={anime.img} alt={anime.name} layout="fill" objectFit="cover" className="group-hover:scale-110 transition-transform duration-1000 opacity-80 group-hover:opacity-100" />
+                                                <Image src={anime.img} alt={anime.name} fill style={{ objectFit: 'cover' }} className="group-hover:scale-110 transition-transform duration-1000 opacity-80 group-hover:opacity-100" />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
                                                 <div className="absolute bottom-0 w-full p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
                                                     <div className="h-0.5 w-12 bg-blue-500 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -258,7 +258,7 @@ const Hobbies: NextPage = () => {
                         </button>
 
                         <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-xl mb-6 border border-gray-200">
-                            <Image src={selectedAnime.img} layout="fill" objectFit="cover" alt={selectedAnime.name} />
+                            <Image src={selectedAnime.img} fill style={{ objectFit: 'cover' }} alt={selectedAnime.name} />
                         </div>
 
                         <h3 className="text-3xl font-black text-center text-gray-900 uppercase tracking-tighter mb-2">{selectedAnime.name}</h3>
@@ -271,11 +271,9 @@ const Hobbies: NextPage = () => {
                             <p className="text-gray-700 leading-loose text-sm font-light">{selectedAnime.fullInfo}</p>
                         </div>
 
-                        <Link href={selectedAnime.link}>
-                            <a target="_blank" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl hover:shadow-blue-500/50 uppercase tracking-widest text-sm flex items-center gap-3">
-                                View Wikipedia
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </a>
+                        <Link href={selectedAnime.link} target="_blank" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl hover:shadow-blue-500/50 uppercase tracking-widest text-sm flex items-center gap-3">
+                            View Wikipedia
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </Link>
                     </div>
                 </div>
@@ -322,7 +320,7 @@ const Hobbies: NextPage = () => {
                         </button>
 
                         <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-inner mb-6 border border-gray-100 bg-gray-50 flex items-center justify-center p-6">
-                            <Image src={selectedGame.img} layout="fill" objectFit="contain" alt={selectedGame.name} className="p-4" />
+                            <Image src={selectedGame.img} fill style={{ objectFit: 'contain' }} alt={selectedGame.name} className="p-4" />
                         </div>
 
                         <h3 className="text-3xl font-black text-center text-gray-900 uppercase tracking-tighter mb-2">{selectedGame.name}</h3>
@@ -334,11 +332,9 @@ const Hobbies: NextPage = () => {
                             <p className="text-gray-700 leading-loose text-sm font-light">"{selectedGame.reason}"</p>
                         </div>
 
-                        <Link href={selectedGame.link}>
-                            <a target="_blank" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl hover:shadow-indigo-500/50 uppercase tracking-widest text-sm flex items-center gap-3">
-                                Visit Game Site
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </a>
+                        <Link href={selectedGame.link} target="_blank" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl hover:shadow-indigo-500/50 uppercase tracking-widest text-sm flex items-center gap-3">
+                            Visit Game Site
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </Link>
                     </div>
                 </div>
@@ -367,7 +363,7 @@ const Hobbies: NextPage = () => {
                 }
             `}</style>
         </div>
-    )
+    );
 }
 
 export default Hobbies;

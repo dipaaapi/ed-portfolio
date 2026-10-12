@@ -116,16 +116,19 @@ const Home: NextPage = () => {
               </p>
 
               <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-3">
-                <Link href="/projects">
-                  <a className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg shadow-red-600/30 transition-colors">
-                    Explore projects
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                  </a>
+                <Link
+                  href="/projects"
+                  className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg shadow-red-600/30 transition-colors">
+                  Explore projects
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+
                 </Link>
-                <Link href="/workxp">
-                  <a className="bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg transition-colors">
+                <Link
+                  href="/workxp"
+                  className="bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg transition-colors">
+                  
                     Experience &amp; CV
-                  </a>
+                  
                 </Link>
               </div>
 
@@ -148,7 +151,7 @@ const Home: NextPage = () => {
               <div className="relative mx-auto max-w-sm rounded-[2rem] bg-white/10 border border-white/20 backdrop-blur-xl backdrop-saturate-150 shadow-2xl p-6">
                 <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-white/20 via-transparent to-red-500/20 pointer-events-none"></div>
                 <div className="relative aspect-square w-full rounded-3xl overflow-hidden border border-white/20 shadow-xl">
-                  <Image src="/ed2025.jpg" layout="fill" objectFit="cover" priority alt="John Edward Cabrera" />
+                  <Image src="/ed2025.jpg" fill style={{ objectFit: 'cover' }} priority alt="John Edward Cabrera" />
                   <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-gray-900/60 backdrop-blur-md border border-white/15 rounded-full px-3 py-1.5">
                     <span className="relative flex w-2 h-2">
@@ -187,131 +190,145 @@ const Home: NextPage = () => {
 
             {/* PROJECTS: 2x2, collage of real project covers */}
             <Reveal className="md:col-span-2 lg:row-span-2 h-80 lg:h-full">
-              <Link href="/projects">
-                <a className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl bg-gray-900">
-                  <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 opacity-70 group-hover:opacity-90 transition-opacity duration-500">
-                    {projects.filter(p => p.image).slice(0, 4).map((p) => (
-                      <div key={p.title} className="relative overflow-hidden">
-                        <Image src={p.image!} layout="fill" objectFit="cover" alt="" className="group-hover:scale-110 transition-transform duration-700" />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 p-8">
-                    <span className="text-[10px] font-black uppercase tracking-widest bg-red-600 text-white px-3 py-1 rounded-full">{projects.length} projects</span>
-                    <h3 className="mt-4 text-3xl sm:text-4xl font-black uppercase tracking-tighter text-white">Project Gallery</h3>
-                    <p className="mt-2 text-sm text-gray-300 max-w-md">Games, tools, government systems, e-commerce and brand work.</p>
-                    <p className="mt-4 text-[10px] font-black uppercase tracking-widest text-red-400 group-hover:translate-x-2 transition-transform">Browse projects &rarr;</p>
-                  </div>
-                </a>
+              <Link
+                href="/projects"
+                className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl bg-gray-900">
+
+                <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 opacity-70 group-hover:opacity-90 transition-opacity duration-500">
+                  {projects.filter(p => p.image).slice(0, 4).map((p) => (
+                    <div key={p.title} className="relative overflow-hidden">
+                      <Image src={p.image!} fill style={{ objectFit: 'cover' }} alt="" className="group-hover:scale-110 transition-transform duration-700" />
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 p-8">
+                  <span className="text-[10px] font-black uppercase tracking-widest bg-red-600 text-white px-3 py-1 rounded-full">{projects.length} projects</span>
+                  <h3 className="mt-4 text-3xl sm:text-4xl font-black uppercase tracking-tighter text-white">Project Gallery</h3>
+                  <p className="mt-2 text-sm text-gray-300 max-w-md">Games, tools, government systems, e-commerce and brand work.</p>
+                  <p className="mt-4 text-[10px] font-black uppercase tracking-widest text-red-400 group-hover:translate-x-2 transition-transform">Browse projects &rarr;</p>
+                </div>
+
               </Link>
             </Reveal>
 
             {/* SKILLS: 2x1, tech logos */}
             <Reveal delay={80} className="md:col-span-2 h-56 lg:h-full">
-              <Link href="/skills">
-                <a className="group relative flex flex-col justify-between h-full rounded-[2rem] p-7 bg-gray-900 shadow-xl overflow-hidden">
-                  <div className="absolute -top-16 -right-16 w-56 h-56 bg-blue-600 rounded-full blur-[90px] opacity-30"></div>
-                  <div className="relative flex flex-wrap gap-3">
-                    {['html5', 'css', 'javascript', 'react', 'next', 'php', 'laravel', 'figma'].map((logo, i) => (
-                      <div key={logo} style={{ transitionDelay: `${i * 40}ms` }} className="w-11 h-11 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center p-2 group-hover:-translate-y-1 group-hover:bg-white/15 transition-all">
-                        <Image src={`/${logo}.png`} width={28} height={28} objectFit="contain" alt={logo} />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="relative">
-                    <h3 className="text-2xl font-black uppercase tracking-tighter text-white">Technical Skills</h3>
-                    <p className="text-xs text-gray-400 mt-1">Front-end, back-end, UI/UX and TESDA-certified instruction.</p>
-                  </div>
-                </a>
+              <Link
+                href="/skills"
+                className="group relative flex flex-col justify-between h-full rounded-[2rem] p-7 bg-gray-900 shadow-xl overflow-hidden">
+
+                <div className="absolute -top-16 -right-16 w-56 h-56 bg-blue-600 rounded-full blur-[90px] opacity-30"></div>
+                <div className="relative flex flex-wrap gap-3">
+                  {['html5', 'css', 'javascript', 'react', 'next', 'php', 'laravel', 'figma'].map((logo, i) => (
+                    <div key={logo} style={{ transitionDelay: `${i * 40}ms` }} className="w-11 h-11 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center p-2 group-hover:-translate-y-1 group-hover:bg-white/15 transition-all">
+                      <Image src={`/${logo}.png`} width={28} height={28} style={{ objectFit: 'contain' }} alt={logo} />
+                    </div>
+                  ))}
+                </div>
+                <div className="relative">
+                  <h3 className="text-2xl font-black uppercase tracking-tighter text-white">Technical Skills</h3>
+                  <p className="text-xs text-gray-400 mt-1">Front-end, back-end, UI/UX and TESDA-certified instruction.</p>
+                </div>
+
               </Link>
             </Reveal>
 
             {/* EXPERIENCE: current role */}
             <Reveal delay={120} className="h-56 lg:h-full">
-              <Link href="/workxp">
-                <a className="group relative flex flex-col justify-between h-full rounded-[2rem] p-7 bg-gradient-to-br from-red-600 to-rose-700 text-white shadow-xl overflow-hidden">
-                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
-                  <span className="relative self-start text-[10px] font-black uppercase tracking-widest bg-white/15 border border-white/25 px-3 py-1 rounded-full">Now</span>
-                  <div className="relative">
-                    <h3 className="text-lg font-black uppercase tracking-tight leading-tight">Computer Instructor</h3>
-                    <p className="text-xs text-red-100 mt-1">Provincial Government of Camarines Sur</p>
-                    <p className="mt-3 text-[10px] font-black uppercase tracking-widest group-hover:translate-x-2 transition-transform">Career journey &rarr;</p>
-                  </div>
-                </a>
+              <Link
+                href="/workxp"
+                className="group relative flex flex-col justify-between h-full rounded-[2rem] p-7 bg-gradient-to-br from-red-600 to-rose-700 text-white shadow-xl overflow-hidden">
+
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                <span className="relative self-start text-[10px] font-black uppercase tracking-widest bg-white/15 border border-white/25 px-3 py-1 rounded-full">Now</span>
+                <div className="relative">
+                  <h3 className="text-lg font-black uppercase tracking-tight leading-tight">Computer Instructor</h3>
+                  <p className="text-xs text-red-100 mt-1">Provincial Government of Camarines Sur</p>
+                  <p className="mt-3 text-[10px] font-black uppercase tracking-widest group-hover:translate-x-2 transition-transform">Career journey &rarr;</p>
+                </div>
+
               </Link>
             </Reveal>
 
             {/* CERTIFICATIONS: Google badges */}
             <Reveal delay={160} className="h-56 lg:h-full">
-              <Link href="/certifications">
-                <a className="group flex flex-col justify-between h-full rounded-[2rem] p-7 bg-white border border-gray-100 shadow-xl hover:border-blue-300 transition-colors">
-                  <div className="flex -space-x-3">
-                    {['gemini_certified_educator', 'certified_educator_level1', 'certified_educator_level2'].map((b) => (
-                      <div key={b} className="relative w-14 h-14 rounded-full bg-white border-2 border-white shadow-md group-hover:-translate-y-1 transition-transform">
-                        <Image src={`/skills/${b}.png`} layout="fill" objectFit="contain" alt="" />
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black uppercase tracking-tight text-gray-900">Certifications</h3>
-                    <p className="text-xs text-gray-500 mt-1">Google, TESDA, DICT and more.</p>
-                  </div>
-                </a>
+              <Link
+                href="/certifications"
+                className="group flex flex-col justify-between h-full rounded-[2rem] p-7 bg-white border border-gray-100 shadow-xl hover:border-blue-300 transition-colors">
+
+                <div className="flex -space-x-3">
+                  {['gemini_certified_educator', 'certified_educator_level1', 'certified_educator_level2'].map((b) => (
+                    <div key={b} className="relative w-14 h-14 rounded-full bg-white border-2 border-white shadow-md group-hover:-translate-y-1 transition-transform">
+                      <Image src={`/skills/${b}.png`} fill style={{ objectFit: 'contain' }} alt="" />
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <h3 className="text-lg font-black uppercase tracking-tight text-gray-900">Certifications</h3>
+                  <p className="text-xs text-gray-500 mt-1">Google, TESDA, DICT and more.</p>
+                </div>
+
               </Link>
             </Reveal>
 
             {/* PERSONAL: photo */}
             <Reveal delay={80} className="h-56 lg:h-full">
-              <Link href="/personal">
-                <a className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl">
-                  <Image src="/ed2025.jpg" layout="fill" objectFit="cover" alt="John Edward Cabrera" className="group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-lg font-black uppercase tracking-tight text-white">Get to know me</h3>
-                    <p className="text-xs text-gray-300 mt-1">Based in Pili, Camarines Sur</p>
-                  </div>
-                </a>
+              <Link
+                href="/personal"
+                className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl">
+
+                <Image src="/ed2025.jpg" fill style={{ objectFit: 'cover' }} alt="John Edward Cabrera" className="group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 p-6">
+                  <h3 className="text-lg font-black uppercase tracking-tight text-white">Get to know me</h3>
+                  <p className="text-xs text-gray-300 mt-1">Based in Pili, Camarines Sur</p>
+                </div>
+
               </Link>
             </Reveal>
 
             {/* EDUCATION: school logos */}
             <Reveal delay={120} className="h-56 lg:h-full">
-              <Link href="/education">
-                <a className="group flex flex-col justify-between h-full rounded-[2rem] p-7 bg-white border border-gray-100 shadow-xl hover:border-red-300 transition-colors">
-                  <div className="flex gap-3">
-                    {['informatics', 'tesda'].map((logo) => (
-                      <div key={logo} className="relative w-14 h-14 rounded-2xl bg-gray-50 border border-gray-100 p-2 group-hover:-translate-y-1 transition-transform">
-                        <Image src={`/education/${logo}.png`} layout="fill" objectFit="contain" alt="" />
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black uppercase tracking-tight text-gray-900">Education</h3>
-                    <p className="text-xs text-gray-500 mt-1">Informatics College Manila and TESDA vocational training.</p>
-                  </div>
-                </a>
+              <Link
+                href="/education"
+                className="group flex flex-col justify-between h-full rounded-[2rem] p-7 bg-white border border-gray-100 shadow-xl hover:border-red-300 transition-colors">
+
+                <div className="flex gap-3">
+                  {['informatics', 'tesda'].map((logo) => (
+                    <div key={logo} className="relative w-14 h-14 rounded-2xl bg-gray-50 border border-gray-100 p-2 group-hover:-translate-y-1 transition-transform">
+                      <Image src={`/education/${logo}.png`} fill style={{ objectFit: 'contain' }} alt="" />
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <h3 className="text-lg font-black uppercase tracking-tight text-gray-900">Education</h3>
+                  <p className="text-xs text-gray-500 mt-1">Informatics College Manila and TESDA vocational training.</p>
+                </div>
+
               </Link>
             </Reveal>
 
             {/* HOBBIES: 2x1, anime art strip */}
             <Reveal delay={160} className="md:col-span-2 h-56 lg:h-full">
-              <Link href="/hobbies">
-                <a className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl bg-indigo-900">
-                  <div className="absolute inset-0 flex">
-                    {['onepiece.jpg', 'kimetsunoYaiba.jpg', 'fullmetal.jpg', 'drstone.jpg'].map((img) => (
-                      <div key={img} className="relative flex-1 overflow-hidden">
-                        <Image src={`/hobbies/anime/${img}`} layout="fill" objectFit="cover" alt="" className="group-hover:scale-110 transition-transform duration-700" />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 via-indigo-900/80 to-indigo-900/20"></div>
-                  <div className="absolute inset-y-0 left-0 p-7 flex flex-col justify-end">
-                    <h3 className="text-2xl font-black uppercase tracking-tighter text-white">Off the clock</h3>
-                    <p className="text-xs text-indigo-200 mt-1">Games, anime and manga that fuel the design side.</p>
-                    <p className="mt-3 text-[10px] font-black uppercase tracking-widest text-indigo-300 group-hover:translate-x-2 transition-transform">See hobbies &rarr;</p>
-                  </div>
-                </a>
+              <Link
+                href="/hobbies"
+                className="group relative block h-full rounded-[2rem] overflow-hidden shadow-xl bg-indigo-900">
+
+                <div className="absolute inset-0 flex">
+                  {['onepiece.jpg', 'kimetsunoYaiba.jpg', 'fullmetal.jpg', 'drstone.jpg'].map((img) => (
+                    <div key={img} className="relative flex-1 overflow-hidden">
+                      <Image src={`/hobbies/anime/${img}`} fill style={{ objectFit: 'cover' }} alt="" className="group-hover:scale-110 transition-transform duration-700" />
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 via-indigo-900/80 to-indigo-900/20"></div>
+                <div className="absolute inset-y-0 left-0 p-7 flex flex-col justify-end">
+                  <h3 className="text-2xl font-black uppercase tracking-tighter text-white">Off the clock</h3>
+                  <p className="text-xs text-indigo-200 mt-1">Games, anime and manga that fuel the design side.</p>
+                  <p className="mt-3 text-[10px] font-black uppercase tracking-widest text-indigo-300 group-hover:translate-x-2 transition-transform">See hobbies &rarr;</p>
+                </div>
+
               </Link>
             </Reveal>
           </div>
@@ -327,22 +344,27 @@ const Home: NextPage = () => {
             {featured.length === 0 ? (
               [0, 1].map((i) => <div key={i} className="h-80 rounded-3xl bg-gray-200 animate-pulse"></div>)
             ) : featured.map((project) => (
-              <Link key={project.title} href={{ pathname: '/projects', query: { project: project.title } }}>
-                <a className="group relative h-80 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 block border border-gray-100">
-                  <Image src={project.image!} layout="fill" objectFit="cover" alt={project.title} className="transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                  <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                    <span className="text-red-400 font-black text-[10px] uppercase tracking-widest bg-white/10 backdrop-blur-md px-3 py-1 rounded-full mb-3 inline-block">{project.type} &middot; {project.category}</span>
-                    <h3 className="text-white text-2xl font-black uppercase tracking-tight mb-2">{project.fullTitle}</h3>
-                    <p className="text-gray-300 text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{project.description}</p>
-                  </div>
-                </a>
+              <Link
+                key={project.title}
+                href={{ pathname: '/projects', query: { project: project.title } }}
+                className="group relative h-80 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 block border border-gray-100">
+
+                <Image src={project.image!} fill style={{ objectFit: 'cover' }} alt={project.title} className="transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                  <span className="text-red-400 font-black text-[10px] uppercase tracking-widest bg-white/10 backdrop-blur-md px-3 py-1 rounded-full mb-3 inline-block">{project.type} &middot; {project.category}</span>
+                  <h3 className="text-white text-2xl font-black uppercase tracking-tight mb-2">{project.fullTitle}</h3>
+                  <p className="text-gray-300 text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{project.description}</p>
+                </div>
+
               </Link>
             ))}
           </div>
           <div className="text-center mt-12">
-            <Link href="/projects">
-              <a className="inline-block bg-gray-900 hover:bg-red-600 text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full shadow-lg transition-colors">View all projects</a>
+            <Link
+              href="/projects"
+              className="inline-block bg-gray-900 hover:bg-red-600 text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full shadow-lg transition-colors">
+              View all projects
             </Link>
           </div>
         </section>
@@ -399,11 +421,12 @@ const Home: NextPage = () => {
             </form>
 
             <div className="flex justify-center mt-12 mb-8">
-              <Link href="/specialthanks">
-                <a className="inline-flex items-center gap-3 px-8 py-4 bg-gray-800 hover:bg-emerald-600 text-white font-black uppercase tracking-widest rounded-full transition-all duration-300 shadow-xl border border-gray-700 hover:border-emerald-500 hover:scale-105">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                  View Project Acknowledgments
-                </a>
+              <Link
+                href="/specialthanks"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gray-800 hover:bg-emerald-600 text-white font-black uppercase tracking-widest rounded-full transition-all duration-300 shadow-xl border border-gray-700 hover:border-emerald-500 hover:scale-105">
+
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>View Project Acknowledgments
+                                
               </Link>
             </div>
           </div>
@@ -457,10 +480,9 @@ const Home: NextPage = () => {
 
       </main>
 
-
       <Footer />
     </div>
-  )
+  );
 }
 
 export default Home;

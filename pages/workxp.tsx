@@ -118,16 +118,16 @@ const WorkXP = () => {
                                         <Image
                                             src={job.logoSquare}
                                             alt={job.company}
-                                            layout='fill'
-                                            objectFit='contain'
+                                            fill
+                                            style={{ objectFit: 'contain' }}
                                             className="p-4 transition-all duration-500 group-hover:opacity-0 group-hover:scale-50"
                                         />
                                         {/* Landscape Logo - Hover */}
                                         <Image
                                             src={job.logoLandscape}
                                             alt={job.company}
-                                            layout='fill'
-                                            objectFit='contain'
+                                            fill
+                                            style={{ objectFit: 'contain' }}
                                             className="p-4 opacity-0 scale-150 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100"
                                         />
                                     </div>

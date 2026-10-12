@@ -67,8 +67,7 @@ const Navigation = () => {
                 <div className='flex items-center justify-between gap-3 py-2 pl-3 pr-2 sm:pl-4 sm:pr-3'>
 
                     {/* LOGO & BRAND */}
-                    <Link href="/">
-                        <a className='flex items-center group flex-shrink-0'>
+                    <Link href="/" className='flex items-center group flex-shrink-0'>
                             <div className="relative p-1 rounded-xl transition-all duration-300 group-hover:bg-white/80 group-hover:shadow-md">
                                 <Image
                                     src="/edLogo.png"
@@ -82,19 +81,16 @@ const Navigation = () => {
                                 <p className="text-xs uppercase font-black tracking-tighter text-red-600">Ed Cabrera</p>
                                 <p className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">Est. 2018</p>
                             </div>
-                        </a>
                     </Link>
 
                     {/* DESKTOP LINKS */}
                     <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-gray-900/5 border border-white/60 text-[10px] font-black uppercase tracking-widest">
                         {navLinks.map(({ href, label }) => (
-                            <Link key={href} href={href}>
-                                <a aria-current={isActive(href) ? 'page' : undefined} className={`px-4 py-2 rounded-full transition-all duration-300 ${isActive(href)
-                                    ? 'bg-white text-red-600 shadow-md shadow-gray-900/10'
-                                    : 'text-gray-500 hover:text-gray-900 hover:bg-white/60'
-                                    }`}>
-                                    {label}
-                                </a>
+                            <Link key={href} href={href} aria-current={isActive(href) ? 'page' : undefined} className={`px-4 py-2 rounded-full transition-all duration-300 ${isActive(href)
+                                ? 'bg-white text-red-600 shadow-md shadow-gray-900/10'
+                                : 'text-gray-500 hover:text-gray-900 hover:bg-white/60'
+                                }`}>
+                                {label}
                             </Link>
                         ))}
                     </div>
@@ -103,7 +99,7 @@ const Navigation = () => {
                     <div className="flex items-center gap-2">
                         <div className="font-mono text-[11px] md:text-xs bg-gray-900/90 text-white px-3 sm:px-4 py-2 rounded-full shadow-lg flex items-center gap-2 sm:gap-3 border border-gray-700">
                             <div className="relative w-5 h-3 overflow-hidden rounded-sm flex-shrink-0">
-                                <Image src="/flag.gif" layout="fill" objectFit="cover" alt="PH Flag" />
+                                <Image src="/flag.gif" fill style={{ objectFit: 'cover' }} alt="PH Flag" />
                             </div>
                             <span className="tracking-widest whitespace-nowrap">
                                 {isMounted ? formatPST(time) : "00:00:00 AM"}
@@ -129,14 +125,12 @@ const Navigation = () => {
                 <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-[28rem] opacity-100' : 'max-h-0 opacity-0'}`}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 border-t border-white/60 p-2 text-xs font-black uppercase tracking-widest">
                         {navLinks.map(({ href, label }) => (
-                            <Link key={href} href={href}>
-                                <a aria-current={isActive(href) ? 'page' : undefined} className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${isActive(href)
-                                    ? 'bg-white text-red-600 shadow-md shadow-gray-900/10'
-                                    : 'text-gray-600 hover:bg-white/60 hover:text-gray-900'
-                                    }`}>
-                                    {label}
-                                    {isActive(href) && <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>}
-                                </a>
+                            <Link key={href} href={href} aria-current={isActive(href) ? 'page' : undefined} className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${isActive(href)
+                                ? 'bg-white text-red-600 shadow-md shadow-gray-900/10'
+                                : 'text-gray-600 hover:bg-white/60 hover:text-gray-900'
+                                }`}>
+                                {label}
+                                {isActive(href) && <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>}
                             </Link>
                         ))}
                     </div>

@@ -216,7 +216,7 @@ const Certifications: NextPage = () => {
                                                                 <div className={`mt-3 h-2 w-14 rounded-full ${s.soft}`}></div>
                                                             </div>
                                                         ) : (
-                                                            <Image src={doc.file} layout="fill" objectFit="cover" objectPosition="top" alt="" />
+                                                            <Image src={doc.file} fill style={{ objectFit: 'cover' }} objectPosition="top" alt="" />
                                                         )}
                                                     </div>
                                                     <span className="absolute top-3 left-3 text-[9px] font-black uppercase tracking-widest bg-white/20 backdrop-blur-md border border-white/30 text-white px-2.5 py-1 rounded-full">{doc.type === 'pdf' ? 'PDF' : 'Image'}</span>
@@ -275,8 +275,8 @@ const Certifications: NextPage = () => {
                                 <div className="relative w-full h-full bg-white rounded-2xl shadow-inner border border-gray-300 overflow-hidden flex items-center justify-center">
                                     <Image
                                         src={selectedDocument.file}
-                                        layout="fill"
-                                        objectFit="contain"
+                                        fill
+                                        style={{ objectFit: 'contain' }}
                                         alt={selectedDocument.title}
                                     />
                                 </div>

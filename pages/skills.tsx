@@ -25,10 +25,13 @@ const BuiltWith = ({ keywords, dark = false }: { keywords?: string[], dark?: boo
             <h4 className={`font-black uppercase tracking-widest text-xs mb-3 ${dark ? 'text-blue-400' : 'text-red-600'}`}>Built with this ({used.length})</h4>
             <div className="flex flex-wrap gap-2">
                 {used.map((p) => (
-                    <Link key={p.title} href={{ pathname: '/projects', query: { project: p.title } }}>
-                        <a className={`text-[10px] font-bold uppercase tracking-widest px-3 py-2 rounded-full border transition-colors ${dark ? 'border-white/15 bg-white/5 text-gray-200 hover:bg-blue-500 hover:border-blue-500 hover:text-white' : 'border-gray-200 bg-gray-50 text-gray-600 hover:bg-red-600 hover:border-red-600 hover:text-white'}`}>
-                            {p.title} &rarr;
-                        </a>
+                    <Link
+                        key={p.title}
+                        href={{ pathname: '/projects', query: { project: p.title } }}
+                        className={`text-[10px] font-bold uppercase tracking-widest px-3 py-2 rounded-full border transition-colors ${dark ? 'border-white/15 bg-white/5 text-gray-200 hover:bg-blue-500 hover:border-blue-500 hover:text-white' : 'border-gray-200 bg-gray-50 text-gray-600 hover:bg-red-600 hover:border-red-600 hover:text-white'}`}>
+
+                        {p.title}→
+                                                
                     </Link>
                 ))}
             </div>
@@ -274,7 +277,7 @@ const Skills: NextPage = () => {
                                         <Reveal key={skill.name} delay={index * 60}>
                                             <button onClick={() => setSelectedWebSkill(skill)} className="w-full flex flex-col items-center group cursor-pointer relative focus:outline-none">
                                                 <div className="relative w-24 h-24 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-blue-500 group-focus:border-blue-500 group-hover:bg-blue-500/10 transition-all duration-500 p-4 shadow-lg group-hover:shadow-blue-500/30 group-hover:-translate-y-3">
-                                                    <Image src={skill.image} width={60} height={60} objectFit="contain" alt={skill.name} className="group-hover:scale-110 transition-transform" />
+                                                    <Image src={skill.image} width={60} height={60} style={{ objectFit: 'contain' }} alt={skill.name} className="group-hover:scale-110 transition-transform" />
                                                     {usedIn > 0 && (
                                                         <span className="absolute -top-2 -right-2 min-w-[1.5rem] h-6 px-1.5 rounded-full bg-blue-500 text-white text-[10px] font-black flex items-center justify-center shadow-lg shadow-blue-500/40" title={`Used in ${usedIn} projects`}>{usedIn}</span>
                                                     )}
@@ -297,7 +300,7 @@ const Skills: NextPage = () => {
                         <div className="w-10/12 mx-auto relative z-10 flex flex-col md:flex-row gap-12 items-center">
                             <div className="md:w-1/3 flex justify-center flex-shrink-0">
                                 <div className="relative w-48 h-48 drop-shadow-[0_0_20px_rgba(99,102,241,0.5)]">
-                                    <Image src="/unityBadge.png" layout="fill" objectFit="contain" alt="Unity Certified Associate Badge" />
+                                    <Image src="/unityBadge.png" fill style={{ objectFit: 'contain' }} alt="Unity Certified Associate Badge" />
                                 </div>
                             </div>
                             <div className="md:w-2/3 text-center md:text-left">
@@ -319,20 +322,22 @@ const Skills: NextPage = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {games.map((game, index) => (
                                     <Reveal key={game.title} delay={index * 120}>
-                                        <Link href={{ pathname: '/projects', query: { project: game.title } }}>
-                                            <a className="group relative block h-56 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                                                <Image src={game.image!} layout="fill" objectFit="cover" alt={game.fullTitle} className="transition-transform duration-700 group-hover:scale-110" />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-indigo-900 via-indigo-900/50 to-transparent"></div>
-                                                <div className="absolute bottom-0 left-0 p-6 w-full">
-                                                    <h3 className="text-white text-xl font-black uppercase tracking-tight">{game.fullTitle}</h3>
-                                                    <div className="flex flex-wrap gap-1.5 mt-2">
-                                                        {game.techStack?.slice(0, 3).map((t) => (
-                                                            <span key={t} className="text-[9px] font-bold uppercase tracking-widest bg-white/15 backdrop-blur-md text-indigo-100 px-2.5 py-1 rounded-full">{t}</span>
-                                                        ))}
-                                                    </div>
-                                                    <p className="text-indigo-200 text-[10px] font-black uppercase tracking-widest mt-3 group-hover:translate-x-2 transition-transform">View project &rarr;</p>
+                                        <Link
+                                            href={{ pathname: '/projects', query: { project: game.title } }}
+                                            className="group relative block h-56 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+
+                                            <Image src={game.image!} fill style={{ objectFit: 'cover' }} alt={game.fullTitle} className="transition-transform duration-700 group-hover:scale-110" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-indigo-900 via-indigo-900/50 to-transparent"></div>
+                                            <div className="absolute bottom-0 left-0 p-6 w-full">
+                                                <h3 className="text-white text-xl font-black uppercase tracking-tight">{game.fullTitle}</h3>
+                                                <div className="flex flex-wrap gap-1.5 mt-2">
+                                                    {game.techStack?.slice(0, 3).map((t) => (
+                                                        <span key={t} className="text-[9px] font-bold uppercase tracking-widest bg-white/15 backdrop-blur-md text-indigo-100 px-2.5 py-1 rounded-full">{t}</span>
+                                                    ))}
                                                 </div>
-                                            </a>
+                                                <p className="text-indigo-200 text-[10px] font-black uppercase tracking-widest mt-3 group-hover:translate-x-2 transition-transform">View project &rarr;</p>
+                                            </div>
+
                                         </Link>
                                     </Reveal>
                                 ))}
@@ -356,7 +361,7 @@ const Skills: NextPage = () => {
                                 <Reveal key={index} delay={index * 100} className="h-full">
                                     <a href={badge.link} target="_blank" rel="noreferrer" className="group p-8 bg-white rounded-[2.5rem] border border-gray-100 hover:border-blue-300 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-3 transition-all duration-300 flex flex-col items-center text-center h-full">
                                         <div className="relative w-24 h-24 mb-6">
-                                            <Image src={badge.badgeImage} layout="fill" objectFit="contain" alt={badge.title} />
+                                            <Image src={badge.badgeImage} fill style={{ objectFit: 'contain' }} alt={badge.title} />
                                         </div>
                                         <h4 className="font-black text-blue-900 mb-3 text-lg uppercase tracking-tighter leading-tight">{badge.title}</h4>
                                         <div className="flex flex-wrap justify-center gap-1 mb-6">
@@ -440,7 +445,7 @@ const Skills: NextPage = () => {
                                     <Reveal key={skill.name} delay={index * 60} className="h-full">
                                         <button onClick={() => setSelectedSoftware(skill)} className="w-full h-full flex flex-col items-center group bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-400 transition-all duration-500 hover:-translate-y-3 cursor-pointer relative">
                                             <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-white transition-all duration-500 mb-4 grayscale group-hover:grayscale-0 group-hover:scale-110 flex items-center justify-center w-20 h-20 shadow-inner group-hover:shadow-md">
-                                                <Image src={skill.image} width={50} height={50} objectFit="contain" alt={skill.name} />
+                                                <Image src={skill.image} width={50} height={50} style={{ objectFit: 'contain' }} alt={skill.name} />
                                             </div>
                                             <p className="mt-3 text-[10px] font-black uppercase text-gray-400 tracking-widest group-hover:text-gray-900 transition-colors">{skill.name}</p>
                                             <p className="mt-1 text-[9px] font-bold uppercase tracking-widest text-gray-300 group-hover:text-red-500 transition-colors">{usedIn > 0 ? `${usedIn} ${usedIn === 1 ? 'project' : 'projects'}` : 'View details'}</p>
@@ -461,11 +466,15 @@ const Skills: NextPage = () => {
                             <h2 className="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">These skills built {projects.length} projects</h2>
                             <p className="text-gray-400 text-sm italic mt-4 max-w-xl mx-auto">From government systems and e-commerce to games and desktop tools. Browse the work, or reach out to build something together.</p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
-                                <Link href="/projects">
-                                    <a className="bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full shadow-lg shadow-red-600/30 transition-colors">Explore projects</a>
+                                <Link
+                                    href="/projects"
+                                    className="bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full shadow-lg shadow-red-600/30 transition-colors">
+                                    Explore projects
                                 </Link>
-                                <Link href="/certifications">
-                                    <a className="bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full transition-colors">View certifications</a>
+                                <Link
+                                    href="/certifications"
+                                    className="bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full transition-colors">
+                                    View certifications
                                 </Link>
                             </div>
                         </div>
@@ -479,7 +488,7 @@ const Skills: NextPage = () => {
                     <div className="relative w-full max-w-lg bg-gray-900 border border-gray-700 rounded-3xl overflow-hidden shadow-2xl p-8" onClick={(e) => e.stopPropagation()}>
                         <div className="flex justify-between items-start mb-6">
                             <div className="w-16 h-16 bg-indigo-900/50 rounded-2xl flex items-center justify-center border border-indigo-500/30 shadow-inner">
-                                <Image src="/unityBadge.png" width={40} height={40} objectFit="contain" alt="Unity Logo" />
+                                <Image src="/unityBadge.png" width={40} height={40} style={{ objectFit: 'contain' }} alt="Unity Logo" />
                             </div>
                             <button className="text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-full outline-none focus:ring-2 focus:ring-indigo-500" onClick={() => setSelectedUnitySkill(null)}>
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -504,7 +513,7 @@ const Skills: NextPage = () => {
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                         <div className="p-6 bg-gray-50 rounded-3xl mb-8 flex items-center justify-center w-32 h-32 shadow-inner border border-gray-100">
-                            <Image src={selectedSoftware.image} width={80} height={80} objectFit="contain" alt={selectedSoftware.name} />
+                            <Image src={selectedSoftware.image} width={80} height={80} style={{ objectFit: 'contain' }} alt={selectedSoftware.name} />
                         </div>
                         <h3 className="text-3xl font-black text-gray-900 uppercase tracking-tighter mb-4">{selectedSoftware.name}</h3>
                         <div className="h-1.5 w-16 bg-gray-400 rounded-full mb-8"></div>
@@ -548,7 +557,7 @@ const Skills: NextPage = () => {
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                         <div className="p-6 bg-white/5 rounded-3xl mb-8 flex items-center justify-center w-32 h-32 shadow-inner border border-white/5">
-                            <Image src={selectedWebSkill.image} width={80} height={80} objectFit="contain" alt={selectedWebSkill.name} />
+                            <Image src={selectedWebSkill.image} width={80} height={80} style={{ objectFit: 'contain' }} alt={selectedWebSkill.name} />
                         </div>
                         <h3 className="text-3xl font-black text-white uppercase tracking-tighter mb-4">{selectedWebSkill.name}</h3>
                         <div className="h-1.5 w-16 bg-blue-500 rounded-full mb-8"></div>
@@ -567,7 +576,7 @@ const Skills: NextPage = () => {
 
             <Footer />
         </div>
-    )
+    );
 }
 
 export default Skills;

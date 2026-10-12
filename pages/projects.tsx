@@ -80,7 +80,7 @@ const Project: NextPage = () => {
                                         <div key={project.title} onClick={() => openProject(project)} className="group snap-start flex-shrink-0 w-[85%] sm:w-80 lg:w-96 cursor-pointer bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:-translate-y-2">
                                             <div className="relative h-56 w-full overflow-hidden">
                                                 {project.image ? (
-                                                    <Image src={project.image} alt={project.title} layout="fill" objectFit="cover" className="transition-transform duration-700 group-hover:scale-110" />
+                                                    <Image src={project.image} alt={project.title} fill style={{ objectFit: 'cover' }} className="transition-transform duration-700 group-hover:scale-110" />
                                                 ) : (
                                                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 to-indigo-600 flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
                                                         <span className="text-white/90 text-3xl font-black uppercase tracking-tighter text-center px-6">{project.title}</span>
@@ -114,7 +114,7 @@ const Project: NextPage = () => {
                             <div className="w-full lg:w-2/3 flex flex-col bg-gray-100">
                                 <div className="relative w-full h-[300px] lg:h-[600px]">
                                     {(activeImage || selectedProject.image) ? (
-                                        <Image src={activeImage || selectedProject.image} layout="fill" objectFit="contain" alt="Full Preview" />
+                                        <Image src={activeImage || selectedProject.image} fill style={{ objectFit: 'contain' }} alt="Full Preview" />
                                     ) : (
                                         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 to-indigo-600 flex items-center justify-center">
                                             <span className="text-white/90 text-5xl font-black uppercase tracking-tighter text-center px-10">{selectedProject.fullTitle}</span>
@@ -125,7 +125,7 @@ const Project: NextPage = () => {
                                     <div className="flex gap-2 p-3 overflow-x-auto bg-gray-900">
                                         {selectedProject.gallery.map((src: string) => (
                                             <button key={src} onClick={() => setActiveImage(src)} className={`relative flex-shrink-0 w-24 h-14 rounded-lg overflow-hidden border-2 transition-all ${activeImage === src ? 'border-red-500' : 'border-transparent opacity-60 hover:opacity-100'}`}>
-                                                <Image src={src} layout="fill" objectFit="cover" alt={`${selectedProject.title} screenshot`} />
+                                                <Image src={src} fill style={{ objectFit: 'cover' }} alt={`${selectedProject.title} screenshot`} />
                                             </button>
                                         ))}
                                     </div>
