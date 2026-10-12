@@ -37,21 +37,46 @@ body {
     will-change: transform;
 }
 
-/* Brand logo animation (components/BrandLogo.tsx): a glass sheen sweeps across on load and on hover
-   of the wrapping `.group` link; the red 28 (the point of the ED! exclamation) pulses.
-.brand-animated .brand-shine { animation: brand-shine 1.4s 0.3s ease-out both; }
-.group:hover .brand-animated .brand-shine { animation: brand-shine 0.9s ease-out; }
-.brand-animated .brand-dot { transform-box: fill-box; transform-origin: center; animation: brand-dot 1.8s 1s ease-in-out infinite; }
+/* Brand logo animation (components/BrandLogo.tsx), one 3.2s loop:
+   the < > brackets squeeze in and squish ED!, release, then the red 28 (the point of the !)
+   pulses and sends out a warning ripple. */
+.brand-animated .brand-bracket-l,
+.brand-animated .brand-bracket-r,
+.brand-animated .brand-word,
+.brand-animated .brand-dot,
+.brand-animated .brand-ripple {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.brand-animated .brand-bracket-l { animation: brand-squeeze-l 3.2s ease-in-out infinite; }
+.brand-animated .brand-bracket-r { animation: brand-squeeze-r 3.2s ease-in-out infinite; }
+.brand-animated .brand-word { animation: brand-squish 3.2s ease-in-out infinite; }
+.brand-animated .brand-dot { animation: brand-dot 3.2s ease-in-out infinite; }
+.brand-animated .brand-ripple { opacity: 0; animation: brand-ripple 3.2s ease-out infinite; }
 
-@keyframes brand-shine { from { transform: skewX(-20deg) translateX(0); } to { transform: skewX(-20deg) translateX(340px); } }
+@keyframes brand-squeeze-l { 0%, 8%, 40%, 100% { transform: translateX(0); } 22%, 28% { transform: translateX(6px); } }
+@keyframes brand-squeeze-r { 0%, 8%, 40%, 100% { transform: translateX(0); } 22%, 28% { transform: translateX(-6px); } }
+@keyframes brand-squish {
+    0%, 8%, 46%, 100% { transform: scaleX(1); }
+    22%, 28% { transform: scaleX(0.86) scaleY(1.04); }
+    36% { transform: scaleX(1.04) scaleY(0.98); }
+}
 @keyframes brand-dot {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(239, 68, 68, 0)); }
-    50% { transform: scale(1.25); filter: drop-shadow(0 0 3px rgba(239, 68, 68, 0.95)); }
+    0%, 32%, 70%, 100% { transform: scale(1); filter: none; }
+    40%, 50% { transform: scale(1.4); filter: drop-shadow(0 0 3px rgba(239, 68, 68, 1)); }
+}
+@keyframes brand-ripple {
+    0%, 34% { opacity: 0; transform: scale(1); }
+    38% { opacity: 0.9; transform: scale(1); }
+    75%, 100% { opacity: 0; transform: scale(4); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .brand-animated .brand-shine,
-    .brand-animated .brand-dot { animation: none; }
+    .brand-animated .brand-bracket-l,
+    .brand-animated .brand-bracket-r,
+    .brand-animated .brand-word,
+    .brand-animated .brand-dot,
+    .brand-animated .brand-ripple { animation: none; }
 }
 
 /* Elliptical curve along the bottom edge of every page banner (PageHero + home hero). */
