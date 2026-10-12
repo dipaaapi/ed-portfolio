@@ -46,7 +46,7 @@ const BrandLogo = ({ className, animated = true }: { className?: string; animate
             {/* ED! */}
             <g className="brand-word">
                 <text x={30} y={44} fontSize={36} fontWeight={900} fill="#fff" textLength={74} lengthAdjust="spacingAndGlyphs" style={font}>ED</text>
-                <text transform="translate(122 39) rotate(-90)" fontSize={10.5} fontWeight={900} fill="#fff" fillOpacity="0.9" textLength={29} lengthAdjust="spacingAndGlyphs" style={font}>MASTER</text>
+                <text transform="translate(113 10) rotate(90)" fontSize={10.5} fontWeight={900} fill="#fff" fillOpacity="0.9" textLength={29} lengthAdjust="spacingAndGlyphs" style={font}>MASTER</text>
                 <text className="brand-dot" x={112} y={50} fontSize={8.5} fontWeight={900} fill="#ef4444" textLength={11} lengthAdjust="spacingAndGlyphs" style={font}>28</text>
             </g>
         </svg>
