@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import BrandLogo from './BrandLogo'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 
@@ -67,20 +68,8 @@ const Navigation = () => {
                 <div className='flex items-center justify-between gap-3 py-2 pl-3 pr-2 sm:pl-4 sm:pr-3'>
 
                     {/* LOGO & BRAND */}
-                    <Link href="/" className='flex items-center group flex-shrink-0'>
-                            <div className="relative p-1 rounded-xl transition-all duration-300 group-hover:bg-white/80 group-hover:shadow-md">
-                                <Image
-                                    src="/edLogo.png"
-                                    alt="Edward Logo"
-                                    width={40}
-                                    height={40}
-                                    className='flex-shrink-0 rounded-md'
-                                />
-                            </div>
-                            <div className="ml-2 hidden sm:block">
-                                <p className="text-xs uppercase font-black tracking-tighter text-red-600">Ed Cabrera</p>
-                                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">Est. 2018</p>
-                            </div>
+                    <Link href="/" aria-label="Ed Cabrera, home" className='group flex items-center flex-shrink-0 rounded-xl p-1 transition-all duration-300 hover:bg-white/80 hover:shadow-md'>
+                        <BrandLogo />
                     </Link>
 
                     {/* DESKTOP LINKS */}

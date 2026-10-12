@@ -7,7 +7,7 @@ export const site = {
     author: 'John Edward Cabrera',
     tagline: 'ElevatED by Code | IllustratED by Design',
     description: 'Portfolio of John Edward Cabrera: computer instructor, web and game developer, and UI/UX designer from Camarines Sur, Philippines.',
-    image: '/edLogo.png',
+    image: '/brand/og-image.png',
     locale: 'en_PH',
     sameAs: [
         'https://github.com/dipaaapi',

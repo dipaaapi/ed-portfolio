@@ -8,6 +8,7 @@ import StickyPillBar from '../components/StickyPillBar'
 import Image from 'next/image'
 import Link from 'next/link'
 import { projects } from '../data/projects'
+import useScrollLock from '../hooks/useScrollLock'
 
 // Tailwind 3.0 has no line-clamp utility, so clamp with inline styles.
 const clamp = (lines: number) => ({ display: '-webkit-box', WebkitLineClamp: lines, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' });
@@ -124,6 +125,7 @@ const Skills: NextPage = () => {
     const designerskills = [
         { name: "Adobe Photoshop", keywords: ["Photoshop", "Adobe Core"], image: "/adobePs.png", desc: "Advanced raster graphics editing and digital painting.", detailedDesc: "I use Photoshop for comprehensive image manipulation, precise color correction, and crafting complex UI assets. Its robust layer and masking systems are critical for my high-fidelity mockups." },
         { name: "Adobe Illustrator", keywords: ["Illustrator", "Adobe Core"], image: "/adobeAi.png", desc: "Precision vector graphics and scalable logo design.", detailedDesc: "My go-to tool for typography, iconography, and scalable vector assets. Illustrator ensures that all of my graphical resources remain crisp across every device resolution." },
+        { name: "Affinity by Canva", keywords: ["Affinity"], image: "/affinity.svg", desc: "All-in-one vector, photo and layout design suite.", detailedDesc: "Affinity combines vector illustration, photo editing and page layout in one app, so I can move between logo work, image retouching and print-ready layouts without switching tools. It's a fast, lightweight alternative to the Adobe workflow for branding and marketing materials." },
         { name: "Figma", keywords: ["Figma"], image: "/figma.png", desc: "Collaborative UI/UX design and interactive prototyping.", detailedDesc: "Figma anchors my entire design process. I use it to establish design systems, wireframe layouts rapidly, and create high-fidelity interactive prototypes before writing a single line of code." },
         { name: "Balsamiq", image: "/balsamiq.png", desc: "Rapid low-fidelity wireframing and initial conceptualization.", detailedDesc: "Balsamiq allows me to focus purely on layout and structure without getting derailed by visual aesthetics. It's essential for rapid brainstorming and initial client pitches." },
         { name: "Canva", image: "/canva.png", desc: "Quick-turnaround marketing materials and presentation assets.", detailedDesc: "When I need professional, visually appealing graphics on a tight deadline, Canva streamlines my workflow for social media updates, slide decks, and basic promotional content." },
@@ -172,6 +174,9 @@ const Skills: NextPage = () => {
     // Clamp so the selected soft-skill tab stays valid when search shrinks the list.
     const activeSoftIndex = Math.min(activeSoft, Math.max(filteredSoftSkills.length - 1, 0));
     const activeSkill = filteredSoftSkills[activeSoftIndex];
+
+    // Lock page scroll while a modal is open.
+    useScrollLock(Boolean(selectedUnitySkill || selectedSoftware || selectedTechnicalCore || selectedWebSkill));
 
     return (
         <div className="scroll-smooth bg-gray-50 relative">

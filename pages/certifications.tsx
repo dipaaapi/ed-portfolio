@@ -7,6 +7,7 @@ import Reveal from '../components/Reveal'
 import StickyPillBar from '../components/StickyPillBar'
 import Image from 'next/image';
 import { useState, useMemo } from 'react';
+import useScrollLock from '../hooks/useScrollLock'
 
 // Colour per category. Class strings are written out in full so Tailwind keeps them.
 const categoryStyles: Record<string, { tint: string; text: string; soft: string; ring: string }> = {
@@ -157,6 +158,9 @@ const Certifications: NextPage = () => {
     const groups = activeFilter === 'All' && !searchQuery
         ? categories.slice(1).map(category => ({ category, docs: filteredDocs.filter(d => d.category === category) })).filter(g => g.docs.length > 0)
         : filteredDocs.length > 0 ? [{ category: activeFilter, docs: filteredDocs }] : [];
+
+    // Lock page scroll while a modal is open.
+    useScrollLock(Boolean((selectedDocument)));
 
     return (
         <div className="scroll-smooth bg-gray-50 relative">

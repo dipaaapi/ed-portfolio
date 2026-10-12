@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="t">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
   <title id="t">Ed Cabrera</title>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -6,17 +6,24 @@
       <stop offset="0.55" stop-color="#1e293b"/>
       <stop offset="1" stop-color="#7f1d1d"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.18" cy="0.15" r="0.6">
-      <stop offset="0" stop-color="#dc2626" stop-opacity="0.55"/>
+    <radialGradient id="glow" cx="0.2" cy="0.15" r="0.65">
+      <stop offset="0" stop-color="#dc2626" stop-opacity="0.6"/>
       <stop offset="1" stop-color="#dc2626" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="nib" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f87171"/>
+      <stop offset="1" stop-color="#e11d48"/>
+    </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <rect width="512" height="512" rx="112" fill="url(#glow)"/>
-  <rect x="1.5" y="1.5" width="509" height="509" rx="110.5" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="3"/>
-  <!-- E: the middle stroke is the red "code cursor" -->
-  <path fill="#ffffff" d="M80 132h156v44H124v160h112v44H80z"/>
-  <rect x="124" y="234" width="88" height="44" rx="4" fill="#ef4444"/>
-  <!-- D -->
-  <path fill="#ffffff" fill-rule="evenodd" d="M260 132h60a124 124 0 0 1 0 248h-60zM304 176v160h16a80 80 0 0 0 0-160z"/>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <rect width="64" height="64" rx="16" fill="url(#glow)"/>
+  <path d="M0 21.5H64M0 42.5H64M21.5 0V64M42.5 0V64" stroke="#fff" stroke-opacity="0.06"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="15.25" fill="none" stroke="#fff" stroke-opacity="0.18" stroke-width="1.5"/>
+  <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 20 11 32l9 12"/>
+    <path d="M44 20l9 12-9 12"/>
+  </g>
+  <path d="M32 15l8 17-8 17-8-17z" fill="url(#nib)"/>
+  <path d="M32 31.5V45" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="32" cy="29.5" r="2.4" fill="#1e293b"/>
 </svg>

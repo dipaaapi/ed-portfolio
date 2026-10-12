@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Footer from '../components/footer'
 import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
+import useScrollLock from '../hooks/useScrollLock'
 
 // Mosaic tiles. `span` sets the tile's size on large screens; the order fills a 4-column grid with no gaps.
 const gallery = [
@@ -45,6 +46,9 @@ const AboutMe: NextPage = () => {
     }, [active, step]);
 
     const current = active === null ? null : gallery[active];
+
+    // Lock page scroll while a modal is open.
+    useScrollLock(Boolean((active !== null)));
 
     return (
         <div className="scroll-smooth bg-gray-50 min-h-screen flex flex-col">

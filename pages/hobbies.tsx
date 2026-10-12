@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero'
 import Link from 'next/link'
 import Image from 'next/image'
 import Seo from '../components/Seo'
+import useScrollLock from '../hooks/useScrollLock'
 
 const Hobbies: NextPage = () => {
     const games = [
@@ -84,6 +85,9 @@ const Hobbies: NextPage = () => {
     );
 
     const gameGenres = ['All', ...Array.from(new Set(games.map(g => g.genre)))];
+
+    // Lock page scroll while a modal is open.
+    useScrollLock(Boolean((selectedAnime) || (selectedMangaGenre) || (selectedGame)));
 
     return (
         <div className="scroll-smooth bg-gray-50 relative">

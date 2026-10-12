@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { useState, useMemo, useEffect } from 'react';
 import { projects, projectTypes } from '../data/projects';
 import { Button, Chip, CloseIcon, ExternalIcon, IconButton } from '../components/ui';
+import useScrollLock from '../hooks/useScrollLock'
 
 const Project: NextPage = () => {
     const router = useRouter();
@@ -37,6 +38,9 @@ const Project: NextPage = () => {
             p.description.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
     });
+
+    // Lock page scroll while a modal is open.
+    useScrollLock(Boolean((selectedProject)));
 
     return (
         <div className="scroll-smooth bg-gray-50 relative">

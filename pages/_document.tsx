@@ -4,8 +4,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="icon" href="/edLogo.png" />
-        <link rel="apple-touch-icon" href="/edLogo.png" />
+        <link rel="icon" href="/brand/ed-mark.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/brand/ed-mark-1024.png" />
         <meta name="theme-color" content="#111827" />
         <meta name="author" content="John Edward Cabrera" />
       </Head>
