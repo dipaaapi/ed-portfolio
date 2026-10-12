@@ -129,7 +129,7 @@ const Skills: NextPage = () => {
         { name: "Figma", keywords: ["Figma"], image: "/figma.png", desc: "Collaborative UI/UX design and interactive prototyping.", detailedDesc: "Figma anchors my entire design process. I use it to establish design systems, wireframe layouts rapidly, and create high-fidelity interactive prototypes before writing a single line of code." },
         { name: "Balsamiq", image: "/balsamiq.png", desc: "Rapid low-fidelity wireframing and initial conceptualization.", detailedDesc: "Balsamiq allows me to focus purely on layout and structure without getting derailed by visual aesthetics. It's essential for rapid brainstorming and initial client pitches." },
         { name: "Canva", image: "/canva.png", desc: "Quick-turnaround marketing materials and presentation assets.", detailedDesc: "When I need professional, visually appealing graphics on a tight deadline, Canva streamlines my workflow for social media updates, slide decks, and basic promotional content." },
-        { name: "Google Sites", image: "/siteGoogle.png", desc: "Rapid development of internal wikis and educational portals.", detailedDesc: "Perfect for integrating seamlessly with the Google Workspace ecosystem. I deploy Google Sites to host curriculum materials, classroom hubs, and internal documentation quickly." }
+        // { name: "Google Sites", image: "/siteGoogle.png", desc: "Rapid development of internal wikis and educational portals.", detailedDesc: "Perfect for integrating seamlessly with the Google Workspace ecosystem. I deploy Google Sites to host curriculum materials, classroom hubs, and internal documentation quickly." }
     ];
 
     const webskills = [
