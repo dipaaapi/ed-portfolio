@@ -69,7 +69,7 @@ const Navigation = () => {
 
                     {/* LOGO & BRAND */}
                     <Link href="/" aria-label="Ed Cabrera, home" className='group flex items-center flex-shrink-0 rounded-xl p-1 transition-all duration-300 hover:bg-white/80 hover:shadow-md'>
-                        <BrandLogo />
+                        <BrandLogo className="h-10 sm:h-11" />
                     </Link>
 
                     {/* DESKTOP LINKS */}

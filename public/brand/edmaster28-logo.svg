@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 56" role="img" aria-labelledby="t">
+  <title id="t">EdMaster28</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="0.6" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#7f1d1d"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.08" cy="0.1" r="0.7">
+      <stop offset="0" stop-color="#dc2626" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#dc2626" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clip"><rect width="184" height="56" rx="16"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <rect width="184" height="56" fill="url(#bg)"/>
+    <rect width="184" height="56" fill="url(#glow)"/>
+    <path d="M0 18.5H184M0 37.5H184M46 0V56M92 0V56M138 0V56" stroke="#fff" stroke-opacity="0.05"/>
+  </g>
+  <rect x="0.75" y="0.75" width="182.5" height="54.5" rx="15.25" fill="none" stroke="#fff" stroke-opacity="0.18" stroke-width="1.5"/>
+  <g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 20l-7 8 7 8" stroke="#fff" stroke-opacity="0.7"/>
+    <path d="M32 18l-5 20" stroke="#ef4444"/>
+    <path d="M38 20l7 8-7 8" stroke="#fff" stroke-opacity="0.7"/>
+  </g>
+  <path d="M56 14V42" stroke="#fff" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="66" y="44" font-family="Orbitron, 'Arial Black', sans-serif" font-size="36" font-weight="900" fill="#fff" textLength="74" lengthAdjust="spacingAndGlyphs">ED</text>
+  <text transform="translate(158 39) rotate(-90)" font-family="Orbitron, 'Arial Black', sans-serif" font-size="10.5" font-weight="900" fill="#fff" fill-opacity="0.9" textLength="29" lengthAdjust="spacingAndGlyphs">MASTER</text>
+  <text x="149" y="50" font-family="Orbitron, 'Arial Black', sans-serif" font-size="8.5" font-weight="900" fill="#ef4444" textLength="11" lengthAdjust="spacingAndGlyphs">28</text>
+</svg>
