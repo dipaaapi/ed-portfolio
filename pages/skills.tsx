@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
-import Head from 'next/head'
+import Seo from '../components/Seo'
 import Footer from '../components/footer'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
@@ -174,11 +174,8 @@ const Skills: NextPage = () => {
     const activeSkill = filteredSoftSkills[activeSoftIndex];
 
     return (
-        <div className="scroll-smooth bg-gray-50 font-main relative">
-            <Head>
-                <title>Expertise & Mastery Page | ElevatED by Code | IllustratED by Design</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+        <div className="scroll-smooth bg-gray-50 relative">
+            <Seo path="/skills" title="Skills & Expertise" description="Front-end, back-end, game development and UI/UX skills of John Edward Cabrera, with Google and Unity certified credentials." />
 
             <main className='scroll-smooth pb-20 bg-gray-50'>
                 {/* HERO HEADER */}

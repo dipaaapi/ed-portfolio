@@ -12,7 +12,7 @@ module.exports = {
         whiteg: '#ECECEC'
       },
       fontFamily: {
-        main: ['Orbitron', 'sans-serif'],
+        main: ['var(--font-main)', 'Orbitron', 'sans-serif'],
       },
     },
   },

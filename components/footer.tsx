@@ -15,7 +15,7 @@ const Footer = () => {
                 
                 {/* 1. CONTACTS SECTION */}
                 <div className="space-y-6">
-                    <h3 className="text-xl uppercase font-black tracking-tighter text-red-500 font-main border-b border-gray-800 pb-2">
+                    <h3 className="text-xl uppercase font-black tracking-tighter text-red-500 border-b border-gray-800 pb-2">
                         Get In Touch
                     </h3>
                     <div className="flex flex-col space-y-4 items-center md:items-start">
@@ -38,7 +38,7 @@ const Footer = () => {
 
                 {/* 2. ADDRESSES SECTION */}
                 <div className="space-y-6">
-                    <h3 className="text-xl uppercase font-black tracking-tighter text-red-500 font-main border-b border-gray-800 pb-2">
+                    <h3 className="text-xl uppercase font-black tracking-tighter text-red-500 border-b border-gray-800 pb-2">
                         Locations
                     </h3>
                     <ul className="space-y-4">
@@ -55,7 +55,7 @@ const Footer = () => {
 
                 {/* 3. BRAND & SOCIALS SECTION */}
                 <div className="space-y-6">
-                    <h3 className="text-xl uppercase font-black tracking-tighter text-red-500 font-main border-b border-gray-800 pb-2">
+                    <h3 className="text-xl uppercase font-black tracking-tighter text-red-500 border-b border-gray-800 pb-2">
                         Professional Network
                     </h3>
                     <div className="flex flex-col gap-4">

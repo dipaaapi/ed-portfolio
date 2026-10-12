@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
+import Seo from '../components/Seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect, useCallback } from 'react'
@@ -47,11 +47,8 @@ const AboutMe: NextPage = () => {
     const current = active === null ? null : gallery[active];
 
     return (
-        <div className="scroll-smooth bg-gray-50 font-main min-h-screen flex flex-col">
-            <Head>
-                <title>About Me | ElevatED by Code</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+        <div className="scroll-smooth bg-gray-50 min-h-screen flex flex-col">
+            <Seo path="/aboutme" title="About Me" description="Get to know John Edward Cabrera: the teacher, developer and designer behind ElevatED by Code | IllustratED by Design." />
 
             <main className="flex-grow pb-24">
                 <PageHero eyebrow="Visual Resume & Gallery" title="About Me" subtitle="A curated gallery reflecting my journey and continuous learning." />

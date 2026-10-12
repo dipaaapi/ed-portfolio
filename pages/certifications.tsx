@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
+import Seo from '../components/Seo'
+import { Button, CloseIcon, ExternalIcon, IconButton } from '../components/ui'
 import Footer from '../components/footer';
 import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
@@ -158,11 +159,8 @@ const Certifications: NextPage = () => {
         : filteredDocs.length > 0 ? [{ category: activeFilter, docs: filteredDocs }] : [];
 
     return (
-        <div className="scroll-smooth bg-gray-50 font-main relative">
-            <Head>
-                <title>Certifications & Recognitions | ElevatED by Code</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+        <div className="scroll-smooth bg-gray-50 relative">
+            <Seo path="/certifications" title="Certifications" description="Certifications and recognitions of John Edward Cabrera from Google for Education, TESDA, DICT and more." />
 
             <main className='pb-20 min-h-screen'>
                 {/* HERO */}
@@ -256,11 +254,8 @@ const Certifications: NextPage = () => {
                                 <p className="text-gray-400 text-xs mt-1 uppercase tracking-widest">{selectedDocument.org}</p>
                             </div>
                             <div className="flex gap-4 items-center">
-                                <a href={selectedDocument.file} target="_blank" rel="noreferrer" className="text-white hover:text-red-400 text-sm font-bold uppercase transition-colors flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg">
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                                    Open in New Tab
-                                </a>
-                                <button className="bg-red-600 hover:bg-red-500 text-white w-10 h-10 rounded-full font-bold shadow-lg transition-colors flex items-center justify-center" onClick={() => setSelectedDocument(null)}>✕</button>
+                                <Button href={selectedDocument.file} variant="glass" size="sm" icon={<ExternalIcon />} className="hidden sm:inline-flex">Open in New Tab</Button>
+                                <IconButton label="Close" onClick={() => setSelectedDocument(null)} className="bg-red-600 text-white hover:bg-red-500 hover:text-white shadow-lg p-2.5"><CloseIcon className="w-5 h-5" /></IconButton>
                             </div>
                         </div>
 

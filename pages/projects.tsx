@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Head from 'next/head';
+import Seo from '../components/Seo'
 import Footer from '../components/footer'
 import PageHero from '../components/PageHero';
 import StickyPillBar from '../components/StickyPillBar'
@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { useState, useMemo, useEffect } from 'react';
 import { projects, projectTypes } from '../data/projects';
+import { Button, Chip, CloseIcon, ExternalIcon, IconButton } from '../components/ui';
 
 const Project: NextPage = () => {
     const router = useRouter();
@@ -38,11 +39,8 @@ const Project: NextPage = () => {
     });
 
     return (
-        <div className="scroll-smooth bg-gray-50 font-main relative">
-            <Head>
-                <title>Project Showcase Page | ElevatED by Code | IllustratED by Design</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+        <div className="scroll-smooth bg-gray-50 relative">
+            <Seo path="/projects" title="Projects" description="Games, tools, government systems, e-commerce, websites and branding work by John Edward Cabrera, including Vanguard of Fate and IsoChronicle: Idle Realms." />
 
             <main className='pb-20'>
                 {/* HERO */}
@@ -109,7 +107,7 @@ const Project: NextPage = () => {
             {selectedProject && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/90 backdrop-blur-sm animate-fadeIn" onClick={() => setSelectedProject(null)}>
                     <div className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-                        <button className="absolute top-5 right-5 z-[110] bg-red-600 text-white w-10 h-10 rounded-full font-bold shadow-lg" onClick={() => setSelectedProject(null)}>✕</button>
+                        <IconButton label="Close" onClick={() => setSelectedProject(null)} className="absolute top-5 right-5 z-[110] bg-red-600 text-white hover:bg-red-500 hover:text-white shadow-lg p-2.5"><CloseIcon className="w-5 h-5" /></IconButton>
                         <div className="flex flex-col lg:flex-row">
                             <div className="w-full lg:w-2/3 flex flex-col bg-gray-100">
                                 <div className="relative w-full h-[300px] lg:h-[600px]">
@@ -139,7 +137,7 @@ const Project: NextPage = () => {
                                 {selectedProject.techStack && (
                                     <div className="flex flex-wrap gap-2 mb-6">
                                         {selectedProject.techStack.map((tech: string, i: number) => (
-                                            <span key={i} className="bg-gray-100 text-gray-600 text-[10px] font-bold px-3 py-1 rounded-full">{tech}</span>
+                                            <Chip key={i}>{tech}</Chip>
                                         ))}
                                     </div>
                                 )}
@@ -151,14 +149,10 @@ const Project: NextPage = () => {
 
                                 <div className="flex gap-4 mt-auto">
                                     {selectedProject.liveLink && (
-                                        <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-center text-xs font-bold uppercase tracking-widest py-4 rounded-xl transition-all shadow-md">
-                                            Visit Live Site
-                                        </a>
+                                        <Button href={selectedProject.liveLink} variant="dark" className="flex-1" iconRight={<ExternalIcon />}>Live Site</Button>
                                     )}
                                     {selectedProject.repoLink && (
-                                        <a href={selectedProject.repoLink} target="_blank" rel="noreferrer" className="flex-1 bg-white border-2 border-gray-200 hover:border-gray-900 text-gray-900 text-center text-xs font-bold uppercase tracking-widest py-4 rounded-xl transition-all shadow-md">
-                                            Source Code
-                                        </a>
+                                        <Button href={selectedProject.repoLink} variant="light" className="flex-1">Source Code</Button>
                                     )}
                                 </div>
                             </div>

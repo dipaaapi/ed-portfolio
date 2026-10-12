@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import Head from 'next/head';
+import Seo from '../components/Seo'
 import Footer from '../components/footer';
 import PageHero from '../components/PageHero'
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
+import { SectionHeading } from '../components/ui';
 
 const Education = () => {
     // 1. ORGANIZED DATA STRUCTURE
@@ -57,11 +58,8 @@ const Education = () => {
     ];
 
     return (
-        <div className="scroll-smooth bg-gray-50 font-main relative">
-            <Head>
-                <title>Educational Journey Page | ElevatED by Code | IllustratED by Design</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+        <div className="scroll-smooth bg-gray-50 relative">
+            <Seo path="/education" title="Education" description="Educational background of John Edward Cabrera: Informatics College Manila and TESDA vocational training." />
 
             <main className='scroll-smooth bg-gray-50 pb-20'>
                 {/* HERO HEADER */}
@@ -128,13 +126,7 @@ const Education = () => {
 
                 {/* 3. PHYSICAL CERTIFICATES SHOWCASE */}
                 <section className="w-11/12 md:w-10/12 mx-auto mt-20 mb-20">
-                    <div className="text-center mb-16">
-                        <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Vocational Mastery</span>
-                        <h2 className="text-4xl lg:text-5xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
-                            Licenses & Assessments
-                            <span className="h-1.5 w-24 bg-red-500 rounded-full"></span>
-                        </h2>
-                    </div>
+                    <SectionHeading eyebrow="Vocational Mastery" title="Licenses & Assessments" className="mb-16" />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {certificates.map((cert, i) => (
                             <div key={i} className="group relative h-[450px] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-gray-100 hover:border-red-500 transition-all duration-500 hover:-translate-y-3">

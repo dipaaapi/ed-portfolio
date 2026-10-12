@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
+import Seo from '../components/Seo'
 import Footer from '../components/footer'
 import PageHero from '../components/PageHero'
 
@@ -17,11 +17,8 @@ const Specialthanks: NextPage = () => {
     ];
 
     return (
-        <div className="scroll-smooth bg-gray-50 font-main relative min-h-screen flex flex-col">
-            <Head>
-                <title>Special Thanks | ElevatED by Code</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+        <div className="scroll-smooth bg-gray-50 relative min-h-screen flex flex-col">
+            <Seo path="/specialthanks" title="Special Thanks" description="Acknowledgments for the people, tools and resources that helped build John Edward Cabrera's projects." />
 
             <main className="flex-grow pb-24">
                 {/* HERO SECTION */}

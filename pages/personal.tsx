@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
-import Head from 'next/head'
+import Seo from '../components/Seo'
 import Footer from '../components/footer'
 import PageHero from '../components/PageHero'
 import Image from 'next/image'
+import { Card, SectionHeading } from '../components/ui'
 
 const Personal: NextPage = () => {
     const info = [
@@ -38,10 +39,7 @@ const Personal: NextPage = () => {
 
     return (
         <div className='scroll-smooth bg-gray-50'>
-            <Head>
-                <title>Professional Profile Page | ElevatED by Code | IllustratED by Design</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+            <Seo path="/personal" title="Personal Profile" description="Personal profile and locations of John Edward Cabrera, based in Pili, Camarines Sur, Philippines." />
 
             <main className="pb-20">
                 {/* HERO PROFILE SECTION */}
@@ -68,14 +66,8 @@ const Personal: NextPage = () => {
 
                 {/* ROW 1: BIOGRAPHICAL DETAILS */}
                 <section className="w-11/12 md:w-10/12 mx-auto mt-8 relative z-20 mb-16">
-                    <div className="bg-white p-12 rounded-[3rem] shadow-2xl border border-gray-100">
-                        <div className="text-center mb-12">
-                            <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Personal Identity</span>
-                            <h2 className="text-3xl md:text-4xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
-                                Biographical Details
-                                <span className="h-1.5 w-24 bg-red-500 rounded-full"></span>
-                            </h2>
-                        </div>
+                    <Card className="p-6 sm:p-12 rounded-[2rem] sm:rounded-[3rem] shadow-2xl">
+                        <SectionHeading eyebrow="Personal Identity" title="Biographical Details" size="lg" className="mb-12" />
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {info.map((item, index) => (
                                 <div key={index} className="p-6 bg-gray-50 rounded-[2rem] hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-red-500 hover:-translate-y-2 group text-center flex flex-col items-center">
@@ -85,12 +77,12 @@ const Personal: NextPage = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </Card>
                 </section>
 
                 {/* ROW 2: SIDEBAR/QUOTE */}
                 <section className="w-11/12 md:w-10/12 mx-auto mb-16">
-                    <div className="bg-gray-900 rounded-[3rem] p-12 md:p-16 text-white shadow-2xl flex flex-col justify-center relative overflow-hidden h-full text-center">
+                    <div className="bg-gray-900 rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-16 text-white shadow-2xl flex flex-col justify-center relative overflow-hidden h-full text-center">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 opacity-5 text-[15rem] font-serif select-none pointer-events-none text-red-500">“</div>
                         <div className="relative z-10 flex-grow flex flex-col items-center justify-center min-h-[160px]">
                             <p key={quoteIndex} className="text-2xl md:text-3xl italic font-light leading-relaxed animate-fadeIn max-w-5xl mx-auto text-gray-200">
@@ -105,13 +97,7 @@ const Personal: NextPage = () => {
 
                 {/* ROW 3: LOCATION SECTION (Maps) */}
                 <section className="w-11/12 md:w-10/12 mx-auto mt-20 mb-20 text-center">
-                    <div className="text-center mb-16">
-                        <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3 block">Geography</span>
-                        <h2 className="text-4xl lg:text-5xl font-black uppercase text-gray-900 tracking-tight flex flex-col items-center justify-center gap-6">
-                            Strategic Locations
-                            <span className="h-1.5 w-24 bg-red-500 rounded-full"></span>
-                        </h2>
-                    </div>
+                    <SectionHeading eyebrow="Geography" title="Strategic Locations" className="mb-16" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="group rounded-[2rem] overflow-hidden shadow-xl hover:shadow-2xl border border-gray-100 hover:border-red-500 transition-all duration-500 hover:-translate-y-3 cursor-crosshair">
                             {/* Replace '0' with your actual Tondo Google Map Embed link */}

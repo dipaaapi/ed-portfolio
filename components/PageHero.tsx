@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import HeroBackdrop from './HeroBackdrop'
 
 type PageHeroProps = {
     eyebrow: string;
@@ -21,13 +22,8 @@ type PageHeroProps = {
 // matching the glassmorphism navbar.
 const PageHero = ({ eyebrow, title, subtitle, avatar, children, search }: PageHeroProps) => (
     <header className="hero-curve relative -mt-20 pt-20 overflow-hidden bg-gradient-to-br from-gray-900 via-slate-800 to-red-900 text-white shadow-2xl">
-        {/* Glow orbs + fine grid give the glass elements something to blur */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/30 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute -bottom-40 -right-24 w-[30rem] h-[30rem] bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div
-            className="absolute inset-0 opacity-[0.07] pointer-events-none"
-            style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)', backgroundSize: '48px 48px' }}
-        ></div>
+        {/* Glow orbs + fine grid give the glass elements something to blur; they follow the mouse */}
+        <HeroBackdrop />
 
         <div className="relative z-10 w-11/12 md:w-10/12 mx-auto min-h-[24rem] md:min-h-[30rem] flex flex-col items-center justify-center text-center pt-8 pb-16 md:pb-20">
             {avatar && <div className="mb-4">{avatar}</div>}

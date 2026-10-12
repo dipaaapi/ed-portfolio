@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&display=swap');
-
+/* Orbitron is loaded with next/font in pages/_app.tsx and applied once there. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,6 +24,17 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     .role-in, .caret-blink { animation: none; }
+}
+
+/* Mouse parallax for banner glows (components/HeroBackdrop.tsx sets --px/--py from -1 to 1). */
+.hero-parallax {
+    --px: 0;
+    --py: 0;
+}
+.parallax-layer {
+    transform: translate3d(calc(var(--px) * var(--depth, 0px)), calc(var(--py) * var(--depth, 0px)), 0);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
 }
 
 /* Elliptical curve along the bottom edge of every page banner (PageHero + home hero). */

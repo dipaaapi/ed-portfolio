@@ -3,10 +3,13 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import Link from 'next/link'
 import Image from 'next/image'
-import Head from 'next/head'
+import Seo from '../components/Seo'
+import { absoluteUrl, site } from '../lib/site'
 import { useState, useEffect } from "react"
 import { projects, Project } from '../data/projects'
 import Reveal from '../components/Reveal'
+import HeroBackdrop from '../components/HeroBackdrop'
+import { ArrowRightIcon, Button, Card, Input, SectionHeading, Select, Textarea, ToggleChip } from '../components/ui'
 
 // Random projects from different rows, each with a cover image.
 const pickFeatured = (count: number): Project[] => {
@@ -17,6 +20,20 @@ const pickFeatured = (count: number): Project[] => {
     if (!picked.some(q => q.type === p.type)) picked.push(p);
   }
   return picked;
+}
+
+// Structured data so search engines can show a profile card for Ed.
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.author,
+  alternateName: 'Ed Cabrera',
+  url: absoluteUrl('/'),
+  image: absoluteUrl('/ed2025.jpg'),
+  jobTitle: 'Computer Instructor, Web & Game Developer, UI/UX Designer',
+  worksFor: { '@type': 'Organization', name: 'Provincial Government of Camarines Sur' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Pili', addressRegion: 'Camarines Sur', addressCountry: 'PH' },
+  sameAs: site.sameAs,
 }
 
 const Home: NextPage = () => {
@@ -40,7 +57,7 @@ const Home: NextPage = () => {
   // Form State
   const [formData, setFormData] = useState({
     name: "",
-    title: "",
+    title: "Website Project",
     description: ""
   });
 
@@ -75,14 +92,8 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen font-main">
-      <Head>
-        <title>Portfolio | John Edward Cabrera | Code & Design</title>
-        <meta name="description" content="Portfolio of John Edward Cabrera. ElevatED by Code | IllustratED by Design. A dedicated IT professional and Computer Instructor." />
-        <meta property="og:title" content="Portfolio | John Edward Cabrera" />
-        <meta property="og:description" content="ElevatED by Code | IllustratED by Design. A dedicated IT professional and Computer Instructor." />
-        <meta property="og:image" content="/edLogo.png" />
-      </Head>
+    <div className="bg-gray-50 min-h-screen">
+      <Seo path="/" title="John Edward Cabrera | Web & Game Developer, UI/UX Designer" description="Portfolio of John Edward Cabrera (Ed): computer instructor, web and game developer, and UI/UX designer from Camarines Sur, Philippines. ElevatED by Code | IllustratED by Design." jsonLd={personJsonLd} />
       <Header />
 
       <main className='scroll-smooth'>
@@ -90,9 +101,7 @@ const Home: NextPage = () => {
         {/* HERO SECTION */}
         {/* Same brand banner treatment as components/PageHero.tsx, sized to fit the role slider and CTAs */}
         <section className="hero-curve -mt-20 pt-20 flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-slate-800 to-red-900 text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/30 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute -bottom-40 -right-24 w-[30rem] h-[30rem] bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)', backgroundSize: '48px 48px' }}></div>
+          <HeroBackdrop />
           <div className="min-h-[24rem] md:min-h-[30rem] w-11/12 md:w-10/12 mx-auto grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center pt-8 pb-20 relative z-10">
 
             {/* INTRO */}
@@ -116,32 +125,14 @@ const Home: NextPage = () => {
               </p>
 
               <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-3">
-                <Link
-                  href="/projects"
-                  className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg shadow-red-600/30 transition-colors">
-                  Explore projects
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-
-                </Link>
-                <Link
-                  href="/workxp"
-                  className="bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-lg transition-colors">
-                  
-                    Experience &amp; CV
-                  
-                </Link>
+                <Button href="/projects" iconRight={<ArrowRightIcon />}>Explore projects</Button>
+                <Button href="/workxp" variant="glass">Experience &amp; CV</Button>
               </div>
 
               {/* ROLE CHIPS: highlight the current role; click to jump to one */}
               <div className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-2 mt-8">
                 {roles.map((role, i) => (
-                  <button
-                    key={role}
-                    onClick={() => setIndex(i)}
-                    className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border transition-all duration-300 ${i === index ? 'bg-white text-red-600 border-white shadow-lg' : 'bg-white/5 text-gray-300 border-white/15 hover:bg-white/15'}`}
-                  >
-                    {role}
-                  </button>
+                  <ToggleChip key={role} tone="dark" active={i === index} onClick={() => setIndex(i)}>{role}</ToggleChip>
                 ))}
               </div>
             </div>
@@ -180,10 +171,8 @@ const Home: NextPage = () => {
 
         {/* BENTO GRID: tiles of different sizes that show their content instead of describing it */}
         <section className="w-11/12 md:w-10/12 mx-auto py-20">
-          <Reveal className="flex flex-col items-center text-center mb-12">
-            <span className="text-red-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-3">Explore</span>
-            <h2 className="font-black text-3xl lg:text-4xl uppercase tracking-tight text-gray-900">Everything in one place</h2>
-            <div className="h-1.5 w-24 bg-red-500 rounded-full mt-5"></div>
+          <Reveal className="mb-12">
+            <SectionHeading eyebrow="Explore" title="Everything in one place" />
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[14rem] gap-5">
@@ -336,10 +325,7 @@ const Home: NextPage = () => {
 
         {/* FEATURED WORK SECTION */}
         <section className="w-11/12 md:w-10/12 mx-auto py-10 pb-20">
-          <div className="flex flex-col items-center text-center justify-center mb-16">
-            <h2 className="font-black text-4xl lg:text-5xl uppercase tracking-widest text-gray-900 drop-shadow-sm">Featured Work</h2>
-            <div className="h-1.5 w-32 bg-red-500 rounded-full mt-6 shadow-sm"></div>
-          </div>
+          <SectionHeading eyebrow="Selected" title="Featured Work" className="mb-16" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {featured.length === 0 ? (
               [0, 1].map((i) => <div key={i} className="h-80 rounded-3xl bg-gray-200 animate-pulse"></div>)
@@ -361,73 +347,33 @@ const Home: NextPage = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Link
-              href="/projects"
-              className="inline-block bg-gray-900 hover:bg-red-600 text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-full shadow-lg transition-colors">
-              View all projects
-            </Link>
+            <Button href="/projects" variant="dark" size="lg">View all projects</Button>
           </div>
         </section>
 
         {/* --- NEW QUERY FORM SECTION --- */}
         <section className="w-full bg-gray-900 py-24 px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col items-center text-center justify-center mb-16">
-              <span className="text-red-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-3">Get In Touch</span>
-              <h2 className="font-black text-4xl lg:text-5xl uppercase tracking-widest text-white drop-shadow-lg">Connect with Me</h2>
-              <div className="h-1.5 w-32 bg-red-500 rounded-full mt-6 shadow-lg shadow-red-500/50"></div>
-              <p className="text-gray-400 mt-6 max-w-2xl italic text-sm leading-relaxed">Have a project in mind or need training? Send a query below.</p>
-            </div>
+            <SectionHeading tone="light" eyebrow="Get In Touch" title="Connect with Me" description="Have a project in mind or need training? Send a query below." className="mb-16" />
 
-            <form onSubmit={handleEmailSubmit} className="bg-white/5 backdrop-blur-lg p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl">
+            <Card as="form" variant="glass" onSubmit={handleEmailSubmit} className="p-8 md:p-12 rounded-[2.5rem] shadow-2xl">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="flex flex-col">
-                  <label className="text-xs font-bold text-red-500 uppercase tracking-widest mb-2">Full Name</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Juan Dela Cruz"
-                    className="bg-gray-800 border-none text-white rounded-xl p-4 focus:ring-2 focus:ring-red-500 outline-none transition-all"
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="text-xs font-bold text-red-500 uppercase tracking-widest mb-2">Purpose / Title</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. Website Design Project"
-                    className="bg-gray-800 border-none text-white rounded-xl p-4 focus:ring-2 focus:ring-red-500 outline-none transition-all"
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  />
-                </div>
+                <Input label="Full Name" required placeholder="Juan Dela Cruz" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                <Select
+                  label="Purpose"
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  options={['Website Project', 'Game Project', 'UI/UX Design', 'Branding & Graphics', 'Training / Workshop', 'Other']}
+                />
               </div>
-              <div className="flex flex-col mb-8">
-                <label className="text-xs font-bold text-red-500 uppercase tracking-widest mb-2">Description</label>
-                <textarea
-                  required
-                  rows={5}
-                  placeholder="Tell me more about your project or inquiry..."
-                  className="bg-gray-800 border-none text-white rounded-2xl p-4 focus:ring-2 focus:ring-red-500 outline-none transition-all"
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-[0.3em] py-5 rounded-2xl shadow-lg hover:shadow-red-500/20 transition-all transform active:scale-95"
-              >
-                Launch Direct Query
-              </button>
-            </form>
+              <Textarea label="Description" required rows={5} wrapperClassName="mb-8" placeholder="Tell me more about your project or inquiry..." value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
+              <Button type="submit" size="lg" fullWidth className="rounded-2xl py-5 tracking-[0.3em]">Launch Direct Query</Button>
+            </Card>
 
             <div className="flex justify-center mt-12 mb-8">
-              <Link
-                href="/specialthanks"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gray-800 hover:bg-emerald-600 text-white font-black uppercase tracking-widest rounded-full transition-all duration-300 shadow-xl border border-gray-700 hover:border-emerald-500 hover:scale-105">
-
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>View Project Acknowledgments
-                                
-              </Link>
+              <Button href="/specialthanks" variant="glass" size="lg" icon={<ArrowRightIcon className="w-5 h-5" />} className="hover:bg-emerald-600 hover:border-emerald-500">
+                View Project Acknowledgments
+              </Button>
             </div>
           </div>
         </section>
@@ -437,10 +383,8 @@ const Home: NextPage = () => {
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/25 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute -bottom-32 -right-24 w-[28rem] h-[28rem] bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
           <div className="relative w-11/12 md:w-10/12 mx-auto">
-            <Reveal className="text-center mb-14">
-              <span className="inline-block text-[10px] font-black uppercase tracking-[0.4em] bg-white/10 border border-white/25 backdrop-blur-md px-4 py-2 rounded-full">What I stand for</span>
-              <h2 className="mt-5 font-black text-3xl lg:text-5xl uppercase tracking-tight">Core Values &amp; Philosophy</h2>
-              <div className="h-1.5 w-24 bg-red-500 rounded-full mt-5 mx-auto shadow-lg shadow-red-500/50"></div>
+            <Reveal className="mb-14">
+              <SectionHeading tone="light" eyebrow="What I stand for" title="Core Values & Philosophy" />
             </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {thoughts.map((item, i) => {

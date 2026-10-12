@@ -4,7 +4,7 @@ import Footer from '../components/footer'
 import PageHero from '../components/PageHero'
 import Link from 'next/link'
 import Image from 'next/image'
-import Head from 'next/head'
+import Seo from '../components/Seo'
 
 const Hobbies: NextPage = () => {
     const games = [
@@ -86,11 +86,8 @@ const Hobbies: NextPage = () => {
     const gameGenres = ['All', ...Array.from(new Set(games.map(g => g.genre)))];
 
     return (
-        <div className="scroll-smooth bg-gray-50 font-main relative">
-            <Head>
-                <title>Hobbies | ElevatED by Code | IllustratED by Design</title>
-                <link rel="icon" href="/edLogo.png" />
-            </Head>
+        <div className="scroll-smooth bg-gray-50 relative">
+            <Seo path="/hobbies" title="Hobbies" description="The games, anime and manga that inspire John Edward Cabrera's design and game development work." />
 
             <main className="pb-20">
                 {/* HERO HEADER */}
