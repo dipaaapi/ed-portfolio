@@ -61,9 +61,9 @@ const Navigation = () => {
         // Fixed h-20: PageHero and the home hero pull up by exactly this (-mt-20) to sit behind the glass bar.
         <div className="w-full h-20 sticky top-0 z-50 px-3 sm:px-4 pt-3">
             {/* GLASSMORPHISM NAVBAR */}
-            <nav className={`max-w-7xl mx-auto rounded-2xl border backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ${scrolled || menuOpen
-                ? 'bg-white/70 border-white/70 shadow-xl shadow-gray-900/10'
-                : 'bg-white/80 border-white/60 shadow-md shadow-gray-900/5'
+            <nav className={`max-w-7xl mx-auto rounded-2xl backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ${scrolled || menuOpen
+                ? 'bg-white/75 shadow-xl shadow-gray-900/10'
+                : 'bg-white/70 shadow-md shadow-gray-900/5'
                 }`}>
                 <div className='flex items-center justify-between gap-3 py-2 pl-3 pr-2 sm:pl-4 sm:pr-3'>
 
@@ -73,11 +73,11 @@ const Navigation = () => {
                     </Link>
 
                     {/* DESKTOP LINKS */}
-                    <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-gray-900/5 border border-white/60 text-[10px] font-black uppercase tracking-widest">
+                    <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-gray-900/5 text-[10px] font-black uppercase tracking-widest">
                         {navLinks.map(({ href, label }) => (
                             <Link key={href} href={href} aria-current={isActive(href) ? 'page' : undefined} className={`px-4 py-2 rounded-full transition-all duration-300 ${isActive(href)
                                 ? 'bg-white text-red-600 shadow-md shadow-gray-900/10'
-                                : 'text-gray-500 hover:text-gray-900 hover:bg-white/60'
+                                : 'text-gray-700 hover:text-gray-950 hover:bg-white/60'
                                 }`}>
                                 {label}
                             </Link>
@@ -86,7 +86,7 @@ const Navigation = () => {
 
                     {/* PST CLOCK & MENU TOGGLE */}
                     <div className="flex items-center gap-2">
-                        <div className="font-mono text-[11px] md:text-xs bg-gray-900/90 text-white px-3 sm:px-4 py-2 rounded-full shadow-lg flex items-center gap-2 sm:gap-3 border border-gray-700">
+                        <div className="font-mono text-[11px] md:text-xs bg-gray-900/90 text-white px-3 sm:px-4 py-2 rounded-full shadow-lg flex items-center gap-2 sm:gap-3">
                             <div className="relative w-5 h-3 overflow-hidden rounded-sm flex-shrink-0">
                                 <Image src="/flag.gif" fill style={{ objectFit: 'cover' }} alt="PH Flag" />
                             </div>
@@ -112,11 +112,11 @@ const Navigation = () => {
 
                 {/* MOBILE MENU */}
                 <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-[28rem] opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 border-t border-white/60 p-2 text-xs font-black uppercase tracking-widest">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 p-2 text-xs font-black uppercase tracking-widest">
                         {navLinks.map(({ href, label }) => (
                             <Link key={href} href={href} aria-current={isActive(href) ? 'page' : undefined} className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${isActive(href)
                                 ? 'bg-white text-red-600 shadow-md shadow-gray-900/10'
-                                : 'text-gray-600 hover:bg-white/60 hover:text-gray-900'
+                                : 'text-gray-700 hover:bg-white/60 hover:text-gray-950'
                                 }`}>
                                 {label}
                                 {isActive(href) && <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>}
